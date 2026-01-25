@@ -29,7 +29,7 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
             </div>
             <div className="book-info">
                 <span className="book-category">{book.Category}</span>
-                <h3 className="book-title" title={book.Title}>{book.Title}</h3>
+                <h2 className="book-title" title={book.Title}>{book.Title}</h2>
                 <a
                     href={book.Link}
                     target="_blank"
