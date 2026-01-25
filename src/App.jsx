@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, BookOpen, Info } from 'lucide-react';
+import { Heart, BookOpen, Info, MessageSquare } from 'lucide-react';
 import CategoryBar from './components/CategoryBar';
 import BookCard from './components/BookCard';
 import About from './components/About';
@@ -106,6 +106,16 @@ const App = () => {
                     <Info size={18} />
                     About
                 </button>
+                <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdizXwJUzLnyEQVH_fjZClIUir9lMg9RnIZQkWooexjJz9e7Q/viewform?usp=header"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="nav-btn"
+                    style={{ textDecoration: 'none' }}
+                >
+                    <MessageSquare size={18} />
+                    Feedback
+                </a>
             </nav>
 
             <AnimatePresence mode='wait'>
@@ -158,7 +168,24 @@ const App = () => {
 
             <footer style={{ marginTop: '5rem', textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem' }}>
                 <p>&copy; {new Date().getFullYear()} Design Bookshelf. Knowledge is power.</p>
-                <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', opacity: 0.8 }}>
+                <div style={{ marginTop: '1rem' }}>
+                    <a 
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSdizXwJUzLnyEQVH_fjZClIUir9lMg9RnIZQkWooexjJz9e7Q/viewform?usp=header"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ 
+                            background: 'none', 
+                            border: 'none', 
+                            color: 'var(--accent-secondary)', 
+                            textDecoration: 'underline', 
+                            cursor: 'pointer',
+                            fontSize: '0.9rem'
+                        }}
+                    >
+                        Share your feedback
+                    </a>
+                </div>
+                <p style={{ fontSize: '0.8rem', marginTop: '1rem', opacity: 0.8 }}>
                     Full Affiliate Disclosure: This website contains affiliate links. If you purchase through these links, we may earn a small commission at no extra cost to you.
                 </p>
             </footer>
