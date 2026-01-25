@@ -114,7 +114,7 @@ const App = () => {
                     style={{ textDecoration: 'none' }}
                 >
                     <MessageSquare size={18} />
-                    Feedback
+                    Anonymous Feedback
                 </a>
             </nav>
 
@@ -182,7 +182,7 @@ const App = () => {
                             fontSize: '0.9rem'
                         }}
                     >
-                        Share your feedback
+                        Share your anonymous feedback
                     </a>
                 </div>
                 <p style={{ fontSize: '0.8rem', marginTop: '1rem', opacity: 0.8 }}>
