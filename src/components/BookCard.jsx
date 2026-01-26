@@ -22,14 +22,14 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
             <div className="book-image-container">
                 <img
                     src={book['Image URL']}
-                    alt={`${book.Title} - ${book.Category}`}
+                    alt={`${book.Title.split(':')[0]} - ${book.Category}`}
                     className="book-image"
                     loading="lazy"
                 />
             </div>
             <div className="book-info">
                 <span className="book-category">{book.Category}</span>
-                <h2 className="book-title">{book.Title}</h2>
+                <h2 className="book-title">{book.Title.split(':')[0]}</h2>
                 <a
                     href={book.Link}
                     target="_blank"
