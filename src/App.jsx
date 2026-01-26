@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, BookOpen, Info, MessageSquare } from 'lucide-react';
+import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import CategoryBar from './components/CategoryBar';
 import BookCard from './components/BookCard';
 import About from './components/About';
 import booksData from './books.json';
 
 const App = () => {
-    const [view, setView] = useState('home'); // 'home' | 'about'
+    const location = useLocation();
     const [activeCategory, setActiveCategory] = useState('All');
     const [filteredBooks, setFilteredBooks] = useState(booksData);
     const [categories, setCategories] = useState(['All']);
@@ -56,13 +57,6 @@ const App = () => {
 
     const isFavorite = (bookTitle) => favorites.includes(bookTitle);
 
-    const handleNavClick = (newView, favoritesState = false) => {
-        setView(newView);
-        if (newView === 'home') {
-            setShowFavorites(favoritesState);
-        }
-    };
-
     return (
         <div className="app-container">
             <header className="header-section">
@@ -85,27 +79,29 @@ const App = () => {
 
             {/* Navigation Bar */}
             <nav className="nav-bar">
-                <button
-                    className={`nav-btn ${view === 'home' && !showFavorites ? 'active' : ''}`}
-                    onClick={() => handleNavClick('home', false)}
+                <NavLink
+                    to="/"
+                    className={({ isActive }) => `nav-btn ${isActive && !showFavorites ? 'active' : ''}`}
+                    onClick={() => setShowFavorites(false)}
                 >
                     <BookOpen size={18} />
                     All Books
-                </button>
+                </NavLink>
                 <button
-                    className={`nav-btn favorites-btn ${view === 'home' && showFavorites ? 'active' : ''}`}
-                    onClick={() => handleNavClick('home', true)}
+                    className={`nav-btn favorites-btn ${showFavorites ? 'active' : ''}`}
+                    onClick={() => setShowFavorites(true)}
                 >
-                    <Heart size={18} fill={view === 'home' && showFavorites ? 'currentColor' : 'none'} />
+                    <Heart size={18} fill={showFavorites ? 'currentColor' : 'none'} />
                     Favorites ({favorites.length})
                 </button>
-                <button
-                    className={`nav-btn ${view === 'about' ? 'active' : ''}`}
-                    onClick={() => handleNavClick('about')}
+                <NavLink
+                    to="/about"
+                    className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}
+                    onClick={() => setShowFavorites(false)}
                 >
                     <Info size={18} />
                     About
-                </button>
+                </NavLink>
                 <a
                     href="https://docs.google.com/forms/d/e/1FAIpQLSdizXwJUzLnyEQVH_fjZClIUir9lMg9RnIZQkWooexjJz9e7Q/viewform?usp=header"
                     target="_blank"
@@ -119,51 +115,54 @@ const App = () => {
             </nav>
 
             <AnimatePresence mode='wait'>
-                {view === 'home' ? (
-                    <motion.div
-                        key="home"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 20 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <CategoryBar
-                            categories={categories}
-                            activeCategory={activeCategory}
-                            setActiveCategory={setActiveCategory}
-                        />
-
-                        <main className="books-grid-container">
+                <Routes location={location} key={location.pathname}>
+                    <Route 
+                        path="/" 
+                        element={
                             <motion.div
-                                layout
-                                className="books-grid"
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 20 }}
+                                transition={{ duration: 0.3 }}
                             >
-                                <AnimatePresence mode='popLayout'>
-                                    {filteredBooks.length > 0 ? (
-                                        filteredBooks.map((book, index) => (
-                                            <BookCard
-                                                key={`${book.Title}-${index}`}
-                                                book={book}
-                                                isFavorite={isFavorite(book.Title)}
-                                                onToggleFavorite={() => toggleFavorite(book.Title)}
-                                            />
-                                        ))
-                                    ) : (
-                                        <motion.div
-                                            className="empty-state"
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                        >
-                                            <p>No books found. {showFavorites ? 'Add some favorites!' : 'Try a different category.'}</p>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
+                                <CategoryBar
+                                    categories={categories}
+                                    activeCategory={activeCategory}
+                                    setActiveCategory={setActiveCategory}
+                                />
+
+                                <main className="books-grid-container">
+                                    <motion.div
+                                        layout
+                                        className="books-grid"
+                                    >
+                                        <AnimatePresence mode='popLayout'>
+                                            {filteredBooks.length > 0 ? (
+                                                filteredBooks.map((book, index) => (
+                                                    <BookCard
+                                                        key={`${book.Title}-${index}`}
+                                                        book={book}
+                                                        isFavorite={isFavorite(book.Title)}
+                                                        onToggleFavorite={() => toggleFavorite(book.Title)}
+                                                    />
+                                                ))
+                                            ) : (
+                                                <motion.div
+                                                    className="empty-state"
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                >
+                                                    <p>No books found. {showFavorites ? 'Add some favorites!' : 'Try a different category.'}</p>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </motion.div>
+                                </main>
                             </motion.div>
-                        </main>
-                    </motion.div>
-                ) : (
-                    <About key="about" />
-                )}
+                        } 
+                    />
+                    <Route path="/about" element={<About />} />
+                </Routes>
             </AnimatePresence>
 
             <footer style={{ marginTop: '5rem', textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem' }}>
