@@ -22,7 +22,7 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
             <div className="book-image-container">
                 <img
                     src={book['Image URL']}
-                    alt={`Book cover of ${book.Title} - Recommended ${book.Category} book on Amazon India`}
+                    alt={`${book.Title} - ${book.Category}`}
                     className="book-image"
                     loading="lazy"
                 />
