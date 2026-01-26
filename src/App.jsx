@@ -65,15 +65,16 @@ const App = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    Design Bookshelf
+                    UI/UX Design Bookshelf
                 </motion.h1>
                 <motion.p
                     className="subtitle"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4, duration: 0.8 }}
+                    style={{ maxWidth: '800px', margin: '0.5rem auto' }}
                 >
-                    Curated knowledge for the modern UI/UX professional.
+                    The ultimate list of UI/UX books to read—curated from foundational UX textbooks and top community recommendations.
                 </motion.p>
             </header>
 
