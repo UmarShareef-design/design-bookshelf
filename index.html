@@ -14,10 +14,11 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UI/UX Design Bookshelf | Foundational UX Textbooks & Research Books</title>
+  <title>UI/UX Design Bookshelf | UX UI Books & Fundamentals in the Age of AI</title>
   <meta name="description"
-    content="Stop searching Reddit threads. Discover the best UI/UX design books to read for Indian professionals. A curated library of foundational textbooks and interaction design guides found on Amazon." />
-  <meta name="keywords" content="UX design books, UI design books, User experience design books, User interface design books, Interaction design books, UI/UX design ebooks, UX design books for beginners, UX design textbook, Foundational UX books, UX research books, Amazon India, Umar Shareef" />
+    content="Stop searching Reddit threads. Discover the best UI/UX design books to read for Indian professionals. A curated library of interaction design guides and UI/UX fundamentals found on Amazon. In the age of AI tools, mastering timeless principles is more important than ever to stay ahead." />
+  <meta name="keywords"
+    content="UX design books, UI design books, User experience design books, User interface design books, Interaction design books, UI/UX design ebooks, UX design books for beginners, UX design textbook, Foundational UX books, UX research books, Amazon India, Umar Shareef" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -33,21 +34,84 @@
   <script type="text/javascript">
     // Single Page Apps for GitHub Pages
     // https://github.com/rafgraph/spa-github-pages
-    (function(l) {
-      if (l.search[1] === '/' ) {
-        var decoded = l.search.slice(1).split('&').map(function(s) { 
+    (function (l) {
+      if (l.search[1] === '/') {
+        var decoded = l.search.slice(1).split('&').map(function (s) {
           return s.replace(/~and~/g, '&')
         }).join('?');
         window.history.replaceState(null, null,
-            l.pathname.slice(0, -1) + decoded + l.hash
+          l.pathname.slice(0, -1) + decoded + l.hash
         );
       }
     }(window.location))
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "UI/UX Design Bookshelf",
+      "description": "A curated library of UI/UX design books focused on timeless fundamentals in the age of AI. Curated for Indian professionals and global designers.",
+      "url": "https://UmarShareef-design.github.io/design-bookshelf/",
+      "author": {
+        "@type": "Person",
+        "name": "Umar Shareef",
+        "description": "Designer with 5+ years of experience who loves reading books."
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inspired: How to Create Tech Products Customers Love",
+            "category": "UX Design"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "The Design of Everyday Things",
+            "category": "UX Design"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Don't Make Me Think",
+            "category": "UX Design"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "About Face: The Essentials of Interaction",
+            "category": "Interaction Design"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Universal Principles of Design",
+            "category": "Design Fundamentals"
+          }
+        ]
+      }
+    }
   </script>
 </head>
 
 <body>
   <div id="root"></div>
+  <noscript>
+    <h1>UI/UX Design Bookshelf - Book Directory</h1>
+    <p>A curated collection of UI/UX fundamentals for the AI era.</p>
+    <ul>
+      <li><strong>UX Design:</strong> Inspired, The Design of Everyday Things, Don't Make Me Think, Hooked, Lean UX.
+      </li>
+      <li><strong>UI Design:</strong> Thinking with Type, Grid Systems, Designing Visual Interfaces, Information
+        Architecture.</li>
+      <li><strong>Interaction Design:</strong> About Face, Sketching User Experiences.</li>
+      <li><strong>User Research:</strong> Observing the User Experience, Interviewing Users.</li>
+      <li><strong>Design Fundamentals:</strong> Universal Principles of Design, Elements of User Experience.</li>
+    </ul>
+    <p>Curated by Umar Shareef, a Designer with 5+ years of experience.</p>
+  </noscript>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 

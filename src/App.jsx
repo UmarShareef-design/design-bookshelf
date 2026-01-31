@@ -15,6 +15,18 @@ const App = () => {
     const [favorites, setFavorites] = useState([]);
     const [showFavorites, setShowFavorites] = useState(false);
 
+    const categorySummaries = {
+        'All': 'A complete collection of UI/UX design books covering everything from basic principles to advanced research methods.',
+        'UX Design': 'Essential reading for understanding user behavior, usability, and the strategy behind successful digital products.',
+        'UI Design': 'Books focused on visual hierarchy, typography, color theory, and the aesthetics of interface design.',
+        'Interaction Design': 'Guides on how users engage with products, focusing on flow, feedback, and interactive patterns.',
+        'Design Fundamentals': 'The core principles of design that remain constant even as tools and technologies evolve.',
+        'User Research': 'Methodologies for gathering deep insights into user needs and testing design assumptions.',
+        'Portfolio': 'Strategies for showcasing your design process and landing roles in the UI/UX industry.',
+        'Design Process': 'Frameworks like Design Thinking and Lean UX that help teams build the right things efficiently.',
+        'Complementary Skills': 'Soft skills and adjacent disciplines that help designers grow beyond just pixels.'
+    };
+
     // Load favorites from localStorage on mount
     useEffect(() => {
         const storedFavorites = localStorage.getItem('designBookshelfFavorites');
@@ -74,7 +86,7 @@ const App = () => {
                     transition={{ delay: 0.4, duration: 0.8 }}
                     style={{ maxWidth: '800px', margin: '0.5rem auto' }}
                 >
-                    The ultimate list of UI/UX books to read—curated from foundational UX textbooks and top community recommendations.
+                    A new design tool drops every week, but fundamentals are forever. In the age of AI, knowing the "why" through timeless principles is your real competitive edge. Make use of the ultimate list of UI/UX books to read—curated from foundational UX books and top reddit recommendations.
                 </motion.p>
             </header>
 
@@ -117,8 +129,8 @@ const App = () => {
 
             <AnimatePresence mode='wait'>
                 <Routes location={location} key={location.pathname}>
-                    <Route 
-                        path="/" 
+                    <Route
+                        path="/"
                         element={
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
@@ -126,11 +138,33 @@ const App = () => {
                                 exit={{ opacity: 0, x: 20 }}
                                 transition={{ duration: 0.3 }}
                             >
-                                <CategoryBar
-                                    categories={categories}
-                                    activeCategory={activeCategory}
-                                    setActiveCategory={setActiveCategory}
-                                />
+                                <section className="filters-section" aria-label="Book Categories">
+                                    <CategoryBar
+                                        categories={categories}
+                                        activeCategory={activeCategory}
+                                        setActiveCategory={setActiveCategory}
+                                    />
+                                </section>
+
+                                {!showFavorites && categorySummaries[activeCategory] && (
+                                    <motion.p
+                                        className="category-summary"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        key={activeCategory}
+                                        style={{
+                                            textAlign: 'center',
+                                            maxWidth: '700px',
+                                            margin: '1.5rem auto',
+                                            color: 'var(--text-secondary)',
+                                            fontSize: '1rem',
+                                            lineHeight: '1.6',
+                                            padding: '0 1rem'
+                                        }}
+                                    >
+                                        {categorySummaries[activeCategory]}
+                                    </motion.p>
+                                )}
 
                                 <main className="books-grid-container">
                                     <motion.div
@@ -160,7 +194,7 @@ const App = () => {
                                     </motion.div>
                                 </main>
                             </motion.div>
-                        } 
+                        }
                     />
                     <Route path="/about" element={<About />} />
                 </Routes>
@@ -169,15 +203,15 @@ const App = () => {
             <footer style={{ marginTop: '5rem', textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem' }}>
                 <p>&copy; {new Date().getFullYear()} Design Bookshelf. Knowledge is power.</p>
                 <div style={{ marginTop: '1rem' }}>
-                    <a 
+                    <a
                         href="https://docs.google.com/forms/d/e/1FAIpQLSdizXwJUzLnyEQVH_fjZClIUir9lMg9RnIZQkWooexjJz9e7Q/viewform?usp=header"
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{ 
-                            background: 'none', 
-                            border: 'none', 
-                            color: 'var(--accent-secondary)', 
-                            textDecoration: 'underline', 
+                        style={{
+                            background: 'none',
+                            border: 'none',
+                            color: 'var(--accent-secondary)',
+                            textDecoration: 'underline',
                             cursor: 'pointer',
                             fontSize: '0.9rem'
                         }}

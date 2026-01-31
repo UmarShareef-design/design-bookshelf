@@ -41,7 +41,7 @@ const About = () => {
 
             <div style={{ fontSize: '1.1rem', color: 'var(--text-secondary)' }}>
                 <p style={{ marginBottom: '1.5rem' }}>
-                    I'm Umar Shareef, a mechanical engineer turned website designer and now exploring vibe coding to build my own websites.
+                    I'm Umar Shareef, a Designer who loves reading books with 5+ years of experience. Originally a mechanical engineer, I transitioned into website design and am now exploring "vibe coding" to build my own digital products.
                 </p>
 
                 <p style={{ marginBottom: '1.5rem' }}>
@@ -49,7 +49,11 @@ const About = () => {
                 </p>
 
                 <p style={{ marginBottom: '1.5rem' }}>
-                    Then I started researching and categorising books skill-wise, and now it's a live website that will be helpful to anyone who is in the same place where I was a few years ago.
+                    Every week, a new free design tool emerges that claims to do everything better. But I realized that while tools cycle quickly, the core fundamentals found in these books are timeless. In the age of AI, knowing these principles is more important than ever—it’s the only way to truly master the new tools instead of being replaced by them.
+                </p>
+
+                <p style={{ marginBottom: '1.5rem' }}>
+                    I’ve spent hundreds of hours categorising these books skill-wise so you don't have to. I hope this curated collection helps you build an AI-proof foundation for your design career.
                 </p>
 
                 <p style={{

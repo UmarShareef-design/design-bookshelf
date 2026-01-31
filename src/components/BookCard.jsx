@@ -4,7 +4,7 @@ import { ExternalLink, Heart } from 'lucide-react';
 
 const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
     return (
-        <motion.div
+        <motion.article
             layout
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -39,7 +39,7 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                     Buy on Amazon <ExternalLink size={16} />
                 </a>
             </div>
-        </motion.div>
+        </motion.article>
     );
 };
 
