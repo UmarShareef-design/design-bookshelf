@@ -71,6 +71,7 @@ const App = () => {
 
     return (
         <div className="app-container">
+            <a href="#main-content" className="skip-link">Skip to main content</a>
             <header className="header-section">
                 <motion.h1
                     initial={{ opacity: 0, y: -20 }}
@@ -166,7 +167,7 @@ const App = () => {
                                     </motion.p>
                                 )}
 
-                                <main className="books-grid-container">
+                                <main className="books-grid-container" id="main-content">
                                     <motion.div
                                         layout
                                         className="books-grid"

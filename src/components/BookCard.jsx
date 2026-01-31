@@ -25,6 +25,7 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                     alt={`${book.Title.split(':')[0]} - ${book.Category}`}
                     className="book-image"
                     loading="lazy"
+                    decoding="async"
                 />
             </div>
             <div className="book-info">
@@ -35,6 +36,15 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="buy-button"
+                    onClick={() => {
+                        if (window.gtag) {
+                            window.gtag('event', 'purchase_click', {
+                                'event_category': 'Engagement',
+                                'event_label': book.Title,
+                                'book_category': book.Category
+                            });
+                        }
+                    }}
                 >
                     Buy on Amazon <ExternalLink size={16} />
                 </a>
