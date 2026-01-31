@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, BookOpen, Info, MessageSquare } from 'lucide-react';
-import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { Routes, Route, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import CategoryBar from './components/CategoryBar';
 import BookCard from './components/BookCard';
 import About from './components/About';
@@ -9,6 +9,7 @@ import booksData from './books.json';
 
 const App = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const [activeCategory, setActiveCategory] = useState('All');
     const [filteredBooks, setFilteredBooks] = useState(booksData);
     const [categories, setCategories] = useState(['All']);
@@ -103,7 +104,10 @@ const App = () => {
                 </NavLink>
                 <button
                     className={`nav-btn favorites-btn ${showFavorites ? 'active' : ''}`}
-                    onClick={() => setShowFavorites(true)}
+                    onClick={() => {
+                        setShowFavorites(true);
+                        navigate('/');
+                    }}
                 >
                     <Heart size={18} fill={showFavorites ? 'currentColor' : 'none'} />
                     Favorites ({favorites.length})
