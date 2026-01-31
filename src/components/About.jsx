@@ -53,7 +53,7 @@ const About = () => {
                 </p>
 
                 <p style={{ marginBottom: '1.5rem' }}>
-                    I’ve spent hundreds of hours categorising these books skill-wise so you don't have to. I hope this curated collection helps you build an AI-proof foundation for your design career.
+                    I hope this curated collection helps you build an AI-proof foundation for your design career.
                 </p>
 
                 <p style={{
