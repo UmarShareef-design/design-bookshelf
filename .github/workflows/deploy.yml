@@ -34,6 +34,4 @@ jobs:
           password: "e|@VIA&tr]2A>Y[1"
           local-dir: "./dist/"
           server-dir: "public_html/"
-          protocol: ftp
-          port: 21
-          log-level: verbose
+          state-name: "deploy-state.json"
