@@ -1,6 +1,4 @@
-# Hostinger React Router Config
-DirectoryIndex index.html
-
+# Simple Safe Config for Hostinger
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -9,6 +7,3 @@ DirectoryIndex index.html
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]
 </IfModule>
-
-# Fix for 403 errors
-Options -Indexes
