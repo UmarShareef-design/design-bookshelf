@@ -33,6 +33,6 @@ jobs:
           username: "u923944649"
           password: "e|@VIA&tr]2A>Y[1"
           local-dir: "./dist/"
-          server-dir: "public_html/"
+          server-dir: "./"
           protocol: ftp
           port: 21
