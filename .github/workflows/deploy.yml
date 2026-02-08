@@ -26,14 +26,13 @@ jobs:
       - name: 🏗️ Build Project
         run: npm run build
 
-      - name: � Deploy to Server via SSH
-        uses: easingthemes/ssh-deploy@main
+      - name: 📂 Sync files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: "-rlgoDzvc -i --delete"
-          SOURCE: "dist/"
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          REMOTE_PORT: 65002
-          TARGET: "public_html/"
-          EXCLUDE: "/dist/, /node_modules/"
+          server: "46.202.161.167"
+          username: "u923944649"
+          password: "e|@VIA&tr]2A>Y[1"
+          local-dir: "./dist/"
+          server-dir: "public_html/"
+          protocol: ftp
+          port: 21
