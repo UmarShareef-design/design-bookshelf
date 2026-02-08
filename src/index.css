@@ -10,7 +10,7 @@
     --glass-blur: blur(20px);
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --font-main: 'Inter', sans-serif;
-    --font-heading: 'Libre Baskerville', serif;
+    --font-heading: 'Inter', sans-serif;
 }
 
 * {
@@ -62,8 +62,11 @@ body {
 /* Typography */
 h1 {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    font-weight: 700;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 800;
+    /* Extra Bold for primary hierarchy */
+    letter-spacing: -0.04em;
+    /* Tighter tracking for modern look */
     text-align: center;
     margin-bottom: 0.5rem;
     background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
