@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+    <!-- Background Shape -->
+    <path d="M2 6C2 4.89543 2.89543 4 4 4H28C29.1046 4 30 4.89543 30 6V22C30 23.1046 29.1046 24 28 24H19L16 28L13 24H4C2.89543 24 2 23.1046 2 22V6Z" fill="#E0E0E0"/>
+    
+    <!-- UXB Text -->
+    <text x="16" y="17.5" font-family="Arial, sans-serif" font-size="10" font-weight="900" fill="black" text-anchor="middle" letter-spacing="-0.5">UXB</text>
+</svg>
