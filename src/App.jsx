@@ -25,7 +25,8 @@ const App = () => {
         'User Research': 'Methodologies for gathering deep insights into user needs and testing design assumptions.',
         'Portfolio': 'Strategies for showcasing your design process and landing roles in the UI/UX industry.',
         'Design Process': 'Frameworks like Design Thinking and Lean UX that help teams build the right things efficiently.',
-        'Complementary Skills': 'Soft skills that help you grow beyond just pixels.'
+        'Complementary Skills': 'Soft skills that help you grow beyond just pixels.',
+        'Favorites': 'Your curated collection of design wisdom. These books save to your local browser storage so you can easily reference them later. Tip: You can even bookmark this page in your browser for one-click access to your favorites!'
     };
 
     // Load favorites from localStorage on mount
@@ -152,12 +153,12 @@ const App = () => {
                                     />
                                 </section>
 
-                                {!showFavorites && categorySummaries[activeCategory] && (
+                                {categorySummaries[showFavorites ? 'Favorites' : activeCategory] && (
                                     <motion.p
                                         className="category-summary"
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
-                                        key={activeCategory}
+                                        key={showFavorites ? 'Favorites' : activeCategory}
                                         style={{
                                             textAlign: 'center',
                                             maxWidth: '700px',
@@ -168,7 +169,7 @@ const App = () => {
                                             padding: '0 1rem'
                                         }}
                                     >
-                                        {categorySummaries[activeCategory]}
+                                        {categorySummaries[showFavorites ? 'Favorites' : activeCategory]}
                                     </motion.p>
                                 )}
 

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Heart } from 'lucide-react';
+import ButterflyAnimation from './ButterflyAnimation';
 
 const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
+    const [showButterfly, setShowButterfly] = useState(false);
+
     const handleAmazonClick = () => {
         if (window.gtag) {
             window.gtag('event', 'purchase_click', {
@@ -11,6 +14,14 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                 'book_category': book.Category
             });
         }
+    };
+
+    const handleFavoriteClick = (e) => {
+        e.stopPropagation();
+        if (!isFavorite) {
+            setShowButterfly(true);
+        }
+        onToggleFavorite();
     };
 
     return (
@@ -22,12 +33,13 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
             transition={{ duration: 0.4 }}
             className="book-card glass-effect"
         >
+            <ButterflyAnimation
+                isTriggered={showButterfly}
+                onComplete={() => setShowButterfly(false)}
+            />
             <button
                 className={`favorite-btn ${isFavorite ? 'is-favorite' : ''}`}
-                onClick={(e) => {
-                    e.stopPropagation();
-                    onToggleFavorite();
-                }}
+                onClick={handleFavoriteClick}
                 aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
             >
                 <Heart size={20} fill={isFavorite ? 'currentColor' : 'none'} />

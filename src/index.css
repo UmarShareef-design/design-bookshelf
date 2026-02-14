@@ -183,6 +183,7 @@ h1 {
     height: 100%;
     position: relative;
     overflow: hidden;
+    perspective: 1000px;
 }
 
 .book-card:hover {
