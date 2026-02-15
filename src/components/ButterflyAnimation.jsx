@@ -11,7 +11,7 @@ const ButterflyAnimation = ({ isTriggered, onComplete }) => {
             const timer = setTimeout(() => {
                 setIsAnimating(false);
                 onComplete?.();
-            }, 4500); // Increased duration for a slower, graceful flight
+            }, 4000);
             return () => clearTimeout(timer);
         }
     }, [isTriggered, onComplete]);
@@ -36,7 +36,7 @@ const ButterflyAnimation = ({ isTriggered, onComplete }) => {
                         rotate: [0, 15, -15, 20, -10, 30],
                     }}
                     transition={{
-                        duration: 4.5, // Slower flight
+                        duration: 4,
                         ease: "easeInOut",
                         times: [0, 0.15, 0.4, 0.7, 0.9, 1]
                     }}
@@ -55,7 +55,7 @@ const ButterflyAnimation = ({ isTriggered, onComplete }) => {
                             rotateY: [0, 70, 0, 70, 0, 70, 0, 70], // More pronounced wing flap
                         }}
                         transition={{
-                            duration: 0.6, // Slower wing beats
+                            duration: 0.5,
                             repeat: 7,
                             ease: "easeInOut"
                         }}

@@ -87,7 +87,6 @@ const App = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4, duration: 0.8 }}
-                    style={{ maxWidth: '800px', margin: '0.5rem auto' }}
                 >
                     A new design tool drops every week, but fundamentals are forever. In the age of AI, knowing the "why" through timeless principles is your real competitive edge. Make use of the ultimate list of UI/UX books to read—curated from foundational UX books and top reddit recommendations.
                 </motion.p>
@@ -159,15 +158,6 @@ const App = () => {
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         key={showFavorites ? 'Favorites' : activeCategory}
-                                        style={{
-                                            textAlign: 'center',
-                                            maxWidth: '700px',
-                                            margin: '1.5rem auto',
-                                            color: 'var(--text-secondary)',
-                                            fontSize: '1rem',
-                                            lineHeight: '1.6',
-                                            padding: '0 1rem'
-                                        }}
                                     >
                                         {categorySummaries[showFavorites ? 'Favorites' : activeCategory]}
                                     </motion.p>
@@ -207,26 +197,19 @@ const App = () => {
                 </Routes>
             </AnimatePresence>
 
-            <footer style={{ marginTop: '5rem', textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem' }}>
+            <footer className="footer">
                 <p>&copy; {new Date().getFullYear()} Design Bookshelf. Knowledge is power.</p>
-                <div style={{ marginTop: '1rem' }}>
+                <div className="footer-links">
                     <a
                         href="https://docs.google.com/forms/d/e/1FAIpQLSdizXwJUzLnyEQVH_fjZClIUir9lMg9RnIZQkWooexjJz9e7Q/viewform?usp=header"
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{
-                            background: 'none',
-                            border: 'none',
-                            color: 'var(--accent-secondary)',
-                            textDecoration: 'underline',
-                            cursor: 'pointer',
-                            fontSize: '0.9rem'
-                        }}
+                        className="footer-feedback-link"
                     >
                         Share your feedback ( Anonymous )
                     </a>
                 </div>
-                <p style={{ fontSize: '0.8rem', marginTop: '1rem', opacity: 0.8 }}>
+                <p className="footer-disclosure">
                     Full Affiliate Disclosure: This website contains affiliate links. If you purchase through these links, we may earn a small commission at no extra cost to you.
                 </p>
             </footer>

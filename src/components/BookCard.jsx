@@ -32,6 +32,7 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.4 }}
             className="book-card glass-effect"
+            style={{ zIndex: showButterfly ? 100 : 1 }}
         >
             <ButterflyAnimation
                 isTriggered={showButterfly}
@@ -50,7 +51,6 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                 rel="noopener noreferrer"
                 className="book-card-link"
                 onClick={handleAmazonClick}
-                style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
             >
                 <div className="book-image-container">
                     <img
