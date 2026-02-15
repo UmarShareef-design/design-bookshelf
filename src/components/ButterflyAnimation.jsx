@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Book } from 'lucide-react';
+import { Heart, BookOpen } from 'lucide-react';
 
 const ButterflyAnimation = ({ isTriggered, onComplete }) => {
     const [isAnimating, setIsAnimating] = useState(false);
@@ -102,12 +102,10 @@ const ButterflyAnimation = ({ isTriggered, onComplete }) => {
                                     width: '12px',
                                     height: '24px',
                                     overflow: 'hidden',
-                                    display: 'flex',
-                                    justifyContent: 'flex-end',
                                     backfaceVisibility: 'hidden'
                                 }}
                             >
-                                <Book size={24} fill="white" stroke="white" />
+                                <BookOpen size={24} fill="white" stroke="white" />
                             </motion.div>
 
                             {/* Right Wing */}
@@ -134,7 +132,7 @@ const ButterflyAnimation = ({ isTriggered, onComplete }) => {
                                     backfaceVisibility: 'hidden'
                                 }}
                             >
-                                <Book size={24} fill="white" stroke="white" style={{ marginLeft: '-12px' }} />
+                                <BookOpen size={24} fill="white" stroke="white" style={{ marginLeft: '-12px' }} />
                             </motion.div>
                         </div>
                     </div>
