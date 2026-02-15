@@ -49,38 +49,79 @@ const ButterflyAnimation = ({ isTriggered, onComplete }) => {
                         color: '#ff6b6b'
                     }}
                 >
-                    {/* Morphing & Flapping Container */}
+                    {/* The Heart morphing out */}
                     <motion.div
-                        animate={{
-                            rotateY: [0, 70, 0, 70, 0, 70, 0, 70], // More pronounced wing flap
-                        }}
-                        transition={{
-                            duration: 0.5,
-                            repeat: 7,
-                            ease: "easeInOut"
-                        }}
-                        style={{ transformStyle: 'preserve-3d' }}
+                        initial={{ opacity: 1 }}
+                        animate={{ opacity: [1, 0] }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        style={{ position: 'absolute', top: 0, left: 0 }}
                     >
-                        {/* The Heart morphing out */}
+                        <Heart size={24} fill="#ff6b6b" />
+                    </motion.div>
+
+                    {/* The Butterfly (Double Winged Book) */}
+                    <div style={{
+                        position: 'relative',
+                        display: 'flex',
+                        transformStyle: 'preserve-3d',
+                        perspective: '1000px'
+                    }}>
+                        {/* Left Wing */}
                         <motion.div
-                            initial={{ opacity: 1 }}
-                            animate={{ opacity: [1, 0] }}
-                            transition={{ duration: 0.8, delay: 0.8 }}
-                            style={{ position: 'absolute' }}
+                            initial={{ opacity: 0, scale: 0.5, rotateY: 0 }}
+                            animate={{
+                                opacity: [0, 1],
+                                scale: [0.5, 1],
+                                rotateY: [0, -80, 0, -80, 0, -80, 0, -80]
+                            }}
+                            transition={{
+                                opacity: { duration: 0.8, delay: 0.8 },
+                                scale: { duration: 0.8, delay: 0.8 },
+                                rotateY: {
+                                    duration: 0.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    delay: 0.8
+                                }
+                            }}
+                            style={{
+                                transformOrigin: 'right center',
+                                color: '#ffffff',
+                                width: '12px',
+                                overflow: 'hidden'
+                            }}
                         >
-                            <Heart size={24} fill="#ff6b6b" />
+                            <Book size={24} fill="#ffffff" style={{ minWidth: '24px' }} />
                         </motion.div>
 
-                        {/* The Book morphing in */}
+                        {/* Right Wing */}
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            animate={{ opacity: [0, 1], scale: [0.5, 1] }}
-                            transition={{ duration: 0.8, delay: 1.0 }}
-                            style={{ color: '#00f2fe' }}
+                            initial={{ opacity: 0, scale: 0.5, rotateY: 0 }}
+                            animate={{
+                                opacity: [0, 1],
+                                scale: [0.5, 1],
+                                rotateY: [0, 80, 0, 80, 0, 80, 0, 80]
+                            }}
+                            transition={{
+                                opacity: { duration: 0.8, delay: 0.8 },
+                                scale: { duration: 0.8, delay: 0.8 },
+                                rotateY: {
+                                    duration: 0.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    delay: 0.8
+                                }
+                            }}
+                            style={{
+                                transformOrigin: 'left center',
+                                color: '#ffffff',
+                                width: '12px',
+                                overflow: 'hidden'
+                            }}
                         >
-                            <Book size={24} fill="#00f2fe" />
+                            <Book size={24} fill="#ffffff" style={{ minWidth: '24px', marginLeft: '-12px' }} />
                         </motion.div>
-                    </motion.div>
+                    </div>
                 </motion.div>
             )}
         </AnimatePresence>
