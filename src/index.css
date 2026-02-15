@@ -41,6 +41,12 @@
     box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+    * {
+        line-height: 1.2 !important;
+    }
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-primary);
