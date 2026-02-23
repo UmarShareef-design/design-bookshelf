@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    * {
+        line-height: 1.4 !important;
+    }
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--card-border);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+.app-container {
+    min-height: 100vh;
+    padding: var(--space-8);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        padding: var(--space-6);
+    }
+}
+
+/* Typography */
+h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.25;
+    text-align: center;
+    margin-bottom: var(--space-2);
+    background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin: var(--space-2) auto var(--space-8) auto;
+    font-weight: 300;
+    max-width: 800px;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: var(--space-6);
+        padding: 0 var(--space-2);
+    }
+}
+
+/* Glassmorphism Classes */
+.glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--card-border);
+}
+
+/* Accessibility */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--accent-color);
+    color: var(--bg-color);
+    padding: 1rem;
+    z-index: 1000;
+    transition: top 0.3s;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0 0 12px 0;
+}
+
+.skip-link:focus {
+    top: 0;
+}

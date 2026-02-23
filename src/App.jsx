@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, BookOpen, Info, MessageSquare } from 'lucide-react';
 import { Routes, Route, NavLink, useLocation, useNavigate } from 'react-router-dom';
@@ -6,70 +6,68 @@ import CategoryBar from './components/CategoryBar';
 import BookCard from './components/BookCard';
 import About from './components/About';
 import booksData from './books.json';
+import { CATEGORY_SUMMARIES, FAVORITES_STORAGE_KEY } from './config';
 
 const App = () => {
     const location = useLocation();
     const navigate = useNavigate();
+
     const [activeCategory, setActiveCategory] = useState('All');
-    const [filteredBooks, setFilteredBooks] = useState(booksData);
-    const [categories, setCategories] = useState(['All']);
     const [favorites, setFavorites] = useState([]);
     const [showFavorites, setShowFavorites] = useState(false);
 
-    const categorySummaries = {
-        'All': 'A complete collection of UI/UX design books covering everything from basic principles to advanced research methods to soft skills.',
-        'UX Design': 'Essential reading for understanding user behavior, usability, and the strategy behind successful digital products.',
-        'UI Design': 'Books focused on visual hierarchy, typography, color theory, and the aesthetics of interface design.',
-        'Interaction Design': 'Guides on how users engage with products, focusing on flow, feedback, and interactive patterns.',
-        'Design Fundamentals': 'Mastering core principles is the secret to better AI prompting. Understanding hierarchy and color theory allows you to direct AI tools like emergent,replit,Bolt,Lovable,Claude code,Antigravity,Google AI studio etc. with precision instead of trial and error.',
-        'User Research': 'Methodologies for gathering deep insights into user needs and testing design assumptions.',
-        'Portfolio': 'Strategies for showcasing your design process and landing roles in the UI/UX industry.',
-        'Design Process': 'Frameworks like Design Thinking and Lean UX that help teams build the right things efficiently.',
-        'Complementary Skills': 'Soft skills that help you grow beyond just pixels.',
-        'Favorites': 'Your curated collection of design wisdom. These books save to your local browser storage so you can easily reference them later. Tip: You can even bookmark this page in your browser for one-click access to your favorites!'
-    };
+    // Derived Data: Categories
+    const categories = useMemo(() => {
+        return ['All', ...new Set(booksData.map(book => book.Category))];
+    }, []);
 
-    // Load favorites from localStorage on mount
+    // Load favorites and handle Title-to-ID migration
     useEffect(() => {
-        const storedFavorites = localStorage.getItem('designBookshelfFavorites');
-        if (storedFavorites) {
-            setFavorites(JSON.parse(storedFavorites));
+        const stored = localStorage.getItem(FAVORITES_STORAGE_KEY);
+        if (stored) {
+            let parsed = JSON.parse(stored);
+
+            // MIGRATION: If stored items aren't IDs (don't contain '-'), try to find matching IDs
+            // This is a bit heuristic but helps existing users
+            const isOldFormat = parsed.length > 0 && !booksData.some(b => parsed.includes(b.id));
+            if (isOldFormat) {
+                console.log("Migrating favorites to ID-based system...");
+                const newFavorites = booksData
+                    .filter(book => parsed.includes(book.Title))
+                    .map(book => book.id);
+                setFavorites(newFavorites);
+            } else {
+                setFavorites(parsed);
+            }
         }
     }, []);
 
-    // Save favorites to localStorage whenever they change
+    // Save favorites
     useEffect(() => {
-        localStorage.setItem('designBookshelfFavorites', JSON.stringify(favorites));
+        localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites));
     }, [favorites]);
 
-    useEffect(() => {
-        const cats = ['All', ...new Set(booksData.map(book => book.Category))];
-        setCategories(cats);
-    }, []);
-
-    useEffect(() => {
-        let booksToFilter = showFavorites
-            ? booksData.filter(book => favorites.includes(book.Title))
+    // Optimized filtering
+    const filteredBooks = useMemo(() => {
+        const sourceBooks = showFavorites
+            ? booksData.filter(book => favorites.includes(book.id))
             : booksData;
 
-        if (activeCategory === 'All') {
-            setFilteredBooks(booksToFilter);
-        } else {
-            setFilteredBooks(booksToFilter.filter(book => book.Category === activeCategory));
-        }
+        if (activeCategory === 'All') return sourceBooks;
+        return sourceBooks.filter(book => book.Category === activeCategory);
     }, [activeCategory, showFavorites, favorites]);
 
-    const toggleFavorite = (bookTitle) => {
-        setFavorites(prev => {
-            if (prev.includes(bookTitle)) {
-                return prev.filter(title => title !== bookTitle);
-            } else {
-                return [...prev, bookTitle];
-            }
-        });
+    const toggleFavorite = (bookId) => {
+        setFavorites(prev =>
+            prev.includes(bookId)
+                ? prev.filter(id => id !== bookId)
+                : [...prev, bookId]
+        );
     };
 
-    const isFavorite = (bookTitle) => favorites.includes(bookTitle);
+    const isFavorite = (bookId) => favorites.includes(bookId);
+
+    const currentSummary = CATEGORY_SUMMARIES[showFavorites ? 'Favorites' : activeCategory];
 
     return (
         <div className="app-container">
@@ -92,7 +90,6 @@ const App = () => {
                 </motion.p>
             </header>
 
-            {/* Navigation Bar */}
             <nav className="nav-bar">
                 <NavLink
                     to="/"
@@ -126,7 +123,6 @@ const App = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="nav-btn"
-                    style={{ textDecoration: 'none' }}
                 >
                     <MessageSquare size={18} />
                     Feedback ( Anonymous )
@@ -152,30 +148,27 @@ const App = () => {
                                     />
                                 </section>
 
-                                {categorySummaries[showFavorites ? 'Favorites' : activeCategory] && (
+                                {currentSummary && (
                                     <motion.p
                                         className="category-summary"
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         key={showFavorites ? 'Favorites' : activeCategory}
                                     >
-                                        {categorySummaries[showFavorites ? 'Favorites' : activeCategory]}
+                                        {currentSummary}
                                     </motion.p>
                                 )}
 
                                 <main className="books-grid-container" id="main-content">
-                                    <motion.div
-                                        layout
-                                        className="books-grid"
-                                    >
+                                    <motion.div layout className="books-grid">
                                         <AnimatePresence mode='popLayout'>
                                             {filteredBooks.length > 0 ? (
-                                                filteredBooks.map((book, index) => (
+                                                filteredBooks.map((book) => (
                                                     <BookCard
-                                                        key={`${book.Title}-${index}`}
+                                                        key={book.id}
                                                         book={book}
-                                                        isFavorite={isFavorite(book.Title)}
-                                                        onToggleFavorite={() => toggleFavorite(book.Title)}
+                                                        isFavorite={isFavorite(book.id)}
+                                                        onToggleFavorite={() => toggleFavorite(book.id)}
                                                     />
                                                 ))
                                             ) : (

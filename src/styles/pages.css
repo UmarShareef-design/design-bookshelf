@@ -1,0 +1,107 @@
+/* Footer */
+.footer {
+    margin-top: var(--space-16);
+    text-align: center;
+    color: var(--text-secondary);
+    padding: var(--space-8);
+}
+
+.footer-links {
+    margin-top: var(--space-4);
+}
+
+.footer-feedback-link {
+    background: none;
+    border: none;
+    color: var(--accent-secondary);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.footer-disclosure {
+    font-size: 0.8rem;
+    margin-top: var(--space-4);
+    opacity: 0.8;
+}
+
+/* About Page */
+.about-container {
+    max-width: 800px;
+    margin: var(--space-8) auto;
+    padding: var(--space-12);
+    border-radius: 24px;
+    color: var(--text-primary);
+    line-height: 1.8;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.about-profile-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-6) auto;
+}
+
+.about-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: var(--space-2);
+}
+
+.about-content {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+.about-disclosure-box {
+    margin-bottom: var(--space-8);
+    padding: var(--space-6);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.about-closing-text {
+    margin-bottom: var(--space-8);
+    font-style: italic;
+    color: var(--accent-color);
+}
+
+.about-actions {
+    text-align: center;
+}
+
+.btn-linkedin {
+    display: inline-flex !important;
+    width: auto !important;
+    padding: var(--space-4) var(--space-8) !important;
+    text-decoration: none;
+}
+
+/* Category Page - CTA Button */
+.category-page-cta {
+    display: inline-flex !important;
+    width: auto !important;
+    margin-top: var(--space-6);
+    padding: var(--space-4) var(--space-10) !important;
+    font-size: 1rem;
+}
+
+.category-page-hint {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 300;
+    margin-top: var(--space-3);
+    opacity: 0.7;
+    font-style: italic;
+}
