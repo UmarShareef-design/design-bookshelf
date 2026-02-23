@@ -1,188 +1,75 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, BookOpen, Info, MessageSquare } from 'lucide-react';
-import { Routes, Route, NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Routes, Route, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import CategoryBar from './components/CategoryBar';
 import BookCard from './components/BookCard';
 import About from './components/About';
 import booksData from './books.json';
 
-const categorySummaries = {
-    'All': 'A complete collection of UI/UX design books covering everything from basic principles to advanced research methods to soft skills.',
-    'UX Design': 'Essential reading for understanding user behavior, usability, and the strategy behind successful digital products.',
-    'UI Design': 'Books focused on visual hierarchy, typography, color theory, and the aesthetics of interface design.',
-    'Interaction Design': 'Guides on how users engage with products, focusing on flow, feedback, and interactive patterns.',
-    'Design Fundamentals': 'Mastering core principles is the secret to better AI prompting. Understanding hierarchy and color theory allows you to direct AI tools like emergent,replit,Bolt,Lovable,Claude code,Antigravity,Google AI studio etc. with precision instead of trial and error.',
-    'User Research': 'Methodologies for gathering deep insights into user needs and testing design assumptions.',
-    'Portfolio': 'Strategies for showcasing your design process and landing roles in the UI/UX industry.',
-    'Design Process': 'Frameworks like Design Thinking and Lean UX that help teams build the right things efficiently.',
-    'Complementary Skills': 'Soft skills that help you grow beyond just pixels.',
-    'Favorites': 'Your curated collection of design wisdom. These books save to your local browser storage so you can easily reference them later. Tip: You can even bookmark this page in your browser for one-click access to your favorites!'
-};
-
-const slugify = (text) => text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
-
 const App = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { categorySlug } = useParams();
-
     const [activeCategory, setActiveCategory] = useState('All');
-    const [favorites, setFavorites] = useState(() => {
-        const stored = localStorage.getItem('designBookshelfFavorites');
-        return stored ? JSON.parse(stored) : [];
-    });
+    const [filteredBooks, setFilteredBooks] = useState(booksData);
+    const [categories, setCategories] = useState(['All']);
+    const [favorites, setFavorites] = useState([]);
     const [showFavorites, setShowFavorites] = useState(false);
 
-    // Derived State: Essential for performance to avoid redundant renders
-    const categories = useMemo(() =>
-        ['All', ...new Set(booksData.map(book => book.Category))],
-        []);
+    const categorySummaries = {
+        'All': 'A complete collection of UI/UX design books covering everything from basic principles to advanced research methods to soft skills.',
+        'UX Design': 'Essential reading for understanding user behavior, usability, and the strategy behind successful digital products.',
+        'UI Design': 'Books focused on visual hierarchy, typography, color theory, and the aesthetics of interface design.',
+        'Interaction Design': 'Guides on how users engage with products, focusing on flow, feedback, and interactive patterns.',
+        'Design Fundamentals': 'Mastering core principles is the secret to better AI prompting. Understanding hierarchy and color theory allows you to direct AI tools like emergent,replit,Bolt,Lovable,Claude code,Antigravity,Google AI studio etc. with precision instead of trial and error.',
+        'User Research': 'Methodologies for gathering deep insights into user needs and testing design assumptions.',
+        'Portfolio': 'Strategies for showcasing your design process and landing roles in the UI/UX industry.',
+        'Design Process': 'Frameworks like Design Thinking and Lean UX that help teams build the right things efficiently.',
+        'Complementary Skills': 'Soft skills that help you grow beyond just pixels.',
+        'Favorites': 'Your curated collection of design wisdom. These books save to your local browser storage so you can easily reference them later. Tip: You can even bookmark this page in your browser for one-click access to your favorites!'
+    };
 
-    const filteredBooks = useMemo(() => {
-        let books = showFavorites
-            ? booksData.filter(book => favorites.includes(book.Title))
-            : booksData;
+    // Load favorites from localStorage on mount
+    useEffect(() => {
+        const storedFavorites = localStorage.getItem('designBookshelfFavorites');
+        if (storedFavorites) {
+            setFavorites(JSON.parse(storedFavorites));
+        }
+    }, []);
 
-        return activeCategory === 'All'
-            ? books
-            : books.filter(book => book.Category === activeCategory);
-    }, [activeCategory, showFavorites, favorites]);
-
-    // Update favorites in localStorage
+    // Save favorites to localStorage whenever they change
     useEffect(() => {
         localStorage.setItem('designBookshelfFavorites', JSON.stringify(favorites));
     }, [favorites]);
 
-    // Sync active category from URL
     useEffect(() => {
-        if (categorySlug) {
-            const matched = categories.find(cat => slugify(cat) === categorySlug);
-            if (matched) {
-                setActiveCategory(matched);
-                setShowFavorites(false);
-            }
-        } else if (location.pathname === '/' && !showFavorites) {
-            setActiveCategory('All');
-        }
-    }, [categorySlug, categories, location.pathname, showFavorites]);
+        const cats = ['All', ...new Set(booksData.map(book => book.Category))];
+        setCategories(cats);
+    }, []);
 
-    // Consolidated SEO Update (Title, Meta, JSON-LD, OG)
     useEffect(() => {
-        const baseTitle = "Design Bookshelf";
-        const title = showFavorites
-            ? `Favorites | ${baseTitle}`
-            : (activeCategory === 'All' ? baseTitle : `${activeCategory} Books | ${baseTitle}`);
+        let booksToFilter = showFavorites
+            ? booksData.filter(book => favorites.includes(book.Title))
+            : booksData;
 
-        const description = categorySummaries[showFavorites ? 'Favorites' : activeCategory];
-
-        // 1. Title & Meta
-        document.title = title;
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) metaDesc.setAttribute('content', description);
-
-        // 2. Social Tags (OG/Twitter)
-        const updateMeta = (selector, content) => {
-            const el = document.querySelector(selector);
-            if (el) el.setAttribute('content', content);
-        };
-        updateMeta('meta[property="og:title"]', title);
-        updateMeta('meta[property="og:description"]', description);
-        updateMeta('meta[property="twitter:title"]', title);
-        updateMeta('meta[property="twitter:description"]', description);
-
-        // 3. Dynamic JSON-LD
-        const schemaId = 'dynamic-json-ld';
-        let script = document.getElementById(schemaId);
-        if (!script) {
-            script = document.createElement('script');
-            script.id = schemaId;
-            script.type = 'application/ld+json';
-            document.head.appendChild(script);
+        if (activeCategory === 'All') {
+            setFilteredBooks(booksToFilter);
+        } else {
+            setFilteredBooks(booksToFilter.filter(book => book.Category === activeCategory));
         }
-        script.innerHTML = JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": title,
-            "description": description,
-            "url": window.location.href,
-        });
-
-    }, [activeCategory, showFavorites]);
+    }, [activeCategory, showFavorites, favorites]);
 
     const toggleFavorite = (bookTitle) => {
-        setFavorites(prev =>
-            prev.includes(bookTitle)
-                ? prev.filter(t => t !== bookTitle)
-                : [...prev, bookTitle]
-        );
+        setFavorites(prev => {
+            if (prev.includes(bookTitle)) {
+                return prev.filter(title => title !== bookTitle);
+            } else {
+                return [...prev, bookTitle];
+            }
+        });
     };
 
     const isFavorite = (bookTitle) => favorites.includes(bookTitle);
-
-    const handleCategoryChange = (category) => {
-        if (category === 'All') navigate('/');
-        else navigate(`/category/${slugify(category)}`);
-
-        setActiveCategory(category);
-        setShowFavorites(false);
-    };
-
-    const mainContent = (
-        <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.3 }}
-        >
-            <section className="filters-section" aria-label="Book Categories">
-                <CategoryBar
-                    categories={categories}
-                    activeCategory={activeCategory}
-                    setActiveCategory={handleCategoryChange}
-                />
-            </section>
-
-            {categorySummaries[showFavorites ? 'Favorites' : activeCategory] && (
-                <motion.p
-                    className="category-summary"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    key={showFavorites ? 'Favorites' : activeCategory}
-                >
-                    {categorySummaries[showFavorites ? 'Favorites' : activeCategory]}
-                </motion.p>
-            )}
-
-            <main className="books-grid-container" id="main-content">
-                <motion.div
-                    layout
-                    className="books-grid"
-                >
-                    <AnimatePresence mode='popLayout'>
-                        {filteredBooks.length > 0 ? (
-                            filteredBooks.map((book, index) => (
-                                <BookCard
-                                    key={`${book.Title}-${index}`}
-                                    book={book}
-                                    isFavorite={isFavorite(book.Title)}
-                                    onToggleFavorite={() => toggleFavorite(book.Title)}
-                                />
-                            ))
-                        ) : (
-                            <motion.div
-                                className="empty-state"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                            >
-                                <p>No books found. {showFavorites ? 'Add some favorites!' : 'Try a different category.'}</p>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </motion.div>
-            </main>
-        </motion.div>
-    );
 
     return (
         <div className="app-container">
@@ -209,11 +96,8 @@ const App = () => {
             <nav className="nav-bar">
                 <NavLink
                     to="/"
-                    className={({ isActive }) => `nav-btn ${isActive && !showFavorites && activeCategory === 'All' ? 'active' : ''}`}
-                    onClick={() => {
-                        setShowFavorites(false);
-                        setActiveCategory('All');
-                    }}
+                    className={({ isActive }) => `nav-btn ${isActive && !showFavorites ? 'active' : ''}`}
+                    onClick={() => setShowFavorites(false)}
                 >
                     <BookOpen size={18} />
                     All Books
@@ -251,8 +135,64 @@ const App = () => {
 
             <AnimatePresence mode='wait'>
                 <Routes location={location} key={location.pathname}>
-                    <Route path="/" element={mainContent} />
-                    <Route path="/category/:categorySlug" element={mainContent} />
+                    <Route
+                        path="/"
+                        element={
+                            <motion.div
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 20 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <section className="filters-section" aria-label="Book Categories">
+                                    <CategoryBar
+                                        categories={categories}
+                                        activeCategory={activeCategory}
+                                        setActiveCategory={setActiveCategory}
+                                    />
+                                </section>
+
+                                {categorySummaries[showFavorites ? 'Favorites' : activeCategory] && (
+                                    <motion.p
+                                        className="category-summary"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        key={showFavorites ? 'Favorites' : activeCategory}
+                                    >
+                                        {categorySummaries[showFavorites ? 'Favorites' : activeCategory]}
+                                    </motion.p>
+                                )}
+
+                                <main className="books-grid-container" id="main-content">
+                                    <motion.div
+                                        layout
+                                        className="books-grid"
+                                    >
+                                        <AnimatePresence mode='popLayout'>
+                                            {filteredBooks.length > 0 ? (
+                                                filteredBooks.map((book, index) => (
+                                                    <BookCard
+                                                        key={`${book.Title}-${index}`}
+                                                        book={book}
+                                                        isFavorite={isFavorite(book.Title)}
+                                                        onToggleFavorite={() => toggleFavorite(book.Title)}
+                                                    />
+                                                ))
+                                            ) : (
+                                                <motion.div
+                                                    className="empty-state"
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                >
+                                                    <p>No books found. {showFavorites ? 'Add some favorites!' : 'Try a different category.'}</p>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </motion.div>
+                                </main>
+                            </motion.div>
+                        }
+                    />
                     <Route path="/about" element={<About />} />
                 </Routes>
             </AnimatePresence>

@@ -203,7 +203,6 @@ h1 {
     white-space: nowrap;
     transition: var(--transition-smooth);
     flex-shrink: 0;
-    text-decoration: none;
 }
 
 @media (max-width: 768px) {
