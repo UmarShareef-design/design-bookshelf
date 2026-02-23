@@ -34,17 +34,21 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
             className="book-card glass-effect"
             style={{ zIndex: showButterfly ? 100 : 1 }}
         >
-            <ButterflyAnimation
-                isTriggered={showButterfly}
-                onComplete={() => setShowButterfly(false)}
-            />
-            <button
-                className={`favorite-btn ${isFavorite ? 'is-favorite' : ''}`}
-                onClick={handleFavoriteClick}
-                aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-            >
-                <Heart size={20} fill={isFavorite ? 'currentColor' : 'none'} />
-            </button>
+            {onToggleFavorite && (
+                <>
+                    <ButterflyAnimation
+                        isTriggered={showButterfly}
+                        onComplete={() => setShowButterfly(false)}
+                    />
+                    <button
+                        className={`favorite-btn ${isFavorite ? 'is-favorite' : ''}`}
+                        onClick={handleFavoriteClick}
+                        aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                    >
+                        <Heart size={20} fill={isFavorite ? 'currentColor' : 'none'} />
+                    </button>
+                </>
+            )}
             <a
                 href={book.Link}
                 target="_blank"

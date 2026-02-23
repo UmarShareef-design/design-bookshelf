@@ -95,6 +95,7 @@ h1 {
     font-size: clamp(2.5rem, 8vw, 4.5rem);
     font-weight: 800;
     letter-spacing: -0.04em;
+    line-height: 1.25;
     text-align: center;
     margin-bottom: var(--space-2);
     background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
@@ -649,4 +650,23 @@ h1 {
     width: auto !important;
     padding: var(--space-4) var(--space-8) !important;
     text-decoration: none;
+}
+
+/* Category Page - CTA Button */
+.category-page-cta {
+    display: inline-flex !important;
+    width: auto !important;
+    margin-top: var(--space-6);
+    padding: var(--space-4) var(--space-10) !important;
+    font-size: 1rem;
+}
+
+.category-page-hint {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 300;
+    margin-top: var(--space-3);
+    opacity: 0.7;
+    font-style: italic;
 }
