@@ -1,67 +1,17 @@
 import React, { useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NavLink, useParams } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import BookCard from './BookCard';
+import LanguageSwitcher from './LanguageSwitcher';
 import booksData from '../books.json';
+import { useTranslation } from 'react-i18next';
 
 const slugify = (text) => text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
 
-const categorySummaries = {
-    'UX Design': 'Essential reading for understanding user behavior, usability, and the strategy behind successful digital products.',
-    'UI Design': 'Books focused on visual hierarchy, typography, color theory, and the aesthetics of interface design.',
-    'Interaction Design': 'Guides on how users engage with products, focusing on flow, feedback, and interactive patterns.',
-    'Design Fundamentals': 'Mastering core principles is the secret to better AI prompting. Understanding hierarchy and color theory allows you to direct AI tools with precision instead of trial and error.',
-    'User Research': 'Methodologies for gathering deep insights into user needs and testing design assumptions.',
-    'Portfolio': 'Strategies for showcasing your design process and landing roles in the UI/UX industry.',
-    'Design Process': 'Frameworks like Design Thinking and Lean UX that help teams build the right things efficiently.',
-    'Complementary Skills': 'Soft skills that help you grow beyond just pixels.',
-};
-
-const categoryMeta = {
-    'UX Design': {
-        title: 'Best UX Design Books | UI/UX Design Bookshelf',
-        description: 'Discover the best UX design books covering user behavior, usability, and product strategy. Curated for Indian designers and professionals on Amazon.',
-        h1: 'Best UX Design Books',
-    },
-    'UI Design': {
-        title: 'Best UI Design Books | UI/UX Design Bookshelf',
-        description: 'Explore top UI design books on visual hierarchy, typography, color theory, and interface aesthetics. Available on Amazon India.',
-        h1: 'Best UI Design Books',
-    },
-    'Interaction Design': {
-        title: 'Best Interaction Design Books | UI/UX Design Bookshelf',
-        description: 'Find the best interaction design books on user flow, feedback patterns, and interactive experiences. Curated for designers.',
-        h1: 'Best Interaction Design Books',
-    },
-    'Design Fundamentals': {
-        title: 'Best Design Fundamentals Books | UI/UX Design Bookshelf',
-        description: 'Master core design principles with these essential books. Understanding hierarchy and color theory gives you precision with AI tools.',
-        h1: 'Best Design Fundamentals Books',
-    },
-    'User Research': {
-        title: 'Best User Research Books | UI/UX Design Bookshelf',
-        description: 'Top user research books covering methodologies for gathering insights into user needs and testing design assumptions.',
-        h1: 'Best User Research Books',
-    },
-    'Portfolio': {
-        title: 'Best UX Portfolio Books | UI/UX Design Bookshelf',
-        description: 'Learn how to build a winning UI/UX portfolio. These books cover strategies for showcasing your design process and landing roles.',
-        h1: 'Best UX Portfolio Books',
-    },
-    'Design Process': {
-        title: 'Best Design Process Books | UI/UX Design Bookshelf',
-        description: 'Explore Design Thinking, Lean UX, and other frameworks that help teams build the right products efficiently.',
-        h1: 'Best Design Process Books',
-    },
-    'Complementary Skills': {
-        title: 'Best Complementary Skills Books for Designers | UI/UX Design Bookshelf',
-        description: 'Soft skills books that help designers grow beyond pixels — communication, productivity, and career development.',
-        h1: 'Best Complementary Skills Books for Designers',
-    },
-};
-
 const CategoryPage = () => {
     const { categorySlug } = useParams();
+    const { t, i18n } = useTranslation();
 
     // Find matching category
     const allCategories = [...new Set(booksData.map(book => book.Category))];
@@ -72,12 +22,17 @@ const CategoryPage = () => {
         return booksData.filter(book => book.Category === categoryName);
     }, [categoryName]);
 
-    const meta = categoryName ? categoryMeta[categoryName] : null;
-    const summary = categoryName ? categorySummaries[categoryName] : '';
+    const meta = categoryName ? {
+        title: t(`meta.${categoryName}.title`),
+        description: t(`meta.${categoryName}.description`),
+        h1: t(`meta.${categoryName}.h1`)
+    } : null;
+
+    const summary = categoryName ? t(`summaries.${categoryName}`) : '';
 
     // Update page title and meta for SEO
     useEffect(() => {
-        if (meta) {
+        if (meta && meta.title && !meta.title.includes('translation')) {
             document.title = meta.title;
             const updateMeta = (selector, content) => {
                 const el = document.querySelector(selector);
@@ -101,10 +56,15 @@ const CategoryPage = () => {
     if (!categoryName) {
         return (
             <div className="app-container">
+                <LanguageSwitcher />
                 <div className="empty-state">
-                    <p>Category not found.</p>
-                    <NavLink to="/" className="buy-button" style={{ display: 'inline-flex', width: 'auto', marginTop: '1rem', textDecoration: 'none' }}>
-                        <ArrowLeft size={16} /> Back to All Books
+                    <p>{t('meta.404')}</p>
+                    <NavLink
+                        to={i18n.language === 'ta' ? '/ta/' : '/'}
+                        className="buy-button"
+                        style={{ display: 'inline-flex', width: 'auto', marginTop: '1rem', textDecoration: 'none' }}
+                    >
+                        <ArrowLeft size={16} /> {t('meta.back_to_all')}
                     </NavLink>
                 </div>
             </div>
@@ -113,9 +73,8 @@ const CategoryPage = () => {
 
     return (
         <div className="app-container">
-            <a href="#main-content" className="skip-link">Skip to main content</a>
+            <a href="#main-content" className="skip-link">{t('common.skip_to_main')}</a>
 
-            {/* Category Header — h1 is the first visible content */}
             <header className="header-section">
                 <motion.h1
                     initial={{ opacity: 0, y: -20 }}
@@ -133,16 +92,23 @@ const CategoryPage = () => {
                     {summary}
                 </motion.p>
                 <div style={{ textAlign: 'center' }}>
+                    <div className="category-page-actions" style={{ marginBottom: '1rem' }}>
+                        <LanguageSwitcher />
+                    </div>
                     <motion.div
                         style={{ display: 'inline-block' }}
                         animate={{ x: [0, -4, 4, -4, 4, -2, 2, 0] }}
                         transition={{ delay: 1, duration: 0.5, repeat: 1, repeatDelay: 0 }}
                     >
-                        <NavLink to="/" className="buy-button category-page-cta" style={{ textDecoration: 'none' }}>
-                            View all UI/UX Books!
+                        <NavLink
+                            to={i18n.language === 'ta' ? '/ta/' : '/'}
+                            className="buy-button category-page-cta"
+                            style={{ textDecoration: 'none' }}
+                        >
+                            {t('meta.view_all')}
                         </NavLink>
                     </motion.div>
-                    <p className="category-page-hint">You can add custom favorites across categories and bookmark to visit later!</p>
+                    <p className="category-page-hint">{t('meta.hint')}</p>
                 </div>
             </header>
 
@@ -161,9 +127,19 @@ const CategoryPage = () => {
             </main>
 
             <footer className="footer">
-                <p>&copy; {new Date().getFullYear()} Design Bookshelf. Knowledge is power.</p>
+                <p>&copy; {new Date().getFullYear()} {t('title')}. {t('common.footer_text')}</p>
+                <div className="footer-links">
+                    <a
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSdizXwJUzLnyEQVH_fjZClIUir9lMg9RnIZQkWooexjJz9e7Q/viewform?usp=header"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="footer-feedback-link"
+                    >
+                        {t('common.share_feedback')}
+                    </a>
+                </div>
                 <p className="footer-disclosure">
-                    Full Affiliate Disclosure: This website contains affiliate links. If you purchase through these links, we may earn a small commission at no extra cost to you.
+                    {t('common.affiliate_disclosure')}
                 </p>
             </footer>
         </div>

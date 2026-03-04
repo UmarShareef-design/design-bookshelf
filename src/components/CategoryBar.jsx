@@ -1,7 +1,9 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const CategoryBar = ({ categories, activeCategory, setActiveCategory }) => {
+    const { t } = useTranslation();
     const containerRef = useRef(null);
 
     const handleCategoryClick = (category, event) => {
@@ -36,7 +38,7 @@ const CategoryBar = ({ categories, activeCategory, setActiveCategory }) => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        {category}
+                        {t(`categories.${category}`)}
                     </motion.button>
                 ))}
             </div>

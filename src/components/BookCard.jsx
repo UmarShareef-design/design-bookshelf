@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Heart } from 'lucide-react';
 import ButterflyAnimation from './ButterflyAnimation';
+import { useTranslation } from 'react-i18next';
 
 const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
+    const { t } = useTranslation();
     const [showButterfly, setShowButterfly] = useState(false);
 
     const handleAmazonClick = () => {
@@ -43,7 +45,7 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                     <button
                         className={`favorite-btn ${isFavorite ? 'is-favorite' : ''}`}
                         onClick={handleFavoriteClick}
-                        aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                        aria-label={isFavorite ? t('nav.favorites') : t('nav.favorites')}
                     >
                         <Heart size={20} fill={isFavorite ? 'currentColor' : 'none'} />
                     </button>
@@ -66,7 +68,7 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                     />
                 </div>
                 <div className="book-info">
-                    <span className="book-category">{book.Category}</span>
+                    <span className="book-category">{t(`categories.${book.Category}`)}</span>
                     <h2 className="book-title">{book.Title.split(':')[0]}</h2>
                 </div>
             </a>
@@ -78,7 +80,7 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                     className="buy-button"
                     onClick={handleAmazonClick}
                 >
-                    Buy on Amazon <ExternalLink size={16} />
+                    {t('common.check_it_out')} <ExternalLink size={16} />
                 </a>
             </div>
         </motion.article>

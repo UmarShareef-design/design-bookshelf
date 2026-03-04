@@ -5,10 +5,13 @@ import { Routes, Route, NavLink, useLocation, useNavigate } from 'react-router-d
 import CategoryBar from './components/CategoryBar';
 import BookCard from './components/BookCard';
 import About from './components/About';
+import LanguageSwitcher from './components/LanguageSwitcher';
 import booksData from './books.json';
 import { CATEGORY_SUMMARIES, FAVORITES_STORAGE_KEY } from './config';
+import { useTranslation } from 'react-i18next';
 
 const App = () => {
+    const { t, i18n } = useTranslation();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -67,18 +70,18 @@ const App = () => {
 
     const isFavorite = (bookId) => favorites.includes(bookId);
 
-    const currentSummary = CATEGORY_SUMMARIES[showFavorites ? 'Favorites' : activeCategory];
+    const currentSummary = t(`summaries.${showFavorites ? 'Favorites' : activeCategory}`);
 
     return (
         <div className="app-container">
-            <a href="#main-content" className="skip-link">Skip to main content</a>
+            <a href="#main-content" className="skip-link">{t('common.skip_to_main')}</a>
             <header className="header-section">
                 <motion.h1
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    UI/UX Design Bookshelf
+                    {t('title')}
                 </motion.h1>
                 <motion.p
                     className="subtitle"
@@ -86,37 +89,39 @@ const App = () => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                    A new design tool drops every week, but fundamentals are forever. In the age of AI, knowing the "why" through timeless principles is your real competitive edge. Make use of the ultimate list of UI/UX books to read—curated from foundational UX books and top reddit recommendations.
+                    {t('subtitle')}
                 </motion.p>
             </header>
 
+            <LanguageSwitcher />
+
             <nav className="nav-bar">
                 <NavLink
-                    to="/"
+                    to={i18n.language === 'ta' ? '/ta/' : '/'}
                     className={({ isActive }) => `nav-btn ${isActive && !showFavorites ? 'active' : ''}`}
                     onClick={() => setShowFavorites(false)}
                 >
                     <BookOpen size={18} />
-                    All Books
+                    {t('nav.all_books')}
                 </NavLink>
                 <button
                     className={`nav-btn favorites-btn ${showFavorites ? 'active' : ''}`}
                     onClick={() => {
                         setShowFavorites(true);
                         setActiveCategory('All');
-                        navigate('/');
+                        navigate(i18n.language === 'ta' ? '/ta/' : '/');
                     }}
                 >
                     <Heart size={18} fill={showFavorites ? 'currentColor' : 'none'} />
-                    Favorites ({favorites.length})
+                    {t('nav.favorites')} ({favorites.length})
                 </button>
                 <NavLink
-                    to="/about"
+                    to={i18n.language === 'ta' ? '/ta/about' : '/about'}
                     className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}
                     onClick={() => setShowFavorites(false)}
                 >
                     <Info size={18} />
-                    About
+                    {t('nav.about')}
                 </NavLink>
                 <a
                     href="https://docs.google.com/forms/d/e/1FAIpQLSdizXwJUzLnyEQVH_fjZClIUir9lMg9RnIZQkWooexjJz9e7Q/viewform?usp=header"
@@ -125,7 +130,7 @@ const App = () => {
                     className="nav-btn"
                 >
                     <MessageSquare size={18} />
-                    Feedback ( Anonymous )
+                    {t('nav.feedback')}
                 </a>
             </nav>
 
@@ -177,7 +182,7 @@ const App = () => {
                                                     initial={{ opacity: 0 }}
                                                     animate={{ opacity: 1 }}
                                                 >
-                                                    <p>No books found. {showFavorites ? 'Add some favorites!' : 'Try a different category.'}</p>
+                                                    <p>{t('common.no_books')} {showFavorites ? t('common.add_favorites') : t('common.try_category')}</p>
                                                 </motion.div>
                                             )}
                                         </AnimatePresence>
@@ -191,7 +196,7 @@ const App = () => {
             </AnimatePresence>
 
             <footer className="footer">
-                <p>&copy; {new Date().getFullYear()} Design Bookshelf. Knowledge is power.</p>
+                <p>&copy; {new Date().getFullYear()} {t('title')}. {t('common.footer_text')}</p>
                 <div className="footer-links">
                     <a
                         href="https://docs.google.com/forms/d/e/1FAIpQLSdizXwJUzLnyEQVH_fjZClIUir9lMg9RnIZQkWooexjJz9e7Q/viewform?usp=header"
@@ -199,11 +204,11 @@ const App = () => {
                         rel="noopener noreferrer"
                         className="footer-feedback-link"
                     >
-                        Share your feedback ( Anonymous )
+                        {t('common.share_feedback')}
                     </a>
                 </div>
                 <p className="footer-disclosure">
-                    Full Affiliate Disclosure: This website contains affiliate links. If you purchase through these links, we may earn a small commission at no extra cost to you.
+                    {t('common.affiliate_disclosure')}
                 </p>
             </footer>
         </div>
