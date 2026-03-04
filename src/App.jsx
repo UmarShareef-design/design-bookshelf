@@ -1,20 +1,19 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, BookOpen, Info, MessageSquare } from 'lucide-react';
-import { Routes, Route, NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Routes, Route, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import CategoryBar from './components/CategoryBar';
 import BookCard from './components/BookCard';
 import About from './components/About';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import booksData from './books.json';
-import { CATEGORY_SUMMARIES, FAVORITES_STORAGE_KEY } from './config';
+import { FAVORITES_STORAGE_KEY } from './config';
 import { useTranslation } from 'react-i18next';
 
 const App = () => {
     const { t, i18n } = useTranslation();
     const location = useLocation();
     const navigate = useNavigate();
-    const { lang: urlLang } = useParams();
 
     const [activeCategory, setActiveCategory] = useState('All');
     const [favorites, setFavorites] = useState([]);
@@ -24,15 +23,6 @@ const App = () => {
     const categories = useMemo(() => {
         return ['All', ...new Set(booksData.map(book => book.Category))];
     }, []);
-
-    // Language Sync Logic
-    useEffect(() => {
-        const supportedLangs = ['en', 'ta'];
-        const currentLang = urlLang || 'en';
-        if (supportedLangs.includes(currentLang) && i18n.language !== currentLang) {
-            i18n.changeLanguage(currentLang);
-        }
-    }, [urlLang, i18n]);
 
     // Load favorites and handle Title-to-ID migration
     useEffect(() => {
@@ -141,6 +131,11 @@ const App = () => {
             </nav>
 
             <AnimatePresence mode='wait'>
+                {/* 
+                  The routes here are relative. 
+                  When the URL is /ta/about, main.jsx matches :lang and renders this.
+                  The nested Routes here will match "about".
+                */}
                 <Routes location={location} key={location.pathname}>
                     <Route path="about" element={<About />} />
                     <Route path="*" element={

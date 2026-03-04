@@ -21,22 +21,28 @@ const LanguageSwitcher = () => {
     const handleLanguageChange = (lng) => {
         setIsOpen(false);
 
+        // 1. Calculate the new path
         let newPath = location.pathname;
 
-        // Remove current lang prefix if exists
+        // Remove current language prefix if it exists (e.g., /ta or /en)
+        // This handles cases where lang is present in the URL params
         if (lang) {
-            newPath = newPath.replace(`/${lang}`, '');
+            newPath = newPath.replace(new RegExp(`^/${lang}`), '');
         }
 
-        // Add new lang prefix if not English
-        if (lng === 'ta') {
-            newPath = `/ta${newPath}`;
+        // Add new language prefix if it's not English
+        if (lng !== 'en') {
+            newPath = `/${lng}${newPath}`;
         }
 
-        // Ensure path starts with /
-        if (!newPath.startsWith('/')) newPath = `/${newPath}`;
+        // Clean up any double slashes and ensure it starts with /
+        newPath = newPath.replace(/\/+/g, '/');
+        if (!newPath.startsWith('/')) newPath = '/' + newPath;
 
-        navigate(newPath);
+        // 2. Change language state FIRST, then navigate
+        i18n.changeLanguage(lng).then(() => {
+            navigate(newPath);
+        });
     };
 
     return (

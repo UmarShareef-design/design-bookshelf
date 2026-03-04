@@ -7,45 +7,23 @@ import './index.css'
 import './i18n';
 import { useTranslation } from 'react-i18next';
 
-const LangWrapper = ({ children }) => {
+// This wrapper stays mounted and handles the language state sync from the URL
+const LangWrapper = () => {
     const { lang } = useParams();
     const { i18n } = useTranslation();
-    const location = useLocation();
-    const navigate = useNavigate();
 
     useEffect(() => {
         const supportedLangs = ['en', 'ta'];
-        const currentLang = lang || 'en';
+        const targetLang = lang || 'en';
 
-        // Update i18n language based on URL
-        if (supportedLangs.includes(currentLang)) {
-            if (i18n.language !== currentLang) {
-                i18n.changeLanguage(currentLang);
+        if (supportedLangs.includes(targetLang)) {
+            if (i18n.language !== targetLang) {
+                console.log(`Syncing language to: ${targetLang}`);
+                i18n.changeLanguage(targetLang);
             }
-        } else if (lang) {
-            // Redirect garbage language paths back to root
-            const newPath = location.pathname.replace(`/${lang}`, '');
-            navigate(newPath || '/', { replace: true });
         }
-    }, [lang, i18n, navigate, location.pathname]);
+    }, [lang, i18n]);
 
-    return children;
-};
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-        <BrowserRouter basename="/">
-            <Routes>
-                {/* Unified multi-language route structure */}
-                <Route path="/:lang/*" element={<LangWrapper><AppRoutes /></LangWrapper>} />
-                <Route path="/*" element={<LangWrapper><AppRoutes /></LangWrapper>} />
-            </Routes>
-        </BrowserRouter>
-    </React.StrictMode>,
-)
-
-// Helper component to keep rendering clean
-function AppRoutes() {
     return (
         <Routes>
             <Route path="category/:categorySlug" element={<CategoryPage />} />
@@ -53,4 +31,19 @@ function AppRoutes() {
             <Route path="*" element={<App />} />
         </Routes>
     );
-}
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
+        <BrowserRouter basename="/">
+            <Routes>
+                {/* 
+                  We use two entry points to capture the optional :lang param,
+                  but they both render the SAME LangWrapper instance to prevent unmounting.
+                */}
+                <Route path="/:lang/*" element={<LangWrapper />} />
+                <Route path="*" element={<LangWrapper />} />
+            </Routes>
+        </BrowserRouter>
+    </React.StrictMode>,
+)
