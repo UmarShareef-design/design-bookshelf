@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, BookOpen, Info, MessageSquare } from 'lucide-react';
-import { Routes, Route, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
 import CategoryBar from './components/CategoryBar';
 import BookCard from './components/BookCard';
 import About from './components/About';
@@ -14,6 +14,7 @@ const App = () => {
     const { t, i18n } = useTranslation();
     const location = useLocation();
     const navigate = useNavigate();
+    const { lang: urlLang } = useParams();
 
     const [activeCategory, setActiveCategory] = useState('All');
     const [favorites, setFavorites] = useState([]);
@@ -24,14 +25,20 @@ const App = () => {
         return ['All', ...new Set(booksData.map(book => book.Category))];
     }, []);
 
+    // Language Sync Logic
+    useEffect(() => {
+        const supportedLangs = ['en', 'ta'];
+        const currentLang = urlLang || 'en';
+        if (supportedLangs.includes(currentLang) && i18n.language !== currentLang) {
+            i18n.changeLanguage(currentLang);
+        }
+    }, [urlLang, i18n]);
+
     // Load favorites and handle Title-to-ID migration
     useEffect(() => {
         const stored = localStorage.getItem(FAVORITES_STORAGE_KEY);
         if (stored) {
             let parsed = JSON.parse(stored);
-
-            // MIGRATION: If stored items aren't IDs (don't contain '-'), try to find matching IDs
-            // This is a bit heuristic but helps existing users
             const isOldFormat = parsed.length > 0 && !booksData.some(b => parsed.includes(b.id));
             if (isOldFormat) {
                 console.log("Migrating favorites to ID-based system...");
@@ -135,61 +142,8 @@ const App = () => {
 
             <AnimatePresence mode='wait'>
                 <Routes location={location} key={location.pathname}>
-                    <Route path="/about" element={<About />} />
-                    <Route path="/ta/about" element={<About />} />
-                    <Route path="/ta" element={
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: 20 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <section className="filters-section" aria-label="Book Categories">
-                                <CategoryBar
-                                    categories={categories}
-                                    activeCategory={activeCategory}
-                                    setActiveCategory={setActiveCategory}
-                                />
-                            </section>
-
-                            {currentSummary && (
-                                <motion.p
-                                    className="category-summary"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    key={showFavorites ? 'Favorites' : activeCategory}
-                                >
-                                    {currentSummary}
-                                </motion.p>
-                            )}
-
-                            <main className="books-grid-container" id="main-content">
-                                <motion.div layout className="books-grid">
-                                    <AnimatePresence mode='popLayout'>
-                                        {filteredBooks.length > 0 ? (
-                                            filteredBooks.map((book) => (
-                                                <BookCard
-                                                    key={book.id}
-                                                    book={book}
-                                                    isFavorite={isFavorite(book.id)}
-                                                    onToggleFavorite={() => toggleFavorite(book.id)}
-                                                />
-                                            ))
-                                        ) : (
-                                            <motion.div
-                                                className="empty-state"
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                            >
-                                                <p>{t('common.no_books')} {showFavorites ? t('common.add_favorites') : t('common.try_category')}</p>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </motion.div>
-                            </main>
-                        </motion.div>
-                    } />
-                    <Route path="/" element={
+                    <Route path="about" element={<About />} />
+                    <Route path="*" element={
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}

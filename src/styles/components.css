@@ -369,17 +369,7 @@
     color: var(--text-primary);
 }
 
-@media (max-width: 480px) {
-    .lang-label {
-        display: none;
-    }
 
-    .language-btn {
-        padding: 0.6rem;
-        aspect-ratio: 1/1;
-        justify-content: center;
-    }
-}
 
 /* Modal */
 .modal-overlay {

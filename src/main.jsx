@@ -17,12 +17,13 @@ const LangWrapper = ({ children }) => {
         const supportedLangs = ['en', 'ta'];
         const currentLang = lang || 'en';
 
+        // Update i18n language based on URL
         if (supportedLangs.includes(currentLang)) {
             if (i18n.language !== currentLang) {
                 i18n.changeLanguage(currentLang);
             }
         } else if (lang) {
-            // If lang is garbage, redirect to root or default lang
+            // Redirect garbage language paths back to root
             const newPath = location.pathname.replace(`/${lang}`, '');
             navigate(newPath || '/', { replace: true });
         }
@@ -35,25 +36,21 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <BrowserRouter basename="/">
             <Routes>
-                <Route path="/:lang/*" element={
-                    <LangWrapper>
-                        <Routes>
-                            <Route path="category/:categorySlug" element={<CategoryPage />} />
-                            <Route path="about" element={<App />} />
-                            <Route path="/" element={<App />} />
-                        </Routes>
-                    </LangWrapper>
-                } />
-                <Route path="/*" element={
-                    <LangWrapper>
-                        <Routes>
-                            <Route path="category/:categorySlug" element={<CategoryPage />} />
-                            <Route path="about" element={<App />} />
-                            <Route path="/" element={<App />} />
-                        </Routes>
-                    </LangWrapper>
-                } />
+                {/* Unified multi-language route structure */}
+                <Route path="/:lang/*" element={<LangWrapper><AppRoutes /></LangWrapper>} />
+                <Route path="/*" element={<LangWrapper><AppRoutes /></LangWrapper>} />
             </Routes>
         </BrowserRouter>
     </React.StrictMode>,
 )
+
+// Helper component to keep rendering clean
+function AppRoutes() {
+    return (
+        <Routes>
+            <Route path="category/:categorySlug" element={<CategoryPage />} />
+            <Route path="about" element={<App />} />
+            <Route path="*" element={<App />} />
+        </Routes>
+    );
+}
