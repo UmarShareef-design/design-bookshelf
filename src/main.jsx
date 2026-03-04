@@ -11,22 +11,28 @@ import { useTranslation } from 'react-i18next';
 const LangWrapper = () => {
     const { lang } = useParams();
     const { i18n } = useTranslation();
+    const location = useLocation();
 
     useEffect(() => {
         const supportedLangs = ['en', 'ta'];
-        const targetLang = lang || 'en';
+        // Determine the target language from the URL param
+        // If it's not a supported language (like 'about' in '/about'), default to 'en'
+        const targetLang = supportedLangs.includes(lang) ? lang : 'en';
 
-        if (supportedLangs.includes(targetLang)) {
-            if (i18n.language !== targetLang) {
-                console.log(`Syncing language to: ${targetLang}`);
-                i18n.changeLanguage(targetLang);
-            }
+        if (i18n.language !== targetLang) {
+            console.log(`Syncing language to: ${targetLang}`);
+            i18n.changeLanguage(targetLang);
         }
     }, [lang, i18n]);
 
     return (
         <Routes>
             <Route path="category/:categorySlug" element={<CategoryPage />} />
+            {/* 
+              Both /about and / (home) should render App.
+              App will then internalize the routing between Home and About
+              based on the full pathname.
+            */}
             <Route path="about" element={<App />} />
             <Route path="*" element={<App />} />
         </Routes>
