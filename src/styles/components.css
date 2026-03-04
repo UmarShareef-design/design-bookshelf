@@ -7,6 +7,8 @@
 @media (max-width: 768px) {
     .header-section {
         margin-bottom: var(--space-6);
+        padding-top: var(--space-12);
+        /* Add space for absolute language switcher */
     }
 }
 
@@ -365,6 +367,18 @@
 
 .lang-label {
     color: var(--text-primary);
+}
+
+@media (max-width: 480px) {
+    .lang-label {
+        display: none;
+    }
+
+    .language-btn {
+        padding: 0.6rem;
+        aspect-ratio: 1/1;
+        justify-content: center;
+    }
 }
 
 /* Modal */
