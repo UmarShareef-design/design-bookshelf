@@ -74,6 +74,7 @@ const App = () => {
 
     return (
         <div className="app-container">
+            <LanguageSwitcher />
             <a href="#main-content" className="skip-link">{t('common.skip_to_main')}</a>
             <header className="header-section">
                 <motion.h1
@@ -92,8 +93,6 @@ const App = () => {
                     {t('subtitle')}
                 </motion.p>
             </header>
-
-            <LanguageSwitcher />
 
             <nav className="nav-bar">
                 <NavLink
@@ -136,62 +135,112 @@ const App = () => {
 
             <AnimatePresence mode='wait'>
                 <Routes location={location} key={location.pathname}>
-                    <Route
-                        path="/"
-                        element={
-                            <motion.div
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: 20 }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                <section className="filters-section" aria-label="Book Categories">
-                                    <CategoryBar
-                                        categories={categories}
-                                        activeCategory={activeCategory}
-                                        setActiveCategory={setActiveCategory}
-                                    />
-                                </section>
-
-                                {currentSummary && (
-                                    <motion.p
-                                        className="category-summary"
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        key={showFavorites ? 'Favorites' : activeCategory}
-                                    >
-                                        {currentSummary}
-                                    </motion.p>
-                                )}
-
-                                <main className="books-grid-container" id="main-content">
-                                    <motion.div layout className="books-grid">
-                                        <AnimatePresence mode='popLayout'>
-                                            {filteredBooks.length > 0 ? (
-                                                filteredBooks.map((book) => (
-                                                    <BookCard
-                                                        key={book.id}
-                                                        book={book}
-                                                        isFavorite={isFavorite(book.id)}
-                                                        onToggleFavorite={() => toggleFavorite(book.id)}
-                                                    />
-                                                ))
-                                            ) : (
-                                                <motion.div
-                                                    className="empty-state"
-                                                    initial={{ opacity: 0 }}
-                                                    animate={{ opacity: 1 }}
-                                                >
-                                                    <p>{t('common.no_books')} {showFavorites ? t('common.add_favorites') : t('common.try_category')}</p>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
-                                    </motion.div>
-                                </main>
-                            </motion.div>
-                        }
-                    />
                     <Route path="/about" element={<About />} />
+                    <Route path="/ta/about" element={<About />} />
+                    <Route path="/ta" element={
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <section className="filters-section" aria-label="Book Categories">
+                                <CategoryBar
+                                    categories={categories}
+                                    activeCategory={activeCategory}
+                                    setActiveCategory={setActiveCategory}
+                                />
+                            </section>
+
+                            {currentSummary && (
+                                <motion.p
+                                    className="category-summary"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    key={showFavorites ? 'Favorites' : activeCategory}
+                                >
+                                    {currentSummary}
+                                </motion.p>
+                            )}
+
+                            <main className="books-grid-container" id="main-content">
+                                <motion.div layout className="books-grid">
+                                    <AnimatePresence mode='popLayout'>
+                                        {filteredBooks.length > 0 ? (
+                                            filteredBooks.map((book) => (
+                                                <BookCard
+                                                    key={book.id}
+                                                    book={book}
+                                                    isFavorite={isFavorite(book.id)}
+                                                    onToggleFavorite={() => toggleFavorite(book.id)}
+                                                />
+                                            ))
+                                        ) : (
+                                            <motion.div
+                                                className="empty-state"
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                            >
+                                                <p>{t('common.no_books')} {showFavorites ? t('common.add_favorites') : t('common.try_category')}</p>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </motion.div>
+                            </main>
+                        </motion.div>
+                    } />
+                    <Route path="/" element={
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <section className="filters-section" aria-label="Book Categories">
+                                <CategoryBar
+                                    categories={categories}
+                                    activeCategory={activeCategory}
+                                    setActiveCategory={setActiveCategory}
+                                />
+                            </section>
+
+                            {currentSummary && (
+                                <motion.p
+                                    className="category-summary"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    key={showFavorites ? 'Favorites' : activeCategory}
+                                >
+                                    {currentSummary}
+                                </motion.p>
+                            )}
+
+                            <main className="books-grid-container" id="main-content">
+                                <motion.div layout className="books-grid">
+                                    <AnimatePresence mode='popLayout'>
+                                        {filteredBooks.length > 0 ? (
+                                            filteredBooks.map((book) => (
+                                                <BookCard
+                                                    key={book.id}
+                                                    book={book}
+                                                    isFavorite={isFavorite(book.id)}
+                                                    onToggleFavorite={() => toggleFavorite(book.id)}
+                                                />
+                                            ))
+                                        ) : (
+                                            <motion.div
+                                                className="empty-state"
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                            >
+                                                <p>{t('common.no_books')} {showFavorites ? t('common.add_favorites') : t('common.try_category')}</p>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </motion.div>
+                            </main>
+                        </motion.div>
+                    } />
                 </Routes>
             </AnimatePresence>
 

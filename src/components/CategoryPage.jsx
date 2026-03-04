@@ -73,6 +73,7 @@ const CategoryPage = () => {
 
     return (
         <div className="app-container">
+            <LanguageSwitcher />
             <a href="#main-content" className="skip-link">{t('common.skip_to_main')}</a>
 
             <header className="header-section">
@@ -93,7 +94,6 @@ const CategoryPage = () => {
                 </motion.p>
                 <div style={{ textAlign: 'center' }}>
                     <div className="category-page-actions" style={{ marginBottom: '1rem' }}>
-                        <LanguageSwitcher />
                     </div>
                     <motion.div
                         style={{ display: 'inline-block' }}

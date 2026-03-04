@@ -42,6 +42,8 @@ body {
     padding: var(--space-8);
     max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    /* Added to allow absolute positioning of language switcher */
 }
 
 @media (max-width: 768px) {
