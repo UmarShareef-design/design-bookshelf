@@ -17,7 +17,7 @@ const LanguageSelectPage = () => {
         { code: 'ml', name: 'Malayalam', native: 'മലയാളം' },
         { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ' },
         { code: 'bn', name: 'Bengali', native: 'বাংলা' },
-        { code: 'mr', name: 'Marathi', native: 'मરાਠੀ' },
+        { code: 'mr', name: 'Marathi', native: 'मराठी' },
         { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી' },
         { code: 'pa', name: 'Punjabi', native: 'ਪੰਜਾਬੀ' },
         { code: 'or', name: 'Odia', native: 'ଓଡ଼ିଆ' }
