@@ -245,4 +245,63 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  <!-- Malayalam Pages -->
+  <url><loc>https://uxbooks.in/ml/</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://uxbooks.in/ml/about</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uxbooks.in/ml/category/ux-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/ml/category/ui-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/ml/category/interaction-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/ml/category/design-fundamentals</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/ml/category/user-research</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/ml/category/portfolio</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/ml/category/design-process</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/ml/category/complementary-skills</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Kannada Pages -->
+  <url><loc>https://uxbooks.in/kn/</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://uxbooks.in/kn/about</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uxbooks.in/kn/category/ux-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/kn/category/ui-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/kn/category/interaction-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/kn/category/design-fundamentals</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/kn/category/user-research</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/kn/category/portfolio</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/kn/category/design-process</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/kn/category/complementary-skills</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Bengali Pages -->
+  <url><loc>https://uxbooks.in/bn/</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://uxbooks.in/bn/about</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uxbooks.in/bn/category/ux-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/bn/category/ui-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/bn/category/interaction-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/bn/category/design-fundamentals</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/bn/category/user-research</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/bn/category/portfolio</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/bn/category/design-process</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/bn/category/complementary-skills</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Marathi Pages -->
+  <url><loc>https://uxbooks.in/mr/</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://uxbooks.in/mr/about</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uxbooks.in/mr/category/ux-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/mr/category/ui-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/mr/category/interaction-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/mr/category/design-fundamentals</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/mr/category/user-research</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/mr/category/portfolio</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/mr/category/design-process</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/mr/category/complementary-skills</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Gujarati Pages -->
+  <url><loc>https://uxbooks.in/gu/</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://uxbooks.in/gu/about</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uxbooks.in/gu/category/ux-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/gu/category/ui-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/gu/category/interaction-design</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/gu/category/design-fundamentals</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/gu/category/user-research</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/gu/category/portfolio</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/gu/category/design-process</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uxbooks.in/gu/category/complementary-skills</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 </urlset>
