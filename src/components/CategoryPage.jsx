@@ -30,6 +30,16 @@ const CategoryPage = () => {
 
     const summary = categoryName ? t(`summaries.${categoryName}`) : '';
 
+    // Track Category View Event
+    useEffect(() => {
+        if (window.gtag && categoryName) {
+            window.gtag('event', 'view_category_page', {
+                'category_name': categoryName,
+                'language': i18n.language
+            });
+        }
+    }, [categoryName, i18n.language]);
+
     // Update page title and meta for SEO
     useEffect(() => {
         if (meta && meta.title && !meta.title.includes('translation')) {

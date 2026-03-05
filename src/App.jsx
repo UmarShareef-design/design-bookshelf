@@ -18,6 +18,17 @@ const App = () => {
     const [activeCategory, setActiveCategory] = useState('All');
     const [favorites, setFavorites] = useState([]);
     const [showFavorites, setShowFavorites] = useState(false);
+    const GA_ID = 'G-PKCP0G5RGP';
+
+    // Track Category Changes (Home Page)
+    useEffect(() => {
+        if (window.gtag && !showFavorites) {
+            window.gtag('event', 'filter_category', {
+                'category_name': activeCategory,
+                'language': i18n.language
+            });
+        }
+    }, [activeCategory, showFavorites, i18n.language]);
 
     // Derived Data: Categories
     const categories = useMemo(() => {

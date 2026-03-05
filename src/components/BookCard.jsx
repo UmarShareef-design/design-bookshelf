@@ -22,6 +22,13 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
         e.stopPropagation();
         if (!isFavorite) {
             setShowButterfly(true);
+            // Track Add to Favorites Event
+            if (window.gtag) {
+                window.gtag('event', 'add_to_favorites', {
+                    'book_title': book.Title,
+                    'book_category': book.Category
+                });
+            }
         }
         onToggleFavorite();
     };

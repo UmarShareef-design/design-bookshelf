@@ -26,6 +26,14 @@ const LanguageSelectPage = () => {
     const currentLangCode = i18n.language || 'en';
 
     const handleLanguageChange = (lng) => {
+        // Track Language Change Event
+        if (window.gtag) {
+            window.gtag('event', 'language_select', {
+                'selected_language': lng,
+                'previous_language': i18n.language
+            });
+        }
+
         // Change language state
         i18n.changeLanguage(lng).then(() => {
             // Navigate back to home or the previous page with the new language prefix

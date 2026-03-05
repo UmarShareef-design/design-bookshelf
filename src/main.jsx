@@ -27,6 +27,16 @@ const LangWrapper = () => {
         }
     }, [lang, i18n]);
 
+    // Global Page View Tracking
+    useEffect(() => {
+        if (window.gtag) {
+            window.gtag('config', 'G-PKCP0G5RGP', {
+                page_path: location.pathname + location.search,
+                page_title: document.title
+            });
+        }
+    }, [location]);
+
     return (
         <Routes>
             <Route path="category/:categorySlug" element={<CategoryPage />} />
