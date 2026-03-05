@@ -1,5 +1,5 @@
 export const CATEGORY_SUMMARIES = {
-    'All': 'A complete collection of UI/UX design books covering everything from basic principles to advanced research methods to soft skills.',
+    'All': 'An extensive collection of UI/UX design books covering everything from basic principles to advanced research methods to soft skills.',
     'UX Design': 'Essential reading for understanding user behavior, usability, and the strategy behind successful digital products.',
     'UI Design': 'Books focused on visual hierarchy, typography, color theory, and the aesthetics of interface design.',
     'Interaction Design': 'Guides on how users engage with products, focusing on flow, feedback, and interactive patterns.',
