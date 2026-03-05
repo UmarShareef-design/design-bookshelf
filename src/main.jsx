@@ -47,6 +47,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <BrowserRouter basename="/">
             <Routes>
                 {/* 
+                  Explicit route for /select-language MUST come before /:lang/*
+                  to prevent "select-language" from being consumed as a :lang param.
+                */}
+                <Route path="/select-language" element={<LanguageSelectPage />} />
+                {/* 
                   We use two entry points to capture the optional :lang param,
                   but they both render the SAME LangWrapper instance to prevent unmounting.
                 */}

@@ -38,7 +38,7 @@ const LanguageSwitcher = () => {
                 onClick={handleLanguageChange}
                 title={t('common.select_language')}
             >
-                <Globe size={20} />
+                <Globe size={16} />
                 <span className="lang-label">{currentLanguage.native}</span>
             </button>
         </div>
