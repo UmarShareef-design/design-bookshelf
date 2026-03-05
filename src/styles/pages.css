@@ -116,7 +116,7 @@
 }
 
 .language-page-content {
-    max-width: 1000px;
+    max-width: 720px;
     width: 100%;
 }
 
@@ -168,20 +168,20 @@
 
 .language-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--space-6);
-    margin-bottom: var(--space-20);
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-16);
 }
 
 .language-card {
-    padding: var(--space-8);
-    border-radius: 24px;
+    padding: var(--space-4) var(--space-5);
+    border-radius: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: left;
     cursor: pointer;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
 }
 
 .language-card.active {
@@ -196,27 +196,28 @@
 }
 
 .language-card .native-name {
-    font-size: 1.5rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--text-primary);
 }
 
 .language-card .english-name {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     color: var(--text-secondary);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .selected-indicator {
     background: var(--accent-color);
     color: var(--bg-color);
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .language-page-footer {
@@ -250,6 +251,6 @@
     }
 
     .language-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 }

@@ -68,7 +68,7 @@ const LanguageSelectPage = () => {
                             </div>
                             {currentLangCode === lng.code && (
                                 <div className="selected-indicator">
-                                    <Check size={18} />
+                                    <Check size={14} />
                                 </div>
                             )}
                         </motion.button>
