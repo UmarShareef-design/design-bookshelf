@@ -60,7 +60,7 @@ const CategoryPage = () => {
                 <div className="empty-state">
                     <p>{t('meta.404')}</p>
                     <NavLink
-                        to={i18n.language === 'ta' ? '/ta/' : '/'}
+                        to={i18n.language === 'en' ? '/' : `/${i18n.language}/`}
                         className="buy-button"
                         style={{ display: 'inline-flex', width: 'auto', marginTop: '1rem', textDecoration: 'none' }}
                     >
@@ -101,7 +101,7 @@ const CategoryPage = () => {
                         transition={{ delay: 1, duration: 0.5, repeat: 1, repeatDelay: 0 }}
                     >
                         <NavLink
-                            to={i18n.language === 'ta' ? '/ta/' : '/'}
+                            to={i18n.language === 'en' ? '/' : `/${i18n.language}/`}
                             className="buy-button category-page-cta"
                             style={{ textDecoration: 'none' }}
                         >

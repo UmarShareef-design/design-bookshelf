@@ -14,7 +14,7 @@ const LangWrapper = () => {
     const location = useLocation();
 
     useEffect(() => {
-        const supportedLangs = ['en', 'ta'];
+        const supportedLangs = ['en', 'ta', 'hi', 'te'];
         // Determine the target language from the URL param
         // If it's not a supported language (like 'about' in '/about'), default to 'en'
         const targetLang = supportedLangs.includes(lang) ? lang : 'en';

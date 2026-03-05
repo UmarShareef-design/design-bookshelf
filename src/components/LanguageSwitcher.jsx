@@ -13,7 +13,9 @@ const LanguageSwitcher = () => {
 
     const languages = [
         { code: 'en', name: 'English', native: 'English' },
-        { code: 'ta', name: 'Tamil', native: 'தமிழ்' }
+        { code: 'ta', name: 'Tamil', native: 'தமிழ்' },
+        { code: 'hi', name: 'Hindi', native: 'हिन्दी' },
+        { code: 'te', name: 'Telugu', native: 'తెలుగు' }
     ];
 
     const currentLanguage = languages.find(l => l.code === (lang || 'en')) || languages[0];
@@ -23,7 +25,7 @@ const LanguageSwitcher = () => {
 
         // 1. Calculate the new path
         let segments = location.pathname.split('/').filter(Boolean);
-        const supportedLangs = ['en', 'ta'];
+        const supportedLangs = ['en', 'ta', 'hi', 'te'];
 
         // Remove existing language prefix if present as the first segment
         if (segments.length > 0 && supportedLangs.includes(segments[0])) {

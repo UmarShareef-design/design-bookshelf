@@ -93,7 +93,7 @@ const App = () => {
 
             <nav className="nav-bar">
                 <NavLink
-                    to={i18n.language === 'ta' ? '/ta/' : '/'}
+                    to={i18n.language === 'en' ? '/' : `/${i18n.language}/`}
                     className={({ isActive }) => `nav-btn ${isActive && !showFavorites ? 'active' : ''}`}
                     onClick={() => setShowFavorites(false)}
                 >
@@ -105,14 +105,14 @@ const App = () => {
                     onClick={() => {
                         setShowFavorites(true);
                         setActiveCategory('All');
-                        navigate(i18n.language === 'ta' ? '/ta/' : '/');
+                        navigate(i18n.language === 'en' ? '/' : `/${i18n.language}/`);
                     }}
                 >
                     <Heart size={18} fill={showFavorites ? 'currentColor' : 'none'} />
                     {t('nav.favorites')} ({favorites.length})
                 </button>
                 <NavLink
-                    to={i18n.language === 'ta' ? '/ta/about' : '/about'}
+                    to={i18n.language === 'en' ? '/about' : `/${i18n.language}/about`}
                     className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}
                     onClick={() => setShowFavorites(false)}
                 >
