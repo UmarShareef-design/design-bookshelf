@@ -7,6 +7,8 @@ import './index.css'
 import './i18n';
 import { useTranslation } from 'react-i18next';
 
+import LanguageSelectPage from './components/LanguageSelectPage.jsx'
+
 // This wrapper stays mounted and handles the language state sync from the URL
 const LangWrapper = () => {
     const { lang } = useParams();
@@ -34,6 +36,7 @@ const LangWrapper = () => {
               based on the full pathname.
             */}
             <Route path="about" element={<App />} />
+            <Route path="select-language" element={<LanguageSelectPage />} />
             <Route path="*" element={<App />} />
         </Routes>
     );
