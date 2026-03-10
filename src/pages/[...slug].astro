@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MainApp from '../components/MainApp.jsx';
+import '../index.css';
+import { resources } from '../i18n.js';
+
+export async function getStaticPaths() {
+  const booksData = (await import('../books.json')).default;
+  const categories = [...new Set(booksData.map(b => b.Category))];
+  const langs = ['ta', 'hi', 'te', 'ml', 'kn', 'bn', 'mr', 'gu', 'pa', 'or'];
+
+  // Define URLs as slugs
+  const paths = [
+    { params: { slug: undefined } }, // /
+    { params: { slug: 'about' } },   // /about
+    { params: { slug: 'select-language' } }, // /select-language
+  ];
+
+  // English Categories
+  for (const cat of categories) {
+    const slugCat = cat.toLowerCase().replace(/ /g, '-');
+    paths.push({ params: { slug: `category/${slugCat}` } });
+  }
+
+  // Language paths
+  for (const lang of langs) {
+    paths.push({ params: { slug: lang } });
+    paths.push({ params: { slug: `${lang}/about` } });
+    for (const cat of categories) {
+      const slugCat = cat.toLowerCase().replace(/ /g, '-');
+      paths.push({ params: { slug: `${lang}/category/${slugCat}` } });
+    }
+  }
+
+  return paths;
+}
+
+const { slug } = Astro.params;
+const url = Astro.url.pathname;
+
+let currentLang = 'en';
+let rest = slug || '';
+
+const langs = ['ta', 'hi', 'te', 'ml', 'kn', 'bn', 'mr', 'gu', 'pa', 'or'];
+const parts = rest.split('/');
+if (parts.length > 0 && langs.includes(parts[0])) {
+  currentLang = parts[0];
+  rest = parts.slice(1).join('/');
+}
+
+const translations = resources[currentLang]?.translation || resources.en.translation;
+
+let title = translations.title;
+let description = translations.subtitle;
+
+if (rest === 'about') {
+    title = translations.about.title + " | " + translations.title;
+    description = translations.about.p1;
+} else if (rest.startsWith('category/')) {
+    const slugCat = rest.replace('category/', '');
+    const booksData = (await import('../books.json')).default;
+    const categories = [...new Set(booksData.map(b => b.Category))];
+    const categoryName = categories.find(c => c.toLowerCase().replace(/ /g, '-') === slugCat);
+    if (categoryName && translations.meta[categoryName]) {
+        title = translations.meta[categoryName].title;
+        description = translations.meta[categoryName].description;
+    }
+}
+---
+
+<Layout title={title} description={description} lang={currentLang}>
+  <MainApp url={url} client:load />
+</Layout>

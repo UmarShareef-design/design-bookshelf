@@ -1128,20 +1128,24 @@ const resources = {
 
 };
 
-i18n
-    .use(LanguageDetector)
-    .use(initReactI18next)
-    .init({
-        resources,
-        fallbackLng: 'en',
-        interpolation: {
-            escapeValue: false
-        },
-        detection: {
-            order: ['path', 'localStorage', 'navigator'],
-            lookupFromPathIndex: 0,
-            caches: ['localStorage']
-        }
-    });
+const i18nConfig = {
+    resources,
+    fallbackLng: 'en',
+    interpolation: {
+        escapeValue: false
+    },
+    detection: {
+        order: ['path', 'localStorage', 'navigator'],
+        lookupFromPathIndex: 0,
+        caches: ['localStorage']
+    }
+};
 
+if (typeof window !== 'undefined') {
+    i18n.use(LanguageDetector);
+}
+
+i18n.use(initReactI18next).init(i18nConfig);
+
+export { resources };
 export default i18n;
