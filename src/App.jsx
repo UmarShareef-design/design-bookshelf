@@ -18,7 +18,6 @@ const App = () => {
     const [activeCategory, setActiveCategory] = useState('All');
     const [favorites, setFavorites] = useState([]);
     const [showFavorites, setShowFavorites] = useState(false);
-    const GA_ID = 'G-PKCP0G5RGP';
 
     // Track Category Changes (Home Page)
     useEffect(() => {

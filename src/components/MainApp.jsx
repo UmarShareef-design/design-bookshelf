@@ -6,6 +6,7 @@ import LanguageSelectPage from './LanguageSelectPage.jsx';
 import '../i18n';
 import { useTranslation } from 'react-i18next';
 import RouterWrapper from './RouterWrapper.jsx';
+import { GA_MEASUREMENT_ID } from '../config';
 
 const LangWrapper = () => {
     const { lang } = useParams();
@@ -23,7 +24,7 @@ const LangWrapper = () => {
 
     useEffect(() => {
         if (typeof window !== 'undefined' && window.gtag) {
-            window.gtag('config', 'G-PKCP0G5RGP', {
+            window.gtag('config', GA_MEASUREMENT_ID, {
                 page_path: location.pathname + location.search,
                 page_title: document.title
             });

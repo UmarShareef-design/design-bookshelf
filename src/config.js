@@ -12,3 +12,4 @@ export const CATEGORY_SUMMARIES = {
 };
 
 export const FAVORITES_STORAGE_KEY = 'designBookshelfFavorites';
+export const GA_MEASUREMENT_ID = 'G-PKCP0G5RGP';

@@ -52,6 +52,7 @@ const translations = resources[currentLang]?.translation || resources.en.transla
 
 let title = translations.title;
 let description = translations.subtitle;
+let keywords = "";
 
 if (rest === 'about') {
     title = translations.about.title + " | " + translations.title;
@@ -64,10 +65,11 @@ if (rest === 'about') {
     if (categoryName && translations.meta[categoryName]) {
         title = translations.meta[categoryName].title;
         description = translations.meta[categoryName].description;
+        keywords = `${categoryName} books, best ${categoryName} books, ${categoryName} reference, design books, ${currentLang} ${categoryName}`;
     }
 }
 ---
 
-<Layout title={title} description={description} lang={currentLang}>
+<Layout title={title} description={description} lang={currentLang} keywords={keywords}>
   <MainApp url={url} client:load />
 </Layout>

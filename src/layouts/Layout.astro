@@ -3,9 +3,16 @@ interface Props {
 	title: string;
 	description: string;
 	lang?: string;
+	keywords?: string;
 }
 
-const { title, description, lang = "en" } = Astro.props;
+import { GA_MEASUREMENT_ID } from '../config';
+
+const { title, description, lang = "en", keywords } = Astro.props;
+
+const supportedLangs = ['en', 'ta', 'hi', 'te', 'ml', 'kn', 'bn', 'mr', 'gu', 'pa', 'or'];
+const baseUrl = "https://uxbooks.in";
+const defaultKeywords = "UX design books, UI design books, User experience design books, User interface design books, Interaction design books, UI/UX design ebooks, UX design books for beginners, UX design textbook, Foundational UX books, UX research books, Amazon India, Umar Shareef";
 ---
 
 <!DOCTYPE html>
@@ -16,17 +23,27 @@ const { title, description, lang = "en" } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="UX design books, UI design books, User experience design books, User interface design books, Interaction design books, UI/UX design ebooks, UX design books for beginners, UX design textbook, Foundational UX books, UX research books, Amazon India, Umar Shareef" />
+    <meta name="keywords" content={keywords || defaultKeywords} />
     <meta name="msvalidate.01" content="DAC8906374E8211CD526FC5E4C3920F0" />
+    <meta http-equiv="Content-Security-Policy" content={`default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://m.media-amazon.com https://c.amazon-adsystem.com https://www.clarity.ms; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms;`} />
     <link rel="canonical" href={Astro.url} />
     
+    {supportedLangs.map((l) => (
+      <link 
+        rel="alternate" 
+        hreflang={l} 
+        href={new URL(l === 'en' ? '/' : `/${l}/`, baseUrl)} 
+      />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL('/', baseUrl)} />
+    
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKCP0G5RGP"></script>
-    <script is:inline>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
       gtag('js', new Date());
-      gtag('config', 'G-PKCP0G5RGP');
+      gtag('config', GA_MEASUREMENT_ID);
     </script>
     
     <!-- Clarity -->

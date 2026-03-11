@@ -1,0 +1,100 @@
+{
+    "title": "UI/UX Design Bookshelf",
+    "subtitle": "A new design tool drops every week, but fundamentals are forever. In the age of AI, knowing the \"why\" through timeless principles is your real competitive edge. Make use of the ultimate list of UI/UX books to read—curated from foundational UX books and top reddit recommendations.",
+    "nav": {
+        "all_books": "All Books",
+        "favorites": "Favorites",
+        "about": "About",
+        "feedback": "Feedback ( Anonymous )"
+    },
+    "categories": {
+        "All": "All",
+        "UX Design": "UX Design",
+        "UI Design": "UI Design",
+        "Interaction Design": "Interaction Design",
+        "Design Fundamentals": "Design Fundamentals",
+        "User Research": "User Research",
+        "Portfolio": "Portfolio",
+        "Design Process": "Design Process",
+        "Complementary Skills": "Complementary Skills"
+    },
+    "summaries": {
+        "All": "An extensive collection of UI/UX design books covering everything from basic principles to advanced research methods to soft skills.",
+        "UX Design": "Essential reading for understanding user behavior, usability, and the strategy behind successful digital products.",
+        "UI Design": "Books focused on visual hierarchy, typography, color theory, and the aesthetics of interface design.",
+        "Interaction Design": "Guides on how users engage with products, focusing on flow, feedback, and interactive patterns.",
+        "Design Fundamentals": "Mastering core principles is the secret to better AI prompting. Understanding hierarchy and color theory allows you to direct AI tools with precision.",
+        "User Research": "Methodologies for gathering deep insights into user needs and testing design assumptions.",
+        "Portfolio": "Strategies for showcasing your design process and landing roles in the UI/UX industry.",
+        "Design Process": "Frameworks like Design Thinking and Lean UX that help teams build the right things efficiently.",
+        "Complementary Skills": "Soft skills that help you grow beyond just pixels.",
+        "Favorites": "Your curated collection of design wisdom. These books save to your local browser storage so you can easily reference them later."
+    },
+    "about": {
+        "title": "About Me",
+        "p1": "I'm Umar Shareef, a Designer who loves reading books with 5+ years of experience. Originally a mechanical engineer, I transitioned into website design and am now exploring \"vibe coding\" to build my own digital products.",
+        "p2": "I love reading books, but I've always felt confused whenever I visited Amazon to buy one.",
+        "p3": "Every week, a new free design tool emerges that claims to do everything better. But I realized that while tools cycle quickly, the core fundamentals found in these books are timeless. In the age of AI, knowing these principles is more important than ever—it’s the only way to truly master the new tools instead of being replaced by them.",
+        "p4": "I hope this curated collection helps you build an AI-proof foundation for your design career.",
+        "disclosure": "Full Affiliate Disclosure: All these links are affiliate links. Using these wouldn't cost you anything extra, but will give me a tiny commission that would motivate me a lot.",
+        "closing": "Happy Upskilling Designers :)",
+        "linkedin": "Connect on LinkedIn"
+    },
+    "common": {
+        "check_it_out": "Check it out",
+        "no_books": "No books found.",
+        "add_favorites": "Add some favorites!",
+        "try_category": "Try a different category.",
+        "footer_text": "Knowledge is power.",
+        "affiliate_disclosure": "Full Affiliate Disclosure: This website contains affiliate links. If you purchase through these links, we may earn a small commission at no extra cost to you.",
+        "share_feedback": "Share your feedback ( Anonymous )",
+        "select_language": "Select Language",
+        "skip_to_main": "Skip to main content"
+    },
+    "meta": {
+        "404": "Category not found.",
+        "UX Design": {
+            "title": "Best UX Design Books | UI/UX Design Bookshelf",
+            "description": "Discover the best UX design books covering user behavior, usability, and product strategy. Curated for Indian designers and professionals on Amazon.",
+            "h1": "Best UX Design Books"
+        },
+        "UI Design": {
+            "title": "Best UI Design Books | UI/UX Design Bookshelf",
+            "description": "Explore top UI design books on visual hierarchy, typography, color theory, and interface aesthetics. Available on Amazon India.",
+            "h1": "Best UI Design Books"
+        },
+        "Interaction Design": {
+            "title": "Best Interaction Design Books | UI/UX Design Bookshelf",
+            "description": "Find the best interaction design books on user flow, feedback patterns, and interactive experiences. Curated for designers.",
+            "h1": "Best Interaction Design Books"
+        },
+        "Design Fundamentals": {
+            "title": "Best Design Fundamentals Books | UI/UX Design Bookshelf",
+            "description": "Master core design principles with these essential books. Understanding hierarchy and color theory gives you precision with AI tools.",
+            "h1": "Best Design Fundamentals Books"
+        },
+        "User Research": {
+            "title": "Best User Research Books | UI/UX Design Bookshelf",
+            "description": "Top user research books covering methodologies for gathering insights into user needs and testing design assumptions.",
+            "h1": "Best User Research Books"
+        },
+        "Portfolio": {
+            "title": "Best UX Portfolio Books | UI/UX Design Bookshelf",
+            "description": "Learn how to build a winning UI/UX portfolio. These books cover strategies for showcasing your design process and landing roles.",
+            "h1": "Best UX Portfolio Books"
+        },
+        "Design Process": {
+            "title": "Best Design Process Books | UI/UX Design Bookshelf",
+            "description": "Explore Design Thinking, Lean UX, and other frameworks that help teams build the right products efficiently.",
+            "h1": "Best Design Process Books"
+        },
+        "Complementary Skills": {
+            "title": "Best Complementary Skills Books for Designers | UI/UX Design Bookshelf",
+            "description": "Soft skills books that help designers grow beyond pixels — communication, productivity, and career development.",
+            "h1": "Best Complementary Skills Books for Designers"
+        },
+        "hint": "You can add custom favorites across categories and bookmark to visit later!",
+        "view_all": "View all UI/UX Books!",
+        "back_to_all": "Back to All Books"
+    }
+}
