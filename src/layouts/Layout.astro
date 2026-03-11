@@ -18,6 +18,7 @@ const { title, description, lang = "en" } = Astro.props;
     <meta name="description" content={description} />
     <meta name="keywords" content="UX design books, UI design books, User experience design books, User interface design books, Interaction design books, UI/UX design ebooks, UX design books for beginners, UX design textbook, Foundational UX books, UX research books, Amazon India, Umar Shareef" />
     <meta name="msvalidate.01" content="DAC8906374E8211CD526FC5E4C3920F0" />
+    <link rel="canonical" href={Astro.url} />
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKCP0G5RGP"></script>
@@ -42,6 +43,7 @@ const { title, description, lang = "en" } = Astro.props;
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:locale" content={lang} />
     <meta property="og:site_name" content="UI/UX Design Bookshelf" />
     <meta property="og:image" content={new URL("/og-image.png", Astro.url)} />
     <meta property="twitter:card" content="summary_large_image" />
