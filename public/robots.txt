@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://uxbooks.in/sitemap.xml
+Sitemap: https://uxbooks.in/sitemap-index.xml
