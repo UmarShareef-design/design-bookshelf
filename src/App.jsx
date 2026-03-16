@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, BookOpen, Info, MessageSquare } from 'lucide-react';
 import { Routes, Route, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import CategoryBar from './components/CategoryBar';
 import BookCard from './components/BookCard';
 import About from './components/About';
+import Footer from './components/Footer';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import booksData from './books.json';
-import { FAVORITES_STORAGE_KEY } from './config';
+import { FAVORITES_STORAGE_KEY, FEEDBACK_URL } from './config';
 import { useTranslation } from 'react-i18next';
+import { Icon } from './components/Icons';
 
 const App = () => {
     const { t, i18n } = useTranslation();
@@ -36,19 +36,24 @@ const App = () => {
 
     // Load favorites and handle Title-to-ID migration
     useEffect(() => {
-        const stored = localStorage.getItem(FAVORITES_STORAGE_KEY);
-        if (stored) {
-            let parsed = JSON.parse(stored);
-            const isOldFormat = parsed.length > 0 && !booksData.some(b => parsed.includes(b.id));
-            if (isOldFormat) {
-                console.log("Migrating favorites to ID-based system...");
-                const newFavorites = booksData
-                    .filter(book => parsed.includes(book.Title))
-                    .map(book => book.id);
-                setFavorites(newFavorites);
-            } else {
-                setFavorites(parsed);
+        try {
+            const stored = localStorage.getItem(FAVORITES_STORAGE_KEY);
+            if (stored) {
+                let parsed = JSON.parse(stored);
+                const isOldFormat = parsed.length > 0 && !booksData.some(b => parsed.includes(b.id));
+                if (isOldFormat) {
+                    const newFavorites = booksData
+                        .filter(book => parsed.includes(book.Title))
+                        .map(book => book.id);
+                    setFavorites(newFavorites);
+                } else {
+                    setFavorites(parsed);
+                }
             }
+        } catch (e) {
+            console.warn('Failed to load favorites from localStorage:', e);
+            localStorage.removeItem(FAVORITES_STORAGE_KEY);
+            setFavorites([]);
         }
     }, []);
 
@@ -84,30 +89,21 @@ const App = () => {
             <LanguageSwitcher />
             <a href="#main-content" className="skip-link">{t('common.skip_to_main')}</a>
             <header className="header-section">
-                <motion.h1
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
+                <h1 className="animate-in">
                     {t('title')}
-                </motion.h1>
-                <motion.p
-                    className="subtitle"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4, duration: 0.8 }}
-                >
+                </h1>
+                <p className="subtitle animate-in delay-1">
                     {t('subtitle')}
-                </motion.p>
+                </p>
             </header>
 
-            <nav className="nav-bar">
+            <nav className="nav-bar animate-in delay-2">
                 <NavLink
                     to={i18n.language === 'en' ? '/' : `/${i18n.language}/`}
                     className={({ isActive }) => `nav-btn ${isActive && !showFavorites ? 'active' : ''}`}
                     onClick={() => setShowFavorites(false)}
                 >
-                    <BookOpen size={18} />
+                    <Icon id="book-open" size={18} />
                     {t('nav.all_books')}
                 </NavLink>
                 <button
@@ -118,7 +114,7 @@ const App = () => {
                         navigate(i18n.language === 'en' ? '/' : `/${i18n.language}/`);
                     }}
                 >
-                    <Heart size={18} fill={showFavorites ? 'currentColor' : 'none'} />
+                    <Icon id="heart" size={18} fill={showFavorites ? 'currentColor' : 'none'} />
                     {t('nav.favorites')} ({favorites.length})
                 </button>
                 <NavLink
@@ -126,38 +122,26 @@ const App = () => {
                     className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}
                     onClick={() => setShowFavorites(false)}
                 >
-                    <Info size={18} />
+                    <Icon id="info" size={18} />
                     {t('nav.about')}
                 </NavLink>
                 <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSdizXwJUzLnyEQVH_fjZClIUir9lMg9RnIZQkWooexjJz9e7Q/viewform?usp=header"
+                    href={FEEDBACK_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="nav-btn"
                 >
-                    <MessageSquare size={18} />
+                    <Icon id="message-square" size={18} />
                     {t('nav.feedback')}
                 </a>
             </nav>
 
-            <AnimatePresence mode='wait'>
-                {/* 
-                  Instead of nested Routes which can be tricky with language prefixes,
-                  we use conditional rendering based on the pathname.
-                  This ensures the state (like activeCategory) is preserved while 
-                  switching between Home and About.
-                */}
+            <div className="content-area">
                 {location.pathname.split('/').filter(Boolean).includes('about') ? (
                     <About key="about" />
                 ) : (
-                    <motion.div
-                        key="home"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 20 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <section className="filters-section" aria-label="Book Categories">
+                    <div className="home-content">
+                        <section className="filters-section animate-in delay-3" aria-label="Book Categories">
                             <CategoryBar
                                 categories={categories}
                                 activeCategory={activeCategory}
@@ -166,62 +150,37 @@ const App = () => {
                         </section>
 
                         {currentSummary && (
-                            <motion.p
-                                className="category-summary"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                key={showFavorites ? 'Favorites' : activeCategory}
-                            >
+                            <p className="category-summary animate-in delay-4">
                                 {currentSummary}
-                            </motion.p>
+                            </p>
                         )}
 
                         <main className="books-grid-container" id="main-content">
-                            <motion.div layout className="books-grid">
-                                <AnimatePresence mode='popLayout'>
-                                    {filteredBooks.length > 0 ? (
-                                        filteredBooks.map((book) => (
-                                            <BookCard
-                                                key={book.id}
-                                                book={book}
-                                                isFavorite={isFavorite(book.id)}
-                                                onToggleFavorite={() => toggleFavorite(book.id)}
-                                            />
-                                        ))
-                                    ) : (
-                                        <motion.div
-                                            className="empty-state"
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                        >
-                                            <p>{t('common.no_books')} {showFavorites ? t('common.add_favorites') : t('common.try_category')}</p>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </motion.div>
+                            <div className="books-grid">
+                                {filteredBooks.length > 0 ? (
+                                    filteredBooks.map((book) => (
+                                        <BookCard
+                                            key={book.id}
+                                            book={book}
+                                            isFavorite={isFavorite(book.id)}
+                                            onToggleFavorite={() => toggleFavorite(book.id)}
+                                        />
+                                    ))
+                                ) : (
+                                    <div className="empty-state">
+                                        <p>{t('common.no_books')} {showFavorites ? t('common.add_favorites') : t('common.try_category')}</p>
+                                    </div>
+                                )}
+                            </div>
                         </main>
-                    </motion.div>
+                    </div>
                 )}
-            </AnimatePresence>
+            </div>
 
-            <footer className="footer">
-                <p>&copy; {new Date().getFullYear()} {t('title')}. {t('common.footer_text')}</p>
-                <div className="footer-links">
-                    <a
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSdizXwJUzLnyEQVH_fjZClIUir9lMg9RnIZQkWooexjJz9e7Q/viewform?usp=header"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="footer-feedback-link"
-                    >
-                        {t('common.share_feedback')}
-                    </a>
-                </div>
-                <p className="footer-disclosure">
-                    {t('common.affiliate_disclosure')}
-                </p>
-            </footer>
+            <Footer />
         </div>
     );
 };
 
 export default App;
+

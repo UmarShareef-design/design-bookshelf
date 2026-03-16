@@ -2,12 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import MainApp from '../components/MainApp.jsx';
 import '../index.css';
-import { resources } from '../i18n.js';
+import { NON_DEFAULT_LANG_CODES } from '../config';
 
 export async function getStaticPaths() {
   const booksData = (await import('../books.json')).default;
   const categories = [...new Set(booksData.map(b => b.Category))];
-  const langs = ['ta', 'hi', 'te', 'ml', 'kn', 'bn', 'mr', 'gu', 'pa', 'or'];
+  const langs = NON_DEFAULT_LANG_CODES;
 
   // Define URLs as slugs
   const paths = [
@@ -41,14 +41,14 @@ const url = Astro.url.pathname;
 let currentLang = 'en';
 let rest = slug || '';
 
-const langs = ['ta', 'hi', 'te', 'ml', 'kn', 'bn', 'mr', 'gu', 'pa', 'or'];
+const langs = NON_DEFAULT_LANG_CODES;
 const parts = rest.split('/');
 if (parts.length > 0 && langs.includes(parts[0])) {
   currentLang = parts[0];
   rest = parts.slice(1).join('/');
 }
 
-const translations = resources[currentLang]?.translation || resources.en.translation;
+const translations = (await import(`../i18n/locales/${currentLang}.json`)).default;
 
 let title = translations.title;
 let description = translations.subtitle;
@@ -71,5 +71,5 @@ if (rest === 'about') {
 ---
 
 <Layout title={title} description={description} lang={currentLang} keywords={keywords}>
-  <MainApp url={url} client:load />
+  <MainApp url={url} initialResources={translations} lang={currentLang} client:load />
 </Layout>

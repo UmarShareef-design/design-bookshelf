@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, Heart } from 'lucide-react';
 import ButterflyAnimation from './ButterflyAnimation';
 import { useTranslation } from 'react-i18next';
+import { Icon } from './Icons';
 
 const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
     const { t } = useTranslation();
@@ -20,7 +19,9 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
 
     const handleFavoriteClick = (e) => {
         e.stopPropagation();
-        if (!isFavorite) {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        if (!isFavorite && !prefersReducedMotion) {
             setShowButterfly(true);
             // Track Add to Favorites Event
             if (window.gtag) {
@@ -34,13 +35,8 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
     };
 
     return (
-        <motion.article
-            layout
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.4 }}
-            className="book-card glass-effect"
+        <article
+            className="book-card glass-effect animate-in"
             style={{ zIndex: showButterfly ? 100 : 1 }}
         >
             {onToggleFavorite && (
@@ -52,9 +48,9 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                     <button
                         className={`favorite-btn ${isFavorite ? 'is-favorite' : ''}`}
                         onClick={handleFavoriteClick}
-                        aria-label={isFavorite ? t('nav.favorites') : t('nav.favorites')}
+                        aria-label={isFavorite ? t('common.remove_favorite') : t('common.add_favorite')}
                     >
-                        <Heart size={20} fill={isFavorite ? 'currentColor' : 'none'} />
+                        <Icon id="heart" size={20} fill={isFavorite ? 'currentColor' : 'none'} />
                     </button>
                 </>
             )}
@@ -72,6 +68,12 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                         className="book-image"
                         loading="lazy"
                         decoding="async"
+                        width="300"
+                        height="450"
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = 'https://via.placeholder.com/300x450?text=Design+Book';
+                        }}
                     />
                 </div>
                 <div className="book-info">
@@ -87,11 +89,13 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                     className="buy-button"
                     onClick={handleAmazonClick}
                 >
-                    {t('common.check_it_out')} <ExternalLink size={16} />
+                    {t('common.check_it_out')} <Icon id="external-link" size={16} />
                 </a>
             </div>
-        </motion.article>
+        </article>
     );
 };
 
 export default BookCard;
+
+

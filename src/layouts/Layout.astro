@@ -6,11 +6,11 @@ interface Props {
 	keywords?: string;
 }
 
-import { GA_MEASUREMENT_ID } from '../config';
+import { GA_MEASUREMENT_ID, LANGUAGE_CODES } from '../config';
 
 const { title, description, lang = "en", keywords } = Astro.props;
 
-const supportedLangs = ['en', 'ta', 'hi', 'te', 'ml', 'kn', 'bn', 'mr', 'gu', 'pa', 'or'];
+const supportedLangs = LANGUAGE_CODES;
 const baseUrl = "https://uxbooks.in";
 const defaultKeywords = "UX design books, UI design books, User experience design books, User interface design books, Interaction design books, UI/UX design ebooks, UX design books for beginners, UX design textbook, Foundational UX books, UX research books, Amazon India, Umar Shareef";
 ---
@@ -28,13 +28,32 @@ const defaultKeywords = "UX design books, UI design books, User experience desig
     <meta http-equiv="Content-Security-Policy" content={`default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://m.media-amazon.com https://c.amazon-adsystem.com https://www.clarity.ms; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms;`} />
     <link rel="canonical" href={Astro.url} />
     
-    {supportedLangs.map((l) => (
-      <link 
-        rel="alternate" 
-        hreflang={l} 
-        href={new URL(l === 'en' ? '/' : `/${l}/`, baseUrl)} 
-      />
-    ))}
+    {supportedLangs.map((l) => {
+      // Correctly handle subpaths for hreflang
+      // If we are at /category/ux-design, and l is 'ta', we want /ta/category/ux-design
+      // Astro.url.pathname will have the current path (e.g., /category/ux-design or /ta/category/ux-design)
+      
+      const currentPath = Astro.url.pathname;
+      const pathSegments = currentPath.split('/').filter(Boolean);
+      
+      // Remove language prefix if present
+      if (supportedLangs.includes(pathSegments[0]) && pathSegments[0] !== 'en') {
+        pathSegments.shift();
+      }
+      
+      const subPath = pathSegments.join('/');
+      const finalPath = l === 'en' 
+        ? (subPath ? `/${subPath}` : '/') 
+        : `/${l}/${subPath}`;
+
+      return (
+        <link 
+          rel="alternate" 
+          hreflang={l} 
+          href={new URL(finalPath, baseUrl)} 
+        />
+      );
+    })}
     <link rel="alternate" hreflang="x-default" href={new URL('/', baseUrl)} />
     
     <!-- Google tag (gtag.js) -->
@@ -69,7 +88,9 @@ const defaultKeywords = "UX design books, UI design books, User experience desig
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL("/og-image.png", Astro.url)} />
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&display=swap" rel="stylesheet">
   </head>
   <body>
     <slot />

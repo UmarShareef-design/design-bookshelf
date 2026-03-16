@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Routes, Route, useParams, useLocation } from 'react-router-dom';
 import App from '../App.jsx';
 import CategoryPage from './CategoryPage.jsx';
 import LanguageSelectPage from './LanguageSelectPage.jsx';
-import '../i18n';
-import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
+import { useTranslation, I18nextProvider } from 'react-i18next';
 import RouterWrapper from './RouterWrapper.jsx';
-import { GA_MEASUREMENT_ID } from '../config';
+import { GA_MEASUREMENT_ID, LANGUAGE_CODES } from '../config';
+import { IconSymbols } from './Icons.jsx';
 
 const LangWrapper = () => {
     const { lang } = useParams();
@@ -14,8 +15,7 @@ const LangWrapper = () => {
     const location = useLocation();
 
     useEffect(() => {
-        const supportedLangs = ['en', 'ta', 'hi', 'te', 'ml', 'kn', 'bn', 'mr', 'gu', 'pa', 'or'];
-        const targetLang = supportedLangs.includes(lang) ? lang : 'en';
+        const targetLang = LANGUAGE_CODES.includes(lang) ? lang : 'en';
 
         if (i18n.language !== targetLang) {
             i18n.changeLanguage(targetLang);
@@ -41,14 +41,27 @@ const LangWrapper = () => {
     );
 };
 
-export default function MainApp({ url }) {
+export default function MainApp({ url, initialResources, lang }) {
+    // Add initial resources so it hydrates correctly without a network request
+    useMemo(() => {
+        if (initialResources) {
+            i18n.addResourceBundle(lang, 'translation', initialResources, true, true);
+            i18n.changeLanguage(lang);
+        }
+    }, [initialResources, lang]);
+
     return (
-        <RouterWrapper location={url}>
-            <Routes>
-                <Route path="/select-language" element={<LanguageSelectPage />} />
-                <Route path="/:lang/*" element={<LangWrapper />} />
-                <Route path="*" element={<LangWrapper />} />
-            </Routes>
-        </RouterWrapper>
+        <I18nextProvider i18n={i18n}>
+            <IconSymbols />
+            <RouterWrapper location={url}>
+                <Routes>
+                    <Route path="/select-language" element={<LanguageSelectPage />} />
+                    <Route path="/:lang/*" element={<LangWrapper />} />
+                    <Route path="*" element={<LangWrapper />} />
+                </Routes>
+            </RouterWrapper>
+        </I18nextProvider>
     );
 }
+
+

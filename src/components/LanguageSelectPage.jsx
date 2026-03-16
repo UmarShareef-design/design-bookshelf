@@ -1,27 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowLeft, Globe, Check } from 'lucide-react';
+import { SUPPORTED_LANGUAGES } from '../config';
+import { Icon } from './Icons';
 
 const LanguageSelectPage = () => {
     const { i18n, t } = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
-
-    const languages = [
-        { code: 'en', name: 'English', native: 'English' },
-        { code: 'ta', name: 'Tamil', native: 'தமிழ்' },
-        { code: 'hi', name: 'Hindi', native: 'हिन्दी' },
-        { code: 'te', name: 'Telugu', native: 'తెలుగు' },
-        { code: 'ml', name: 'Malayalam', native: 'മലയാളം' },
-        { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ' },
-        { code: 'bn', name: 'Bengali', native: 'বাংলা' },
-        { code: 'mr', name: 'Marathi', native: 'मराठी' },
-        { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી' },
-        { code: 'pa', name: 'Punjabi', native: 'ਪੰਜਾਬੀ' },
-        { code: 'or', name: 'Odia', native: 'ଓଡ଼ିଆ' }
-    ];
 
     const currentLangCode = i18n.language || 'en';
 
@@ -37,11 +23,6 @@ const LanguageSelectPage = () => {
         // Change language state
         i18n.changeLanguage(lng).then(() => {
             // Navigate back to home or the previous page with the new language prefix
-            // We'll just go home for simplicity, or we could try to preserve the page.
-            // Let's try to preserve the page if possible.
-
-            // Note: Since we are on /select-language, we don't have a direct "previous path" 
-            // easily accessible without state. Let's redirect to the home page with the new lang.
             const newPath = lng === 'en' ? '/' : `/${lng}/`;
             navigate(newPath);
         });
@@ -52,23 +33,19 @@ const LanguageSelectPage = () => {
             <div className="language-page-content">
                 <header className="language-page-header">
                     <button className="back-btn" onClick={() => navigate(-1)}>
-                        <ArrowLeft size={24} />
+                        <Icon id="arrow-left" size={24} />
                     </button>
-                    <h1>{t('common.select_language')}</h1>
-                    <p className="language-page-subtitle">Choose your preferred language to explore the bookshelf</p>
+                    <h1 className="animate-in">{t('common.select_language')}</h1>
+                    <p className="language-page-subtitle animate-in delay-1">{t('common.language_subtitle')}</p>
                 </header>
 
                 <div className="language-grid">
-                    {languages.map((lng, index) => (
-                        <motion.button
+                    {SUPPORTED_LANGUAGES.map((lng, index) => (
+                        <button
                             key={lng.code}
-                            className={`language-card glass-effect ${currentLangCode === lng.code ? 'active' : ''}`}
+                            className={`language-card glass-effect animate-in ${currentLangCode === lng.code ? 'active' : ''}`}
+                            style={{ animationDelay: `${0.1 + index * 0.05}s` }}
                             onClick={() => handleLanguageChange(lng.code)}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.05 }}
-                            whileHover={{ y: -5, scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
                         >
                             <div className="language-card-info">
                                 <span className="native-name">{lng.native}</span>
@@ -76,15 +53,15 @@ const LanguageSelectPage = () => {
                             </div>
                             {currentLangCode === lng.code && (
                                 <div className="selected-indicator">
-                                    <Check size={14} />
+                                    <Icon id="check" size={14} />
                                 </div>
                             )}
-                        </motion.button>
+                        </button>
                     ))}
                 </div>
 
-                <div className="language-page-footer">
-                    <Globe size={48} className="footer-icon" />
+                <div className="language-page-footer animate-in" style={{ animationDelay: `${0.2 + SUPPORTED_LANGUAGES.length * 0.05}s` }}>
+                    <Icon id="globe" size={48} className="footer-icon" />
                     <p>{t('common.footer_text')}</p>
                 </div>
             </div>
@@ -92,4 +69,6 @@ const LanguageSelectPage = () => {
     );
 };
 
+
 export default LanguageSelectPage;
+

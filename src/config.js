@@ -1,15 +1,20 @@
-export const CATEGORY_SUMMARIES = {
-    'All': 'An extensive collection of UI/UX design books covering everything from basic principles to advanced research methods to soft skills.',
-    'UX Design': 'Essential reading for understanding user behavior, usability, and the strategy behind successful digital products.',
-    'UI Design': 'Books focused on visual hierarchy, typography, color theory, and the aesthetics of interface design.',
-    'Interaction Design': 'Guides on how users engage with products, focusing on flow, feedback, and interactive patterns.',
-    'Design Fundamentals': 'Mastering core principles is the secret to better AI prompting. Understanding hierarchy and color theory allows you to direct AI tools like emergent, replit, Bolt, Lovable, Claude code, Antigravity, Google AI studio etc. with precision instead of trial and error.',
-    'User Research': 'Methodologies for gathering deep insights into user needs and testing design assumptions.',
-    'Portfolio': 'Strategies for showcasing your design process and landing roles in the UI/UX industry.',
-    'Design Process': 'Frameworks like Design Thinking and Lean UX that help teams build the right things efficiently.',
-    'Complementary Skills': 'Soft skills that help you grow beyond just pixels.',
-    'Favorites': 'Your curated collection of design wisdom. These books save to your local browser storage so you can easily reference them later. Tip: You can even bookmark this page in your browser for one-click access to your favorites!'
-};
+export const SUPPORTED_LANGUAGES = [
+    { code: 'en', name: 'English', native: 'English' },
+    { code: 'ta', name: 'Tamil', native: 'தமிழ்' },
+    { code: 'hi', name: 'Hindi', native: 'हिन्दी' },
+    { code: 'te', name: 'Telugu', native: 'తెలుగు' },
+    { code: 'ml', name: 'Malayalam', native: 'മലയാളം' },
+    { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ' },
+    { code: 'bn', name: 'Bengali', native: 'বাংলা' },
+    { code: 'mr', name: 'Marathi', native: 'मराठी' },
+    { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી' },
+    { code: 'pa', name: 'Punjabi', native: 'ਪੰਜਾਬੀ' },
+    { code: 'or', name: 'Odia', native: 'ଓଡ଼ିଆ' }
+];
 
-export const FAVORITES_STORAGE_KEY = 'designBookshelfFavorites';
+export const LANGUAGE_CODES = SUPPORTED_LANGUAGES.map(l => l.code);
+export const NON_DEFAULT_LANG_CODES = LANGUAGE_CODES.filter(c => c !== 'en');
+
+export const FAVORITES_STORAGE_KEY = 'design-bookshelf-favorites';
 export const GA_MEASUREMENT_ID = 'G-PKCP0G5RGP';
+export const FEEDBACK_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdizXwJUzLnyEQVH_fjZClIUir9lMg9RnIZQkWooexjJz9e7Q/viewform?usp=header';

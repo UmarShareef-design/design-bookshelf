@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 const CategoryBar = ({ categories, activeCategory, setActiveCategory }) => {
@@ -29,17 +28,17 @@ const CategoryBar = ({ categories, activeCategory, setActiveCategory }) => {
 
     return (
         <div className="category-bar-wrapper">
-            <div className="category-bar glass-effect" ref={containerRef}>
+            <div className="category-bar glass-effect" ref={containerRef} role="tablist">
                 {categories.map((category) => (
-                    <motion.button
+                    <button
                         key={category}
                         className={`category-btn ${activeCategory === category ? 'active' : ''}`}
                         onClick={(e) => handleCategoryClick(category, e)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        role="tab"
+                        aria-selected={activeCategory === category}
                     >
                         {t(`categories.${category}`)}
-                    </motion.button>
+                    </button>
                 ))}
             </div>
         </div>
@@ -47,3 +46,4 @@ const CategoryBar = ({ categories, activeCategory, setActiveCategory }) => {
 };
 
 export default CategoryBar;
+
