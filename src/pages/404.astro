@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../index.css';
+import { Icon } from '../components/Icons';
+
+const title = "Page Not Found | UI/UX Design Bookshelf";
+const description = "The page you're looking for doesn't exist or has been moved.";
+---
+
+<Layout title={title} description={description}>
+  <div class="app-container">
+    <div class="empty-state" style="min-height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <h1 style="font-size: clamp(4rem, 15vw, 8rem); font-weight: 800; letter-spacing: -0.04em; background: linear-gradient(to right, #00f2fe, #4facfe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin-bottom: 1rem;">404</h1>
+      <p style="color: #a0a0a0; font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6;">{description}</p>
+      <a href="/" class="buy-button" style="display: inline-flex; width: auto; text-decoration: none; align-items: center; gap: 0.5rem;">
+        <Icon id="arrow-left" size={18} /> Back to Bookshelf
+      </a>
+    </div>
+  </div>
+</Layout>

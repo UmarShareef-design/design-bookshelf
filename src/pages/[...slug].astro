@@ -26,6 +26,7 @@ export async function getStaticPaths() {
   for (const lang of langs) {
     paths.push({ params: { slug: lang } });
     paths.push({ params: { slug: `${lang}/about` } });
+    paths.push({ params: { slug: `${lang}/select-language` } });
     for (const cat of categories) {
       const slugCat = cat.toLowerCase().replace(/ /g, '-');
       paths.push({ params: { slug: `${lang}/category/${slugCat}` } });

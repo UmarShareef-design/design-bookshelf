@@ -4,8 +4,5 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
     site: 'https://uxbooks.in',
-    integrations: [react(), sitemap()],
-    redirects: {
-        '/sitemap.xml': '/sitemap-index.xml'
-    }
+    integrations: [react(), sitemap()]
 });
