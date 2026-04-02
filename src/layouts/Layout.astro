@@ -4,15 +4,77 @@ interface Props {
 	description: string;
 	lang?: string;
 	keywords?: string;
+    type?: "website" | "product";
+    category?: string;
 }
 
 import { GA_MEASUREMENT_ID, LANGUAGE_CODES } from '../config';
 
-const { title, description, lang = "en", keywords } = Astro.props;
+const { title, description, lang = "en", keywords, type = "website", category } = Astro.props;
 
 const supportedLangs = LANGUAGE_CODES;
 const baseUrl = "https://uxbooks.in";
 const defaultKeywords = "UX design books, UI design books, User experience design books, User interface design books, Interaction design books, UI/UX design ebooks, UX design books for beginners, UX design textbook, Foundational UX books, UX research books, Amazon India, Umar Shareef";
+
+// Ensure canonical URL is always HTTPS and correct
+const canonicalURL = new URL(Astro.url.pathname, baseUrl).href;
+const socialImage = new URL("/og-image.png", baseUrl).href;
+
+// Breadcrumb Schema
+const breadcrumbSchema = category ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": baseUrl
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": category,
+      "item": canonicalURL
+    }
+  ]
+} : null;
+
+const langToLocale: Record<string, string> = {
+  en: "en_US",
+  hi: "hi_IN",
+  ta: "ta_IN",
+  te: "te_IN",
+  ml: "ml_IN",
+  kn: "kn_IN",
+  bn: "bn_IN",
+  mr: "mr_IN",
+  gu: "gu_IN",
+  pa: "pa_IN",
+  or: "or_IN",
+};
+const ogLocale = langToLocale[lang] || "en_US";
+
+// Website Schema
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "UI/UX Design Bookshelf",
+  "url": baseUrl,
+  "description": description,
+  "author": {
+    "@type": "Person",
+    "name": "Umar Shareef"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${baseUrl}/?search={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  }
+};
 ---
 
 <!DOCTYPE html>
@@ -20,42 +82,45 @@ const defaultKeywords = "UX design books, UI design books, User experience desig
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0a" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords || defaultKeywords} />
+    <meta name="author" content="Umar Shareef" />
+    <link rel="canonical" href={canonicalURL} />
+    
     <meta name="msvalidate.01" content="DAC8906374E8211CD526FC5E4C3920F0" />
     <meta http-equiv="Content-Security-Policy" content={`default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://m.media-amazon.com https://c.amazon-adsystem.com https://www.clarity.ms; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms;`} />
-    <link rel="canonical" href={Astro.url} />
     
     {supportedLangs.map((l) => {
-      // Correctly handle subpaths for hreflang
-      // If we are at /category/ux-design, and l is 'ta', we want /ta/category/ux-design
-      // Astro.url.pathname will have the current path (e.g., /category/ux-design or /ta/category/ux-design)
-      
       const currentPath = Astro.url.pathname;
       const pathSegments = currentPath.split('/').filter(Boolean);
       
-      // Remove language prefix if present
       if (supportedLangs.includes(pathSegments[0]) && pathSegments[0] !== 'en') {
         pathSegments.shift();
       }
       
       const subPath = pathSegments.join('/');
       const finalPath = l === 'en' 
-        ? (subPath ? `/${subPath}` : '/') 
-        : `/${l}/${subPath}`;
+        ? (subPath ? `/${subPath}/` : '/') 
+        : `/${l}/${subPath}/`;
 
       return (
         <link 
+          key={l}
           rel="alternate" 
           hreflang={l} 
-          href={new URL(finalPath, baseUrl)} 
+          href={new URL(finalPath, baseUrl).href} 
         />
       );
     })}
-    <link rel="alternate" hreflang="x-default" href={new URL('/', baseUrl)} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', baseUrl).href} />
     
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
+
     <!-- Google tag (gtag.js) -->
     <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
     <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
@@ -75,24 +140,27 @@ const defaultKeywords = "UX design books, UI design books, User experience desig
     </script>
     
     <!-- Open Graph / Social -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:type" content={type === "product" ? "product" : "website"} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:locale" content={lang} />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:site_name" content="UI/UX Design Bookshelf" />
-    <meta property="og:image" content={new URL("/og-image.png", Astro.url)} />
+    <meta property="og:image" content={socialImage} />
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL("/og-image.png", Astro.url)} />
+    <meta property="twitter:image" content={socialImage} />
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&display=swap" rel="stylesheet">
+    <slot name="head" />
   </head>
   <body>
     <slot />
   </body>
 </html>
+
+

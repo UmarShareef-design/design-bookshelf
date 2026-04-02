@@ -4,5 +4,14 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
     site: 'https://uxbooks.in',
-    integrations: [react(), sitemap()]
+    trailingSlash: 'always',
+    build: {
+      format: 'directory'
+    },
+    integrations: [
+      react(), 
+      sitemap({
+        filter: (page) => !page.includes('select-language')
+      })
+    ]
 });

@@ -54,8 +54,13 @@ const translations = (await import(`../i18n/locales/${currentLang}.json`)).defau
 let title = translations.title;
 let description = translations.subtitle;
 let keywords = "";
+let category = "";
+let noindex = false;
 
-if (rest === 'about') {
+if (rest === 'select-language') {
+    noindex = true;
+    title = translations.common.select_language + " | " + translations.title;
+} else if (rest === 'about') {
     title = translations.about.title + " | " + translations.title;
     description = translations.about.p1;
 } else if (rest.startsWith('category/')) {
@@ -64,6 +69,7 @@ if (rest === 'about') {
     const categories = [...new Set(booksData.map(b => b.Category))];
     const categoryName = categories.find(c => c.toLowerCase().replace(/ /g, '-') === slugCat);
     if (categoryName && translations.meta[categoryName]) {
+        category = categoryName;
         title = translations.meta[categoryName].title;
         description = translations.meta[categoryName].description;
         keywords = `${categoryName} books, best ${categoryName} books, ${categoryName} reference, design books, ${currentLang} ${categoryName}`;
@@ -71,6 +77,14 @@ if (rest === 'about') {
 }
 ---
 
-<Layout title={title} description={description} lang={currentLang} keywords={keywords}>
+<Layout 
+  title={title} 
+  description={description} 
+  lang={currentLang} 
+  keywords={keywords}
+  category={category}
+>
+  {noindex && <meta slot="head" name="robots" content="noindex, nofollow" />}
   <MainApp url={url} initialResources={translations} lang={currentLang} client:load />
 </Layout>
+
