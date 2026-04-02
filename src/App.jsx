@@ -114,9 +114,15 @@ const App = () => {
                         navigate(i18n.language === 'en' ? '/' : `/${i18n.language}/`);
                     }}
                 >
-                    <Icon id="heart" size={18} fill={showFavorites ? 'currentColor' : 'none'} />
+                    <Icon 
+                      id="heart" 
+                      size={18} 
+                      fill={showFavorites ? 'currentColor' : 'none'} 
+                      stroke={showFavorites ? 'none' : 'currentColor'}
+                    />
                     {t('nav.favorites')} ({favorites.length})
                 </button>
+
                 <NavLink
                     to={i18n.language === 'en' ? '/about' : `/${i18n.language}/about`}
                     className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}

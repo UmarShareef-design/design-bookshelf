@@ -39,8 +39,9 @@ const ButterflyAnimation = ({ isTriggered, onComplete }) => {
                     className="heart-fold"
                     style={{ position: 'absolute', top: 0, left: 0, width: '24px', height: '24px' }}
                 >
-                    <Icon id="heart" size={24} fill="#ff6b6b" />
+                    <Icon id="heart" size={24} fill="#ff6b6b" stroke="none" />
                 </div>
+
 
                 <div style={{
                     position: 'absolute',
@@ -64,7 +65,7 @@ const ButterflyAnimation = ({ isTriggered, onComplete }) => {
                             opacity: 0
                         }}
                     >
-                        <Icon id="book-open" size={24} fill="white" />
+                        <Icon id="book-open" size={24} fill="white" stroke="none" />
                     </div>
 
                     <div
@@ -78,13 +79,14 @@ const ButterflyAnimation = ({ isTriggered, onComplete }) => {
                             opacity: 0
                         }}
                     >
-                        <Icon id="book-open" size={24} fill="white" style={{ marginLeft: '-12px' }} />
+                        <Icon id="book-open" size={24} fill="white" stroke="none" style={{ marginLeft: '-12px' }} />
                     </div>
                 </div>
             </div>
         </div>
     );
 };
+
 
 
 export default ButterflyAnimation;

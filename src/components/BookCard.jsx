@@ -50,8 +50,14 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                         onClick={handleFavoriteClick}
                         aria-label={isFavorite ? t('common.remove_favorite') : t('common.add_favorite')}
                     >
-                        <Icon id="heart" size={20} fill={isFavorite ? 'currentColor' : 'none'} />
+                        <Icon 
+                          id="heart" 
+                          size={20} 
+                          fill={isFavorite ? 'currentColor' : 'none'} 
+                          stroke={isFavorite ? 'none' : 'currentColor'}
+                        />
                     </button>
+
                 </>
             )}
             <a
