@@ -39,8 +39,9 @@ const ButterflyAnimation = ({ isTriggered, onComplete }) => {
                     className="heart-fold"
                     style={{ position: 'absolute', top: 0, left: 0, width: '24px', height: '24px' }}
                 >
-                    <Icon id="heart" size={24} fill="#ff6b6b" stroke="none" />
+                    <Icon id="heart" size={24} fill="white" stroke="none" />
                 </div>
+
 
 
                 <div style={{
