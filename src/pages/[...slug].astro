@@ -85,6 +85,10 @@ if (rest === 'select-language') {
   category={category}
 >
   {noindex && <meta slot="head" name="robots" content="noindex, nofollow" />}
+  <script is:inline define:vars={{ initialI18nStore: translations, initialLanguage: currentLang }}>
+    window.initialI18nStore = initialI18nStore;
+    window.initialLanguage = initialLanguage;
+  </script>
   <MainApp url={url} initialResources={translations} lang={currentLang} client:load />
 </Layout>
 

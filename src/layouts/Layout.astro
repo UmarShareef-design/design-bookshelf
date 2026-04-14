@@ -91,7 +91,7 @@ const websiteSchema = {
     <link rel="canonical" href={canonicalURL} />
     
     <meta name="msvalidate.01" content="DAC8906374E8211CD526FC5E4C3920F0" />
-    <meta http-equiv="Content-Security-Policy" content={`default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://m.media-amazon.com https://c.amazon-adsystem.com https://www.clarity.ms; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms;`} />
+    <meta http-equiv="Content-Security-Policy" content={`default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://m.media-amazon.com https://c.amazon-adsystem.com https://www.clarity.ms https://c.clarity.ms https://c.bing.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms;`} />
     
     {supportedLangs.map((l) => {
       const currentPath = Astro.url.pathname;

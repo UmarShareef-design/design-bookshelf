@@ -45,9 +45,11 @@ const LangWrapper = () => {
 };
 
 export default function MainApp({ url, initialResources, lang }) {
-    // Add initial resources so it hydrates correctly without a network request
+    // Add initial resources during SSR/build only.
+    // On the client, i18n.js already reads from window.initialI18nStore
+    // (injected by Astro's inline script) so this useMemo is redundant there.
     useMemo(() => {
-        if (initialResources) {
+        if (initialResources && typeof window === 'undefined') {
             i18n.addResourceBundle(lang, 'translation', initialResources, true, true);
             i18n.changeLanguage(lang);
         }
