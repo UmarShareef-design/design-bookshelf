@@ -419,6 +419,11 @@
     flex-shrink: 0;
 }
 
+.retailer-logo {
+    object-fit: contain;
+    pointer-events: none;
+}
+
 .retailer-info {
     flex: 1;
     display: flex;
@@ -451,7 +456,6 @@
 /* Platform-specific brand colors */
 .retailer-amazon .retailer-icon-wrap {
     background: rgba(255, 153, 0, 0.15);
-    color: #ff9900;
 }
 .retailer-amazon:hover {
     border-color: #ff9900;
@@ -459,7 +463,6 @@
 
 .retailer-flipkart .retailer-icon-wrap {
     background: rgba(40, 116, 240, 0.15);
-    color: #2874f0;
 }
 .retailer-flipkart:hover {
     border-color: #2874f0;
@@ -467,7 +470,6 @@
 
 .retailer-kindle .retailer-icon-wrap {
     background: rgba(0, 207, 255, 0.15);
-    color: #00cfff;
 }
 .retailer-kindle:hover {
     border-color: #00cfff;
@@ -475,7 +477,6 @@
 
 .retailer-kobo .retailer-icon-wrap {
     background: rgba(191, 87, 1, 0.15);
-    color: #bf5701;
 }
 .retailer-kobo:hover {
     border-color: #bf5701;
@@ -483,7 +484,6 @@
 
 .retailer-audible .retailer-icon-wrap {
     background: rgba(247, 153, 27, 0.15);
-    color: #f7991b;
 }
 .retailer-audible:hover {
     border-color: #f7991b;

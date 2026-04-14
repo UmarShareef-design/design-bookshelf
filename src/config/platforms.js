@@ -12,28 +12,28 @@ export const PLATFORMS = {
     amazon: {
         id: 'amazon',
         name: 'Amazon',
-        icon: 'shopping-bag',
+        logo: '/brand-logos/amazon.svg',
         // Direct link — already in books.json as "Link" field (affiliate)
     },
     flipkart: {
         id: 'flipkart',
         name: 'Flipkart',
-        icon: 'truck',
+        logo: '/brand-logos/flipkart.svg',
     },
     kindle: {
         id: 'kindle',
         name: 'Kindle',
-        icon: 'book-open',
+        logo: '/brand-logos/kindle.svg',
     },
     kobo: {
         id: 'kobo',
         name: 'Kobo',
-        icon: 'tablet',
+        logo: '/brand-logos/kobo.svg',
     },
     audible: {
         id: 'audible',
         name: 'Audible',
-        icon: 'headphones',
+        logo: '/brand-logos/audible.svg',
     },
 };
 

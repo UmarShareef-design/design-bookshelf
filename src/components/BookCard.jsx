@@ -198,7 +198,14 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                                 onClick={() => handlePlatformClick(platform.name)}
                             >
                                 <div className="retailer-icon-wrap">
-                                    <Icon id={platform.icon} size={20} />
+                                    <img
+                                        src={platform.logo}
+                                        alt={platform.name}
+                                        className="retailer-logo"
+                                        width="24"
+                                        height="24"
+                                        decoding="async"
+                                    />
                                 </div>
                                 <div className="retailer-info">
                                     <span className="retailer-name">{platform.name}</span>
