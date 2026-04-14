@@ -145,7 +145,6 @@
     height: 100%;
     position: relative;
     overflow: visible;
-    perspective: 1000px;
     margin: 0 auto;
     width: 100%;
 }
@@ -215,7 +214,18 @@
     }
 }
 
-.buy-button {
+/* Get the Book Button */
+.book-card-content {
+    padding: var(--space-5);
+    padding-bottom: var(--space-2);
+    color: inherit;
+}
+
+.book-info-actions {
+    padding: 0 var(--space-5) var(--space-5) var(--space-5);
+}
+
+.get-book-btn {
     width: 100%;
     padding: var(--space-4);
     border-radius: 12px;
@@ -230,25 +240,253 @@
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
-    text-decoration: none;
     transition: var(--transition-smooth);
 }
 
-.buy-button:hover {
+.get-book-btn:hover {
     background: var(--accent-color);
     color: var(--bg-color);
 }
 
-.book-card-link {
-    padding: var(--space-5);
-    padding-bottom: var(--space-2);
-    text-decoration: none;
-    color: inherit;
-    display: block;
+.get-book-btn:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
 }
 
-.book-info-actions {
-    padding: 0 var(--space-5) var(--space-5) var(--space-5);
+/* Popup Overlay */
+.book-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    z-index: 998;
+    animation: overlayFadeIn 0.2s ease;
+}
+
+@keyframes overlayFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Popup Panel — centered modal */
+.book-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: min(400px, calc(100vw - 48px));
+    background: var(--bg-color);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    max-height: 85vh;
+    overflow-y: auto;
+    /* Animate open via keyframes (element only mounts when open) */
+    animation: modalOpen 0.25s ease forwards;
+}
+
+@keyframes modalOpen {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Respect reduced motion for modal animation */
+@media (prefers-reduced-motion: reduce) {
+    .book-popup {
+        animation: none;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+    .book-popup-overlay {
+        animation: none;
+    }
+    .retailer-row {
+        animation: none;
+    }
+}
+
+.book-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.book-popup-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+}
+
+.book-popup-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+.book-popup-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+/* Retailer Rows */
+.book-popup-retailers {
+    padding: var(--space-3) var(--space-5) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+/* Stagger animation for retailer rows */
+@keyframes retailerSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.retailer-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-4);
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    min-height: 56px; /* Touch-friendly */
+    /* Stagger animation */
+    animation: retailerSlideIn 0.3s ease both;
+    animation-delay: calc(var(--stagger-index, 0) * 60ms);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .retailer-row {
+        animation: none;
+    }
+}
+
+/* Focus-visible for keyboard navigation */
+.retailer-row:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.book-popup-close:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.retailer-row:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Retailer icon wrapper with brand-colored background */
+.retailer-icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.retailer-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.retailer-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.retailer-format {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.retailer-arrow {
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    transition: var(--transition-smooth);
+}
+
+.retailer-row:hover .retailer-arrow {
+    color: var(--text-primary);
+    transform: translateX(2px);
+}
+
+/* Platform-specific brand colors */
+.retailer-amazon .retailer-icon-wrap {
+    background: rgba(255, 153, 0, 0.15);
+    color: #ff9900;
+}
+.retailer-amazon:hover {
+    border-color: #ff9900;
+}
+
+.retailer-flipkart .retailer-icon-wrap {
+    background: rgba(40, 116, 240, 0.15);
+    color: #2874f0;
+}
+.retailer-flipkart:hover {
+    border-color: #2874f0;
+}
+
+.retailer-kindle .retailer-icon-wrap {
+    background: rgba(0, 207, 255, 0.15);
+    color: #00cfff;
+}
+.retailer-kindle:hover {
+    border-color: #00cfff;
+}
+
+.retailer-kobo .retailer-icon-wrap {
+    background: rgba(191, 87, 1, 0.15);
+    color: #bf5701;
+}
+.retailer-kobo:hover {
+    border-color: #bf5701;
+}
+
+.retailer-audible .retailer-icon-wrap {
+    background: rgba(247, 153, 27, 0.15);
+    color: #f7991b;
+}
+.retailer-audible:hover {
+    border-color: #f7991b;
 }
 
 /* Nav Bar */
@@ -375,4 +613,69 @@
 .lang-label {
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+    position: fixed;
+    bottom: var(--space-8);
+    right: var(--space-8);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--card-border);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    color: var(--accent-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    opacity: 0;
+    transform: translateY(16px) scale(0.8);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.scroll-to-top--visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.scroll-to-top:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--bg-color);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.scroll-to-top:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-to-top {
+        transition: opacity 0.15s ease;
+    }
+    .scroll-to-top--visible {
+        transform: translateY(0) scale(1);
+    }
+    .scroll-to-top:hover {
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .scroll-to-top {
+        bottom: var(--space-6);
+        right: var(--space-6);
+        width: 44px;
+        height: 44px;
+    }
 }

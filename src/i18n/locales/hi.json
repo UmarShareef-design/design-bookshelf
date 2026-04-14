@@ -41,7 +41,8 @@
         "linkedin": "लिंक्डइन पर जुड़ें"
     },
     "common": {
-        "check_it_out": "इसे देखें",
+        "get_the_book": "किताब प्राप्त करें",
+        "close": "बंद करें",
         "no_books": "कोई किताब नहीं मिली।",
         "add_favorites": "कुछ पसंदीदा जोड़ें!",
         "try_category": "एक अलग श्रेणी आज़माएं।",
@@ -49,7 +50,15 @@
         "affiliate_disclosure": "पूर्ण संबद्ध प्रकटीकरण: इस वेबसाइट में संबद्ध लिंक हैं। यदि आप इन लिंक्स के माध्यम से खरीदारी करते हैं, तो हम बिना किसी अतिरिक्त लागत के एक छोटा कमीशन कमा सकते हैं।",
         "share_feedback": "अपना फीडबैक साझा करें (गुमनाम)",
         "select_language": "भाषा चुनें",
-        "skip_to_main": "मुख्य सामग्री पर जाएं"
+        "skip_to_main": "मुख्य सामग्री पर जाएं",
+        "back_to_top": "शीर्ष पर वापस जाएं"
+    },
+    "platforms": {
+        "amazon": "Paperback / Hardcover",
+        "flipkart": "Paperback / Hardcover",
+        "kindle": "Kindle eBook",
+        "kobo": "eBook",
+        "audible": "Audiobook"
     },
     "meta": {
         "404": "श्रेणी नहीं मिली।",

@@ -41,7 +41,8 @@
         "linkedin": "LinkedIn 'ਤੇ ਜੁੜੋ"
     },
     "common": {
-        "check_it_out": "ਦੇਖੋ",
+        "get_the_book": "ਕਿਤਾਬ ਲਓ",
+        "close": "ਬੰਦ ਕਰੋ",
         "no_books": "ਕੋਈ ਕਿਤਾਬ ਨਹੀਂ ਮਿਲੀ।",
         "add_favorites": "ਕੁਝ ਪਸੰਦੀਦਾ ਕਿਤਾਬਾਂ ਸ਼ਾਮਲ ਕਰੋ!",
         "try_category": "ਕੋਈ ਹੋਰ ਕੈਟੇਗਰੀ ਅਜ਼ਮਾਓ।",
@@ -49,7 +50,15 @@
         "affiliate_disclosure": "ਐਫੀਲੀਏਟ ਖੁਲਾਸਾ: ਇਸ ਵੈੱਬਸਾਈਟ ਵਿੱਚ ਐਫੀਲੀਏਟ ਲਿੰਕ ਹਨ। ਜੇਕਰ ਤੁਸੀਂ ਇਹਨਾਂ ਲਿੰਕਾਂ ਰਾਹੀਂ ਖਰੀਦਦੇ ਹੋ, ਤਾਂ ਸਾਨੂੰ ਬਿਨਾਂ ਕਿਸੇ ਵਾਧੂ ਕੀਮਤ ਦੇ ਥੋੜ੍ਹਾ ਜਿਹਾ ਕਮਿਸ਼ਨ ਮਿਲ ਸਕਦਾ ਹੈ।",
         "share_feedback": "ਆਪਣੀ ਪ੍ਰਤੀਕਿਰਿਆ ਸਾਂਝੀ ਕਰੋ (ਗੁਮਨਾਮ)",
         "select_language": "ਭਾਸ਼ਾ ਚੁਣੋ",
-        "skip_to_main": "ਮੁੱਖ ਵਿਸ਼ੇ 'ਤੇ ਜਾਓ"
+        "skip_to_main": "ਮੁੱਖ ਵਿਸ਼ੇ 'ਤੇ ਜਾਓ",
+        "back_to_top": "ਉੱਤੇ ਵਾਪਸ ਜਾਓ"
+    },
+    "platforms": {
+        "amazon": "Paperback / Hardcover",
+        "flipkart": "Paperback / Hardcover",
+        "kindle": "Kindle eBook",
+        "kobo": "eBook",
+        "audible": "Audiobook"
     },
     "meta": {
         "404": "ਕੈਟੇਗਰੀ ਨਹੀਂ ਮਿਲੀ।",

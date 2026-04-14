@@ -27,3 +27,8 @@ Thumbs.db
 __pycache__/
 *.py[cod]
 extract_data.py
+
+# Local reference docs (not for public repo)
+CLAUDE.md
+RESEARCH-*.md
+BOOK-PLATFORM-LINKS.md

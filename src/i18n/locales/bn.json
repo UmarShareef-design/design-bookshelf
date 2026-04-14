@@ -41,7 +41,8 @@
         "linkedin": "LinkedIn-এ যোগাযোগ করুন"
     },
     "common": {
-        "check_it_out": "দেখুন",
+        "get_the_book": "বইটি পান",
+        "close": "বন্ধ করুন",
         "no_books": "কোনো বই পাওয়া যায়নি।",
         "add_favorites": "কিছু পছন্দসই বই যোগ করুন!",
         "try_category": "অন্য ক্যাটাগরি ট্রাই করুন।",
@@ -49,7 +50,15 @@
         "affiliate_disclosure": "অ্যাফিলিয়েট ডিসক্লোজার: এই ওয়েবসাইটে অ্যাফিলিয়েট লিঙ্ক আছে। আপনি যদি এই লিঙ্কের মাধ্যমে কেনেন, তবে আপনার বাড়তি খরচ ছাড়াই আমরা সামান্য কমিশন পেতে পারি।",
         "share_feedback": "আপনার মতামত জানান (বেনামী)",
         "select_language": "ভাষা নির্বাচন করুন",
-        "skip_to_main": "মূল বিষয়ে যান"
+        "skip_to_main": "মূল বিষয়ে যান",
+        "back_to_top": "শীর্ষে ফিরুন"
+    },
+    "platforms": {
+        "amazon": "Paperback / Hardcover",
+        "flipkart": "Paperback / Hardcover",
+        "kindle": "Kindle eBook",
+        "kobo": "eBook",
+        "audible": "Audiobook"
     },
     "meta": {
         "404": "ক্যাটাগরি পাওয়া যায়নি।",

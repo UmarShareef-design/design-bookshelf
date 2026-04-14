@@ -41,7 +41,8 @@
         "linkedin": "LinkedIn પર જોડાઓ"
     },
     "common": {
-        "check_it_out": "જુઓ",
+        "get_the_book": "પુસ્તક મેળવો",
+        "close": "બંધ કરો",
         "no_books": "કોઈ પુસ્તક મળ્યું નથી.",
         "add_favorites": "કેટલાક મનપસંદ પુસ્તકો ઉમેરો!",
         "try_category": "બીજી કેટેગરી ટ્રાય કરો.",
@@ -49,7 +50,15 @@
         "affiliate_disclosure": "એફિલિએટ ડિસ્ક્લોઝર: આ વેબસાઇટ પર એફિલિએટ લિંક્સ છે. જો તમે આ લિંક્સ દ્વારા ખરીદી કરો છો, તો કોઈ વધારાના ખર્ચ વિના અમને થોડું કમિશન મળી શકે છે.",
         "share_feedback": "તમારો પ્રતિસાદ શેર કરો (અનામી)",
         "select_language": "ભાષા પસંદ કરો",
-        "skip_to_main": "મુખ્ય વિષય પર જાઓ"
+        "skip_to_main": "મુખ્ય વિષય પર જાઓ",
+        "back_to_top": "ઉપર પાછા જાઓ"
+    },
+    "platforms": {
+        "amazon": "Paperback / Hardcover",
+        "flipkart": "Paperback / Hardcover",
+        "kindle": "Kindle eBook",
+        "kobo": "eBook",
+        "audible": "Audiobook"
     },
     "meta": {
         "404": "કેટેગરી મળી નથી.",

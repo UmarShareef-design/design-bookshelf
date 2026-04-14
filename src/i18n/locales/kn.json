@@ -41,7 +41,8 @@
         "linkedin": "LinkedIn ನಲ್ಲಿ ಸಂಪರ್ಕಿಸಿ"
     },
     "common": {
-        "check_it_out": "ನೋಡಿ",
+        "get_the_book": "ಪುಸ್ತಕ ಪಡೆಯಿರಿ",
+        "close": "ಮುಚ್ಚಿ",
         "no_books": "ಯಾವುದೇ ಪುಸ್ತಕಗಳು ಕಂಡುಬಂದಿಲ್ಲ.",
         "add_favorites": "ಕೆಲವು ನೆಚ್ಚಿನವುಗಳನ್ನು ಸೇರಿಸಿ!",
         "try_category": "ಬೇರೆ ವರ್ಗವನ್ನು ಪ್ರಯತ್ನಿಸಿ.",
@@ -49,7 +50,15 @@
         "affiliate_disclosure": "ಸಂಪೂರ್ಣ ಅಂಗಸಂಸ್ಥೆ ಬಹಿರಂಗಪಡಿಸುವಿಕೆ: ಈ ವೆಬ್‌ಸೈಟ್ ಅಫಿಲಿಯೇಟ್ ಲಿಂಕ್‌ಗಳನ್ನು ಒಳಗೊಂಡಿದೆ. ಈ ಲಿಂಕ್‌ಗಳ ಮೂಲಕ ನೀವು ಖರೀದಿಸಿದರೆ, ನಿಮಗೆ ಯಾವುದೇ ಹೆಚ್ಚುವರಿ ವೆಚ್ಚವಿಲ್ಲದೆ ನಾವು ಸ್ವಲ್ಪ ಕಮಿಷನ್ ಪಡೆಯಬಹುದು.",
         "share_feedback": "ನಿಮ್ಮ ಅಭಿಪ್ರಾಯವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ (ಅನಾಮಧೇಯ)",
         "select_language": "ಭಾಷೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ",
-        "skip_to_main": "ಮುಖ್ಯ ವಿಷಯಕ್ಕೆ ಹೋಗಿ"
+        "skip_to_main": "ಮುಖ್ಯ ವಿಷಯಕ್ಕೆ ಹೋಗಿ",
+        "back_to_top": "ಮೇಲಕ್ಕೆ ಹಿಂತಿರುಗಿ"
+    },
+    "platforms": {
+        "amazon": "Paperback / Hardcover",
+        "flipkart": "Paperback / Hardcover",
+        "kindle": "Kindle eBook",
+        "kobo": "eBook",
+        "audible": "Audiobook"
     },
     "meta": {
         "404": "ವರ್ಗ ಕಂಡುಬಂದಿಲ್ಲ.",

@@ -4,6 +4,7 @@ import CategoryBar from './components/CategoryBar';
 import BookCard from './components/BookCard';
 import About from './components/About';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import booksData from './books.json';
 import { FAVORITES_STORAGE_KEY, FEEDBACK_URL } from './config';
@@ -124,7 +125,7 @@ const App = () => {
                 </button>
 
                 <NavLink
-                    to={i18n.language === 'en' ? '/about' : `/${i18n.language}/about`}
+                    to={i18n.language === 'en' ? '/about/' : `/${i18n.language}/about/`}
                     className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}
                     onClick={() => setShowFavorites(false)}
                 >
@@ -184,6 +185,7 @@ const App = () => {
             </div>
 
             <Footer />
+            <ScrollToTop />
         </div>
     );
 };

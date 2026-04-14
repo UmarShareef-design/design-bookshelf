@@ -41,7 +41,8 @@
         "linkedin": "LinkedIn లో కనెక్ట్ అవ్వండి"
     },
     "common": {
-        "check_it_out": "చూడండి",
+        "get_the_book": "పుస్తకం పొందండి",
+        "close": "మూసివేయండి",
         "no_books": "పుస్తకాలు ఏవీ కనిపించలేదు.",
         "add_favorites": "కొన్ని ఇష్టమైన వాటిని జోడించండి!",
         "try_category": "వేరే కేటగిరీని ప్రయత్నెంచండి.",
@@ -49,7 +50,15 @@
         "affiliate_disclosure": "పూర్తి అనుబంధ ప్రకటన: ఈ వెబ్‌సైట్‌లో అనుబంధ లింక్‌లు ఉన్నాయి. మీరు ఈ లింక్‌ల ద్వారా కొనుగోలు చేస్తే, ఎటువంటి అదనపు ఖర్చు లేకుండా మేము కొంచెం కమీషన్ పొందవచ్చు.",
         "share_feedback": "మీ అభిప్రాయాన్ని పంచుకోండి (అనామక)",
         "select_language": "భాషను ఎంచుకోండి",
-        "skip_to_main": "ప్రధాన విషయానికి వెళ్లండి"
+        "skip_to_main": "ప్రధాన విషయానికి వెళ్లండి",
+        "back_to_top": "పైకి తిరిగి వెళ్ళండి"
+    },
+    "platforms": {
+        "amazon": "Paperback / Hardcover",
+        "flipkart": "Paperback / Hardcover",
+        "kindle": "Kindle eBook",
+        "kobo": "eBook",
+        "audible": "Audiobook"
     },
     "meta": {
         "404": "కేటగిరీ కనుగొనబడలేదు.",

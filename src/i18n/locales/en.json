@@ -41,7 +41,8 @@
         "linkedin": "Connect on LinkedIn"
     },
     "common": {
-        "check_it_out": "Check it out",
+        "get_the_book": "Get the book",
+        "close": "Close",
         "no_books": "No books found.",
         "add_favorites": "Add some favorites!",
         "try_category": "Try a different category.",
@@ -52,7 +53,15 @@
         "language_subtitle": "Choose your preferred language to explore the bookshelf",
         "add_favorite": "Add to favorites",
         "remove_favorite": "Remove from favorites",
-        "skip_to_main": "Skip to main content"
+        "skip_to_main": "Skip to main content",
+        "back_to_top": "Back to top"
+    },
+    "platforms": {
+        "amazon": "Paperback / Hardcover",
+        "flipkart": "Paperback / Hardcover",
+        "kindle": "Kindle eBook",
+        "kobo": "eBook",
+        "audible": "Audiobook"
     },
     "meta": {
         "404": "Category not found.",

@@ -41,7 +41,8 @@
         "linkedin": "LinkedIn ରେ ଯୋଗାଯୋଗ କରନ୍ତୁ"
     },
     "common": {
-        "check_it_out": "ଦେଖନ୍ତୁ",
+        "get_the_book": "ବହି ପାଆନ୍ତୁ",
+        "close": "ବନ୍ଦ କରନ୍ତୁ",
         "no_books": "କୌଣସି ବହି ମିଳିଲା ନାହିଁ।",
         "add_favorites": "କିଛି ମନପସନ୍ଦ ବହି ଯୋଡ଼ନ୍ତୁ!",
         "try_category": "ଅନ୍ୟ ଏକ କ୍ୟାଟେଗୋରୀ ଚେଷ୍ଟା କରନ୍ତୁ।",
@@ -49,7 +50,15 @@
         "affiliate_disclosure": "ଆଫିଲିଏଟ୍ ଡିସକ୍ଲୋଜର୍: ଏହି ୱେବସାଇଟ୍‌ରେ ଆଫିଲିଏଟ୍ ଲିଙ୍କ୍ ଅଛି। ଯଦି ଆପଣ ଏହି ଲିଙ୍କ୍ ମାଧ୍ୟମରେ କିଣନ୍ତି, ତେବେ ବିନା କୌଣସି ଅତିରିକ୍ତ ମୂଲ୍ୟରେ ଆମେ ସାମାନ୍ୟ କମିଶନ ପାଇପାରିବା।",
         "share_feedback": "ଆପଣଙ୍କ ମତାମତ ଦିଅନ୍ତୁ (ନାମବିହୀନ)",
         "select_language": "ଭାଷା ଚୟନ କରନ୍ତୁ",
-        "skip_to_main": "ମୁଖ୍ୟ ବିଷୟକୁ ଯାଆନ୍ତୁ"
+        "skip_to_main": "ମୁଖ୍ୟ ବିଷୟକୁ ଯାଆନ୍ତୁ",
+        "back_to_top": "ଉପରକୁ ଫେରନ୍ତୁ"
+    },
+    "platforms": {
+        "amazon": "Paperback / Hardcover",
+        "flipkart": "Paperback / Hardcover",
+        "kindle": "Kindle eBook",
+        "kobo": "eBook",
+        "audible": "Audiobook"
     },
     "meta": {
         "404": "କ୍ୟାଟେଗୋରୀ ମିଳିଲା ନାହିଁ।",

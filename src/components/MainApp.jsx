@@ -9,19 +9,8 @@ import RouterWrapper from './RouterWrapper.jsx';
 import { GA_MEASUREMENT_ID, LANGUAGE_CODES } from '../config';
 import { IconSymbols } from './Icons.jsx';
 
-const LangWrapper = () => {
-    const { lang } = useParams();
-    const { i18n } = useTranslation();
+const PageViewTracker = () => {
     const location = useLocation();
-
-    useEffect(() => {
-        const targetLang = LANGUAGE_CODES.includes(lang) ? lang : 'en';
-
-        if (i18n.language !== targetLang) {
-            i18n.changeLanguage(targetLang);
-        }
-    }, [lang, i18n]);
-
     useEffect(() => {
         if (typeof window !== 'undefined' && window.gtag) {
             window.gtag('config', GA_MEASUREMENT_ID, {
@@ -30,6 +19,20 @@ const LangWrapper = () => {
             });
         }
     }, [location]);
+    return null;
+};
+
+const LangWrapper = () => {
+    const { lang } = useParams();
+    const { i18n } = useTranslation();
+
+    useEffect(() => {
+        const targetLang = LANGUAGE_CODES.includes(lang) ? lang : 'en';
+
+        if (i18n.language !== targetLang) {
+            i18n.changeLanguage(targetLang);
+        }
+    }, [lang, i18n]);
 
     return (
         <Routes>
@@ -54,10 +57,15 @@ export default function MainApp({ url, initialResources, lang }) {
         <I18nextProvider i18n={i18n}>
             <IconSymbols />
             <RouterWrapper location={url}>
+                <PageViewTracker />
                 <Routes>
                     <Route path="/select-language" element={<LanguageSelectPage />} />
+                    {/* Explicit English (non-prefixed) routes — must come before /:lang/* to avoid category being matched as lang */}
+                    <Route path="/category/:categorySlug" element={<CategoryPage />} />
+                    <Route path="/about" element={<App />} />
+                    <Route path="/" element={<App />} />
+                    {/* Language-prefixed routes */}
                     <Route path="/:lang/*" element={<LangWrapper />} />
-                    <Route path="*" element={<LangWrapper />} />
                 </Routes>
             </RouterWrapper>
         </I18nextProvider>
