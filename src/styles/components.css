@@ -469,24 +469,24 @@
 }
 
 .retailer-kindle .retailer-icon-wrap {
-    background: rgba(0, 207, 255, 0.15);
+    background: rgba(255, 153, 0, 0.15);
 }
 .retailer-kindle:hover {
-    border-color: #00cfff;
+    border-color: #ff9900;
 }
 
 .retailer-kobo .retailer-icon-wrap {
-    background: rgba(191, 87, 1, 0.15);
+    background: rgba(191, 0, 0, 0.15);
 }
 .retailer-kobo:hover {
-    border-color: #bf5701;
+    border-color: #bf0000;
 }
 
 .retailer-audible .retailer-icon-wrap {
-    background: rgba(247, 153, 27, 0.15);
+    background: rgba(248, 153, 28, 0.15);
 }
 .retailer-audible:hover {
-    border-color: #f7991b;
+    border-color: #f8991c;
 }
 
 /* Nav Bar */
