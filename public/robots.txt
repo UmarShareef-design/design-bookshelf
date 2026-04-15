@@ -2,6 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /select-language/
 Disallow: /*/select-language/
-Disallow: /*?* # Disallow all query strings to avoid duplicate content
 
 Sitemap: https://uxbooks.in/sitemap-index.xml
