@@ -83,8 +83,8 @@ if (rest === 'select-language') {
   lang={currentLang} 
   keywords={keywords}
   category={category}
+  noindex={noindex}
 >
-  {noindex && <meta slot="head" name="robots" content="noindex, nofollow" />}
   <script is:inline define:vars={{ initialI18nStore: translations, initialLanguage: currentLang }}>
     window.initialI18nStore = initialI18nStore;
     window.initialLanguage = initialLanguage;
