@@ -51,7 +51,10 @@
         "share_feedback": "আপনার মতামত জানান (বেনামী)",
         "select_language": "ভাষা নির্বাচন করুন",
         "skip_to_main": "মূল বিষয়ে যান",
-        "back_to_top": "শীর্ষে ফিরুন"
+        "back_to_top": "শীর্ষে ফিরুন",
+        "add_favorite": "পছন্দসই এ যোগ করুন",
+        "remove_favorite": "পছন্দসই থেকে সরান",
+        "language_subtitle": "বুকশেলফ এক্সপ্লোর করতে আপনার পছন্দের ভাষা নির্বাচন করুন"
     },
     "platforms": {
         "amazon": "Paperback / Hardcover",

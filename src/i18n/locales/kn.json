@@ -51,7 +51,10 @@
         "share_feedback": "ನಿಮ್ಮ ಅಭಿಪ್ರಾಯವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ (ಅನಾಮಧೇಯ)",
         "select_language": "ಭಾಷೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ",
         "skip_to_main": "ಮುಖ್ಯ ವಿಷಯಕ್ಕೆ ಹೋಗಿ",
-        "back_to_top": "ಮೇಲಕ್ಕೆ ಹಿಂತಿರುಗಿ"
+        "back_to_top": "ಮೇಲಕ್ಕೆ ಹಿಂತಿರುಗಿ",
+        "add_favorite": "ನೆಚ್ಚಿನವುಗಳಿಗೆ ಸೇರಿಸಿ",
+        "remove_favorite": "ನೆಚ್ಚಿನವುಗಳಿಂದ ತೆಗೆಯಿರಿ",
+        "language_subtitle": "ಪುಸ್ತಕದ ಕಪಾಟನ್ನು ಅನ್ವೇಷಿಸಲು ನಿಮ್ಮ ಆದ್ಯತೆಯ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ"
     },
     "platforms": {
         "amazon": "Paperback / Hardcover",

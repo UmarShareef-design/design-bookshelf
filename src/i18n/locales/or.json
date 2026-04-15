@@ -51,7 +51,10 @@
         "share_feedback": "ଆପଣଙ୍କ ମତାମତ ଦିଅନ୍ତୁ (ନାମବିହୀନ)",
         "select_language": "ଭାଷା ଚୟନ କରନ୍ତୁ",
         "skip_to_main": "ମୁଖ୍ୟ ବିଷୟକୁ ଯାଆନ୍ତୁ",
-        "back_to_top": "ଉପରକୁ ଫେରନ୍ତୁ"
+        "back_to_top": "ଉପରକୁ ଫେରନ୍ତୁ",
+        "add_favorite": "ମନପସନ୍ଦରେ ଯୋଡ଼ନ୍ତୁ",
+        "remove_favorite": "ମନପସନ୍ଦରୁ ହଟାନ୍ତୁ",
+        "language_subtitle": "ବୁକଶେଲଫ୍ ଏକ୍ସପ୍ଲୋର କରିବା ପାଇଁ ଆପଣଙ୍କର ପସନ୍ଦିଦା ଭାଷା ବାଛନ୍ତୁ"
     },
     "platforms": {
         "amazon": "Paperback / Hardcover",

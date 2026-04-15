@@ -51,7 +51,10 @@
         "share_feedback": "तुमची प्रतिक्रिया द्या (अनामिक)",
         "select_language": "भाषा निवडा",
         "skip_to_main": "मुख्य विषयावर जा",
-        "back_to_top": "वर परत जा"
+        "back_to_top": "वर परत जा",
+        "add_favorite": "आवडत्यांमध्ये जोडा",
+        "remove_favorite": "आवडत्यांमधून काढा",
+        "language_subtitle": "बुकशेल्फ एक्सप्लोर करण्यासाठी तुमची पसंतीची भाषा निवडा"
     },
     "platforms": {
         "amazon": "Paperback / Hardcover",

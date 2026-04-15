@@ -51,7 +51,10 @@
         "share_feedback": "ਆਪਣੀ ਪ੍ਰਤੀਕਿਰਿਆ ਸਾਂਝੀ ਕਰੋ (ਗੁਮਨਾਮ)",
         "select_language": "ਭਾਸ਼ਾ ਚੁਣੋ",
         "skip_to_main": "ਮੁੱਖ ਵਿਸ਼ੇ 'ਤੇ ਜਾਓ",
-        "back_to_top": "ਉੱਤੇ ਵਾਪਸ ਜਾਓ"
+        "back_to_top": "ਉੱਤੇ ਵਾਪਸ ਜਾਓ",
+        "add_favorite": "ਪਸੰਦੀਦਾ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ",
+        "remove_favorite": "ਪਸੰਦੀਦਾ ਵਿੱਚੋਂ ਹਟਾਓ",
+        "language_subtitle": "ਬੁੱਕਸ਼ੈਲਫ ਨੂੰ ਐਕਸਪਲੋਰ ਕਰਨ ਲਈ ਆਪਣੀ ਪਸੰਦੀਦਾ ਭਾਸ਼ਾ ਚੁਣੋ"
     },
     "platforms": {
         "amazon": "Paperback / Hardcover",

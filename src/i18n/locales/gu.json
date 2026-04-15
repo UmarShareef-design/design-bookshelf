@@ -51,7 +51,10 @@
         "share_feedback": "તમારો પ્રતિસાદ શેર કરો (અનામી)",
         "select_language": "ભાષા પસંદ કરો",
         "skip_to_main": "મુખ્ય વિષય પર જાઓ",
-        "back_to_top": "ઉપર પાછા જાઓ"
+        "back_to_top": "ઉપર પાછા જાઓ",
+        "add_favorite": "મનપસંદમાં ઉમેરો",
+        "remove_favorite": "મનપસંદમાંથી હટાવો",
+        "language_subtitle": "બુકશેલ્ફ એક્સપ્લોર કરવા તમારી પસંદીદા ભાષા પસંદ કરો"
     },
     "platforms": {
         "amazon": "Paperback / Hardcover",

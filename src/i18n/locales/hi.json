@@ -51,7 +51,10 @@
         "share_feedback": "अपना फीडबैक साझा करें (गुमनाम)",
         "select_language": "भाषा चुनें",
         "skip_to_main": "मुख्य सामग्री पर जाएं",
-        "back_to_top": "शीर्ष पर वापस जाएं"
+        "back_to_top": "शीर्ष पर वापस जाएं",
+        "add_favorite": "पसंदीदा में जोड़ें",
+        "remove_favorite": "पसंदीदा से हटाएं",
+        "language_subtitle": "बुकशेल्फ़ को एक्सप्लोर करने के लिए अपनी पसंदीदा भाषा चुनें"
     },
     "platforms": {
         "amazon": "Paperback / Hardcover",

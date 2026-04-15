@@ -51,7 +51,10 @@
         "share_feedback": "మీ అభిప్రాయాన్ని పంచుకోండి (అనామక)",
         "select_language": "భాషను ఎంచుకోండి",
         "skip_to_main": "ప్రధాన విషయానికి వెళ్లండి",
-        "back_to_top": "పైకి తిరిగి వెళ్ళండి"
+        "back_to_top": "పైకి తిరిగి వెళ్ళండి",
+        "add_favorite": "ఇష్టమైనవాటికి జోడించండి",
+        "remove_favorite": "ఇష్టమైనవాటి నుండి తీసివేయండి",
+        "language_subtitle": "పుస్తకాల అరను అన్వేషించడానికి మీ ఇష్టమైన భాషను ఎంచుకోండి"
     },
     "platforms": {
         "amazon": "Paperback / Hardcover",
