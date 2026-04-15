@@ -1,8 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import Backend from 'i18next-http-backend';
-
 // Grab initial translations injected by Astro before React hydrates.
 // This ensures i18next has translations synchronously on first render,
 // preventing React hydration error #418 (server/client text mismatch).
@@ -22,10 +20,7 @@ if (isClient && window.initialI18nStore) {
 const i18nConfig = {
     fallbackLng: 'en',
     lng: initialLng,
-    // Synchronous resources prevent async backend fetch on first render
     resources: initialResources,
-    // Keep HTTP backend working for runtime language switching
-    partialBundledLanguages: true,
     interpolation: {
         escapeValue: false
     },
@@ -36,13 +31,10 @@ const i18nConfig = {
         lookupFromPathIndex: 0,
         caches: []
     },
-    backend: {
-        loadPath: '/locales/{{lng}}.json',
-    }
 };
 
 if (isClient) {
-    i18n.use(Backend).use(LanguageDetector);
+    i18n.use(LanguageDetector);
 }
 
 i18n.use(initReactI18next).init(i18nConfig);

@@ -48,20 +48,7 @@ export const IconSymbols = () => (
             <path d="M3 6h18" />
             <path d="M16 10a4 4 0 0 1-8 0" />
         </symbol>
-        <symbol id="icon-truck" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M14 18V2H4a2 2 0 0 0-2 2v12" />
-            <path d="M14 8h4l4 4v6" />
-            <path d="M2 18h16" />
-            <circle cx="7" cy="18" r="2" />
-            <circle cx="18" cy="18" r="2" />
-        </symbol>
-        <symbol id="icon-tablet" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
-            <line x1="12" y1="18" x2="12.01" y2="18" />
-        </symbol>
-        <symbol id="icon-headphones" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3" />
-        </symbol>
+
         <symbol id="icon-x" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
