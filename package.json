@@ -11,7 +11,7 @@
     "test-india": "npx playwright test tests/audit.spec.js --reporter=list"
   },
   "devDependencies": {
-    "@playwright/test": "^1.40.1"
+    "@playwright/test": "^1.59.1"
   },
   "keywords": [],
   "author": "",
@@ -22,16 +22,16 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
-    "@astrojs/react": "^5.0.0",
-    "@astrojs/sitemap": "^3.7.1",
-    "astro": "^6.0.0",
-    "i18next": "^25.8.14",
+    "@astrojs/react": "^5.0.3",
+    "@astrojs/sitemap": "^3.7.2",
+    "astro": "^6.1.6",
+    "i18next": "^26.0.4",
     "i18next-browser-languagedetector": "^8.2.1",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-i18next": "^16.5.4",
-    "react-router-dom": "^7.13.1",
-    "typescript": "^5.9.3",
-    "vite": "^7.3.1"
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-i18next": "^17.0.3",
+    "react-router-dom": "^7.14.1",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.8"
   }
 }
