@@ -11,7 +11,23 @@ export default defineConfig({
     integrations: [
       react(), 
       sitemap({
-        filter: (page) => !page.includes('select-language')
+        filter: (page) => !page.includes('select-language'),
+        i18n: {
+          defaultLocale: 'en',
+          locales: {
+            en: 'en',
+            ta: 'ta',
+            hi: 'hi',
+            te: 'te',
+            ml: 'ml',
+            kn: 'kn',
+            bn: 'bn',
+            mr: 'mr',
+            gu: 'gu',
+            pa: 'pa',
+            or: 'or',
+          },
+        },
       })
     ]
 });
