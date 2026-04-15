@@ -151,6 +151,9 @@ const websiteSchema = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content={ogLocale} />
+    {!noindex && supportedLangs.filter((l) => l !== lang).map((l) => (
+      <meta key={l} property="og:locale:alternate" content={langToLocale[l] || `${l}_IN`} />
+    ))}
     <meta property="og:site_name" content="UI/UX Design Bookshelf" />
     <meta property="og:image" content={socialImage} />
     <meta property="og:image:width" content="1200" />
