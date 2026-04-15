@@ -8,8 +8,7 @@ export default defineConfig({
     build: {
       format: 'directory'
     },
-    integrations: [
-      react(), 
+    integrations: [        react(),  
       sitemap({
         filter: (page) => !page.includes('select-language'),
         i18n: {

@@ -1,9 +1,11 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
-// Grab initial translations injected by Astro before React hydrates.
-// This ensures i18next has translations synchronously on first render,
-// preventing React hydration error #418 (server/client text mismatch).
+
+// Language is determined at build time by Astro static paths and injected
+// via window.initialI18nStore / window.initialLanguage before hydration.
+// No runtime detector — this prevents React hydration error #418
+// (server/client text mismatch) caused by LanguageDetector overriding
+// the explicitly set lng during init().
 const isClient = typeof window !== 'undefined';
 let initialResources = undefined;
 let initialLng = 'en';
@@ -24,18 +26,8 @@ const i18nConfig = {
     interpolation: {
         escapeValue: false
     },
-    detection: {
-        // htmlTag matches the server-rendered <html lang> to avoid hydration mismatches;
-        // path is a secondary fallback for dev-mode HMR edge cases.
-        order: ['htmlTag', 'path'],
-        lookupFromPathIndex: 0,
-        caches: []
-    },
+    initImmediate: false,
 };
-
-if (isClient) {
-    i18n.use(LanguageDetector);
-}
 
 i18n.use(initReactI18next).init(i18nConfig);
 

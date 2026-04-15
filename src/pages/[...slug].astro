@@ -37,7 +37,9 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const url = Astro.url.pathname;
+const url = Astro.url.pathname.endsWith('/')
+    ? Astro.url.pathname
+    : Astro.url.pathname + '/';
 
 let currentLang = 'en';
 let rest = slug || '';

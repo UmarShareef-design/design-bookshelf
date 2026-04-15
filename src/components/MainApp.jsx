@@ -4,7 +4,7 @@ import App from '../App.jsx';
 import CategoryPage from './CategoryPage.jsx';
 import LanguageSelectPage from './LanguageSelectPage.jsx';
 import i18n from '../i18n';
-import { useTranslation, I18nextProvider } from 'react-i18next';
+import { useTranslation, I18nextProvider, initReactI18next } from 'react-i18next';
 import RouterWrapper from './RouterWrapper.jsx';
 import { GA_MEASUREMENT_ID, LANGUAGE_CODES } from '../config';
 import { IconSymbols } from './Icons.jsx';
@@ -45,18 +45,33 @@ const LangWrapper = () => {
 };
 
 export default function MainApp({ url, initialResources, lang }) {
-    // Add initial resources during SSR/build only.
-    // On the client, i18n.js already reads from window.initialI18nStore
-    // (injected by Astro's inline script) so this useMemo is redundant there.
-    useMemo(() => {
-        if (initialResources && typeof window === 'undefined') {
-            i18n.addResourceBundle(lang, 'translation', initialResources, true, true);
-            i18n.changeLanguage(lang);
+    // Create an isolated i18next instance per server render to prevent
+    // SSG race conditions. Astro builds pages concurrently — mutating the
+    // singleton via changeLanguage() causes one page's language to overwrite
+    // another mid-render. We must use createInstance() (not cloneInstance())
+    // because the server singleton has no resources loaded — cloning it would
+    // propagate an incomplete state where t() returns keys instead of strings.
+    // On the client, reuse the singleton pre-filled by i18n.js via
+    // window.initialI18nStore (injected by Astro's inline script).
+    const i18nInstance = useMemo(() => {
+        if (typeof window === 'undefined') {
+            const instance = i18n.createInstance();
+            instance.use(initReactI18next).init({
+                lng: lang,
+                fallbackLng: 'en',
+                resources: {
+                    [lang]: { translation: initialResources }
+                },
+                initImmediate: false,
+                interpolation: { escapeValue: false }
+            });
+            return instance;
         }
+        return i18n;
     }, [initialResources, lang]);
 
     return (
-        <I18nextProvider i18n={i18n}>
+        <I18nextProvider i18n={i18nInstance}>
             <IconSymbols />
             <RouterWrapper location={url}>
                 <PageViewTracker />
