@@ -21,10 +21,6 @@ const About = () => {
                 <p>{t('about.p3')}</p>
                 <p>{t('about.p4')}</p>
 
-                <div className="about-disclosure-box">
-                    {t('about.disclosure')}
-                </div>
-
                 <p className="about-closing-text">
                     {t('about.closing')}
                 </p>

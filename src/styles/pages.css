@@ -19,12 +19,6 @@
     font-size: 0.9rem;
 }
 
-.footer-disclosure {
-    font-size: 0.8rem;
-    margin-top: var(--space-4);
-    opacity: 0.8;
-}
-
 /* About Page */
 .about-container {
     max-width: 800px;
@@ -62,14 +56,6 @@
     color: var(--text-secondary);
 }
 
-.about-disclosure-box {
-    margin-bottom: var(--space-8);
-    padding: var(--space-6);
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    border-left: 4px solid var(--accent-color);
-}
-
 .about-closing-text {
     margin-bottom: var(--space-8);
     font-style: italic;
@@ -80,11 +66,47 @@
     text-align: center;
 }
 
+.buy-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-4);
+    border-radius: 12px;
+    border: 1px solid var(--accent-color);
+    background: transparent;
+    color: var(--accent-color);
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.buy-button:visited {
+    color: var(--accent-color);
+}
+
+.buy-button:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+}
+
+.buy-button:visited:hover {
+    color: var(--bg-color);
+}
+
+.buy-button:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
 .btn-linkedin {
     display: inline-flex !important;
     width: auto !important;
     padding: var(--space-4) var(--space-8) !important;
-    text-decoration: none;
 }
 
 /* Category Page - CTA Button */

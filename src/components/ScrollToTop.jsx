@@ -8,6 +8,7 @@ const SCROLL_THRESHOLD_FOLD = 1; // Show button after scrolling past 1 viewport 
 const ScrollToTop = () => {
     const { t } = useTranslation();
     const [isVisible, setIsVisible] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
     const tickingRef = useRef(false);
 
     const checkScrollPosition = useCallback(() => {
@@ -26,6 +27,11 @@ const ScrollToTop = () => {
             });
         }
     }, [checkScrollPosition]);
+
+    useEffect(() => {
+        // Mark as mounted to avoid hydration mismatch (server has no document)
+        setIsMounted(true);
+    }, []);
 
     useEffect(() => {
         // Check initial position (e.g., page restored from scroll)
@@ -47,8 +53,10 @@ const ScrollToTop = () => {
         });
     };
 
-    // Guard against SSR (Astro prerendering) where document is undefined
-    if (typeof document === 'undefined') return null;
+    // Wait until after client mount to render the portal.
+    // Server returns null (no document), client would render a portal —
+    // that structural difference causes a React hydration mismatch.
+    if (!isMounted) return null;
 
     return createPortal(
         <button

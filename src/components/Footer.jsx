@@ -7,7 +7,7 @@ const Footer = () => {
 
     return (
         <footer className="footer">
-            <p>&copy; {new Date().getFullYear()} {t('title')}. {t('common.footer_text')}</p>
+            <p>&copy; <span suppressHydrationWarning>{new Date().getFullYear()}</span> {t('title')}. {t('common.footer_text')}</p>
             <div className="footer-links">
                 <a
                     href={FEEDBACK_URL}
@@ -18,9 +18,6 @@ const Footer = () => {
                     {t('common.share_feedback')}
                 </a>
             </div>
-            <p className="footer-disclosure">
-                {t('common.affiliate_disclosure')}
-            </p>
         </footer>
     );
 };

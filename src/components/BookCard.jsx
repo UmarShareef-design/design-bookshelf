@@ -133,7 +133,14 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                 </>
             )}
             <div className="book-card-content">
-                <div className="book-image-container">
+                <div
+                    className="book-image-container"
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setShowPopup(true)}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setShowPopup(true); } }}
+                    aria-label={t('common.get_the_book')}
+                >
                     <img
                         src={book['Image URL']}
                         alt={`${book.Title.split(':')[0]} - ${book.Category}`}
