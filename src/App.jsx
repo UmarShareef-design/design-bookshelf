@@ -7,9 +7,10 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import booksData from './books.json';
-import { FAVORITES_STORAGE_KEY, FEEDBACK_URL } from './config';
+import { FEEDBACK_URL } from './config';
 import { useTranslation } from 'react-i18next';
 import { Icon } from './components/Icons';
+import useFavorites from './hooks/useFavorites';
 
 const App = () => {
     const { t, i18n } = useTranslation();
@@ -17,8 +18,8 @@ const App = () => {
     const navigate = useNavigate();
 
     const [activeCategory, setActiveCategory] = useState('All');
-    const [favorites, setFavorites] = useState([]);
     const [showFavorites, setShowFavorites] = useState(false);
+    const { favorites, toggleFavorite, isFavorite } = useFavorites();
 
     // Track Category Changes (Home Page)
     useEffect(() => {
@@ -35,34 +36,6 @@ const App = () => {
         return ['All', ...new Set(booksData.map(book => book.Category))];
     }, []);
 
-    // Load favorites and handle Title-to-ID migration
-    useEffect(() => {
-        try {
-            const stored = localStorage.getItem(FAVORITES_STORAGE_KEY);
-            if (stored) {
-                let parsed = JSON.parse(stored);
-                const isOldFormat = parsed.length > 0 && !booksData.some(b => parsed.includes(b.id));
-                if (isOldFormat) {
-                    const newFavorites = booksData
-                        .filter(book => parsed.includes(book.Title))
-                        .map(book => book.id);
-                    setFavorites(newFavorites);
-                } else {
-                    setFavorites(parsed);
-                }
-            }
-        } catch (e) {
-            console.warn('Failed to load favorites from localStorage:', e);
-            localStorage.removeItem(FAVORITES_STORAGE_KEY);
-            setFavorites([]);
-        }
-    }, []);
-
-    // Save favorites
-    useEffect(() => {
-        localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites));
-    }, [favorites]);
-
     // Optimized filtering
     const filteredBooks = useMemo(() => {
         const sourceBooks = showFavorites
@@ -73,15 +46,7 @@ const App = () => {
         return sourceBooks.filter(book => book.Category === activeCategory);
     }, [activeCategory, showFavorites, favorites]);
 
-    const toggleFavorite = (bookId) => {
-        setFavorites(prev =>
-            prev.includes(bookId)
-                ? prev.filter(id => id !== bookId)
-                : [...prev, bookId]
-        );
-    };
 
-    const isFavorite = (bookId) => favorites.includes(bookId);
 
     const currentSummary = t(`summaries.${showFavorites ? 'Favorites' : activeCategory}`);
 

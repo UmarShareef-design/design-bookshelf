@@ -6,12 +6,14 @@ import LanguageSwitcher from './LanguageSwitcher';
 import booksData from '../books.json';
 import { useTranslation } from 'react-i18next';
 import { Icon } from './Icons';
+import useFavorites from '../hooks/useFavorites';
 
 const slugify = (text) => text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
 
 const CategoryPage = () => {
     const { categorySlug } = useParams();
     const { t, i18n } = useTranslation();
+    const { isFavorite, toggleFavorite } = useFavorites();
 
     // Find matching category
     const allCategories = [...new Set(booksData.map(book => book.Category))];
@@ -110,13 +112,15 @@ const CategoryPage = () => {
                 </div>
             </header>
 
-            {/* Books Grid — no favorites */}
+            {/* Books Grid */}
             <main className="books-grid-container" id="main-content">
                 <div className="books-grid">
                     {filteredBooks.map((book) => (
                         <BookCard
                             key={book.id}
                             book={book}
+                            isFavorite={isFavorite(book.id)}
+                            onToggleFavorite={() => toggleFavorite(book.id)}
                         />
                     ))}
                 </div>
