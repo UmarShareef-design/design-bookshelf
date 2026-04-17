@@ -294,13 +294,6 @@
         "id": "making-and-breaking-the-grid-41"
     },
     {
-        "Title": "Grid Systems",
-        "Link": "https://www.amazon.in/dp/3721201450",
-        "Image URL": "https://m.media-amazon.com/images/I/71xVgz2a-qL._SL1500_.jpg",
-        "Category": "UI Design",
-        "id": "grid-systems-42"
-    },
-    {
         "Title": "Typographic Design Form And Communication",
         "Link": "https://www.amazon.in/dp/1119312566",
         "Image URL": "https://m.media-amazon.com/images/I/515ROKAM2BL._SL1500_.jpg",
@@ -432,5 +425,103 @@
         "Image URL": "https://m.media-amazon.com/images/I/71gaPkO17iL._SL1500_.jpg",
         "Category": "Interaction Design",
         "id": "designing-interactions-the-mit-press-61"
+    },
+    {
+        "Title": "Seductive Interaction Design: Creating Playful, Fun, and Effective User Experiences",
+        "Link": "https://www.amazon.in/dp/0321725522",
+        "Image URL": "https://m.media-amazon.com/images/I/81kpVdx-vVL._SL1500_.jpg",
+        "Category": "UX Design",
+        "id": "seductive-interaction-design-62"
+    },
+    {
+        "Title": "Designing for Emotion",
+        "Link": "https://www.amazon.in/dp/1952616492",
+        "Image URL": "https://m.media-amazon.com/images/I/512CU7IqUCL._SL1360_.jpg",
+        "Category": "UX Design",
+        "id": "designing-for-emotion-63"
+    },
+    {
+        "Title": "UX Strategy: How to Devise Innovative Digital Products that People Want",
+        "Link": "https://www.amazon.in/dp/1449372864",
+        "Image URL": "https://m.media-amazon.com/images/I/91tP8n4oD7L._SL1500_.jpg",
+        "Category": "UX Design",
+        "id": "ux-strategy-how-to-devise-innovative-digital-products-that-people-want-64"
+    },
+    {
+        "Title": "Interaction of Color: 50th Anniversary Edition",
+        "Link": "https://www.amazon.in/dp/0300179359",
+        "Image URL": "https://m.media-amazon.com/images/I/61jZPFRe6tL._SL1500_.jpg",
+        "Category": "UI Design",
+        "id": "interaction-of-color-50th-anniversary-edition-65"
+    },
+    {
+        "Title": "Microinteractions: Designing with Details",
+        "Link": "https://www.amazon.in/dp/144934268X",
+        "Image URL": "https://m.media-amazon.com/images/I/81sMBoWl8rL._SL1500_.jpg",
+        "Category": "Interaction Design",
+        "id": "microinteractions-designing-with-details-66"
+    },
+    {
+        "Title": "Just Enough Research",
+        "Link": "https://www.amazon.in/dp/1952616468",
+        "Image URL": "https://m.media-amazon.com/images/I/51h41Ym-RQL._SL1360_.jpg",
+        "Category": "User Research",
+        "id": "just-enough-research-67"
+    },
+    {
+        "Title": "Rocket Surgery Made Easy: The Do-It-Yourself Guide to Finding and Fixing Usability Problems",
+        "Link": "https://www.amazon.in/dp/8131788407",
+        "Image URL": "https://m.media-amazon.com/images/I/81NmGdIapkL._SL1500_.jpg",
+        "Category": "User Research",
+        "id": "rocket-surgery-made-easy-the-do-it-yourself-guide-to-finding-and-fixing-usability-problems-68"
+    },
+    {
+        "Title": "Validating Product Ideas: Through Lean User Research",
+        "Link": "https://www.amazon.in/dp/1933820292",
+        "Image URL": "https://m.media-amazon.com/images/I/81hOxGl30-L._SL1500_.jpg",
+        "Category": "User Research",
+        "id": "validating-product-ideas-through-lean-user-research-69"
+    },
+    {
+        "Title": "The User Experience Team of One: A Research and Design Survival Guide",
+        "Link": "https://www.amazon.in/dp/1959029959",
+        "Image URL": "https://m.media-amazon.com/images/I/61Zsut9P75L._SL1001_.jpg",
+        "Category": "User Research",
+        "id": "the-user-experience-team-of-one-a-research-and-design-survival-guide-70"
+    },
+    {
+        "Title": "Sprint: How to Solve Big Problems and Test New Ideas in Just Five Days",
+        "Link": "https://www.amazon.in/dp/0593076117",
+        "Image URL": "https://m.media-amazon.com/images/I/71rNJGNhVoL._SL1500_.jpg",
+        "Category": "Design Process",
+        "id": "sprint-how-to-solve-big-problems-and-test-new-ideas-in-just-five-days-71"
+    },
+    {
+        "Title": "Creative Confidence: Unleashing the Creative Potential Within Us All",
+        "Link": "https://www.amazon.in/dp/0007592515",
+        "Image URL": "https://m.media-amazon.com/images/I/71BylW55W0L._SL1500_.jpg",
+        "Category": "Design Process",
+        "id": "creative-confidence-unleashing-the-creative-potential-within-us-all-72"
+    },
+    {
+        "Title": "Steal Like an Artist: 10 Things Nobody Told You About Being Creative",
+        "Link": "https://www.amazon.in/dp/0761169253",
+        "Image URL": "https://m.media-amazon.com/images/I/61GNEMa02VL._SL1500_.jpg",
+        "Category": "Complementary Skills",
+        "id": "steal-like-an-artist-10-things-nobody-told-you-about-being-creative-73"
+    },
+    {
+        "Title": "Deep Work: Rules for Focused Success in a Distracted World",
+        "Link": "https://www.amazon.in/dp/0349413681",
+        "Image URL": "https://m.media-amazon.com/images/I/61zt25yYrCL._SL1500_.jpg",
+        "Category": "Complementary Skills",
+        "id": "deep-work-rules-for-focused-success-in-a-distracted-world-74"
+    },
+    {
+        "Title": "Atomic Habits: An Easy and Proven Way to Build Good Habits and Break Bad Ones",
+        "Link": "https://www.amazon.in/dp/1847941834",
+        "Image URL": "https://m.media-amazon.com/images/I/817HaeblezL._SL1500_.jpg",
+        "Category": "Complementary Skills",
+        "id": "atomic-habits-an-easy-and-proven-way-to-build-good-habits-and-break-bad-ones-75"
     }
 ]

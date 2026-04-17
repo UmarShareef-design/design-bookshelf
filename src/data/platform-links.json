@@ -251,12 +251,6 @@
         "kobo": null,
         "audible": null
     },
-    "grid-systems-42": {
-        "flipkart": "https://www.flipkart.com/grid-systems/p/itmdyj48mv9hsxvg",
-        "kindle": null,
-        "kobo": null,
-        "audible": null
-    },
     "typographic-design-form-and-communication-43": {
         "flipkart": "https://www.flipkart.com/typographic-design/p/itmfbxyffgzgzrc7",
         "kindle": "https://www.amazon.in/dp/B078WCCDQJ",
@@ -370,5 +364,89 @@
         "kindle": "https://www.amazon.in/dp/B00HS87C1W",
         "kobo": null,
         "audible": null
+    },
+    "seductive-interaction-design-62": {
+        "flipkart": null,
+        "kindle": null,
+        "kobo": null,
+        "audible": null
+    },
+    "designing-for-emotion-63": {
+        "flipkart": null,
+        "kindle": "https://www.amazon.in/dp/B0CW2Y5BXX",
+        "kobo": null,
+        "audible": null
+    },
+    "ux-strategy-how-to-devise-innovative-digital-products-that-people-want-64": {
+        "flipkart": null,
+        "kindle": "https://www.amazon.in/dp/B08YS6NDTL",
+        "kobo": null,
+        "audible": null
+    },
+    "interaction-of-color-50th-anniversary-edition-65": {
+        "flipkart": null,
+        "kindle": null,
+        "kobo": null,
+        "audible": null
+    },
+    "microinteractions-designing-with-details-66": {
+        "flipkart": null,
+        "kindle": "https://www.amazon.in/dp/B00FRSNHIW",
+        "kobo": null,
+        "audible": null
+    },
+    "just-enough-research-67": {
+        "flipkart": null,
+        "kindle": "https://www.amazon.in/dp/B0DJWS2SL1",
+        "kobo": null,
+        "audible": null
+    },
+    "rocket-surgery-made-easy-the-do-it-yourself-guide-to-finding-and-fixing-usability-problems-68": {
+        "flipkart": null,
+        "kindle": "https://www.amazon.in/dp/B002UXRGNO",
+        "kobo": null,
+        "audible": null
+    },
+    "validating-product-ideas-through-lean-user-research-69": {
+        "flipkart": null,
+        "kindle": null,
+        "kobo": null,
+        "audible": null
+    },
+    "the-user-experience-team-of-one-a-research-and-design-survival-guide-70": {
+        "flipkart": null,
+        "kindle": null,
+        "kobo": null,
+        "audible": null
+    },
+    "sprint-how-to-solve-big-problems-and-test-new-ideas-in-just-five-days-71": {
+        "flipkart": null,
+        "kindle": "https://www.amazon.in/dp/B017S92JUY",
+        "kobo": null,
+        "audible": "https://www.audible.in/pd/Sprint-Audiobook/B079XBT2G9"
+    },
+    "creative-confidence-unleashing-the-creative-potential-within-us-all-72": {
+        "flipkart": null,
+        "kindle": "https://www.amazon.in/dp/B00CKE05ZY",
+        "kobo": null,
+        "audible": null
+    },
+    "steal-like-an-artist-10-things-nobody-told-you-about-being-creative-73": {
+        "flipkart": null,
+        "kindle": "https://www.amazon.in/dp/B0B5L9GMSW",
+        "kobo": null,
+        "audible": null
+    },
+    "deep-work-rules-for-focused-success-in-a-distracted-world-74": {
+        "flipkart": null,
+        "kindle": "https://www.amazon.in/dp/B013UWFM52",
+        "kobo": null,
+        "audible": null
+    },
+    "atomic-habits-an-easy-and-proven-way-to-build-good-habits-and-break-bad-ones-75": {
+        "flipkart": "https://www.flipkart.com/atomic-habits-easy-proven-way-build-good-break-bad/p/itmfcyurt9pfakjh",
+        "kindle": "https://www.amazon.in/dp/B01N5AX61W",
+        "kobo": null,
+        "audible": "https://www.audible.in/pd/Atomic-Habits-Audiobook/B07J1PK5Q7"
     }
 }
