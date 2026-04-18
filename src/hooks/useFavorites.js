@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import booksData from '../books.json';
+import { booksData } from '../utils/books';
 import { FAVORITES_STORAGE_KEY } from '../config';
 
 /**

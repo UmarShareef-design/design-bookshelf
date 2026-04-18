@@ -3,33 +3,35 @@ import Layout from '../layouts/Layout.astro';
 import MainApp from '../components/MainApp.jsx';
 import '../index.css';
 import { NON_DEFAULT_LANG_CODES } from '../config';
+import { categories, slugifyCategory, categoryFromSlug } from '../utils/books';
 
 export async function getStaticPaths() {
-  const booksData = (await import('../books.json')).default;
-  const categories = [...new Set(booksData.map(b => b.Category))];
   const langs = NON_DEFAULT_LANG_CODES;
 
-  // Define URLs as slugs
+  // Define URLs as slugs, passing categories via props so the page body
+  // can reuse them without a second dynamic import of books.json.
+  const baseProps = { categories };
+
   const paths = [
-    { params: { slug: undefined } }, // /
-    { params: { slug: 'about' } },   // /about
-    { params: { slug: 'select-language' } }, // /select-language
+    { params: { slug: undefined }, props: baseProps },
+    { params: { slug: 'about' }, props: baseProps },
+    { params: { slug: 'select-language' }, props: baseProps },
   ];
 
   // English Categories
   for (const cat of categories) {
-    const slugCat = cat.toLowerCase().replace(/ /g, '-');
-    paths.push({ params: { slug: `category/${slugCat}` } });
+    const slugCat = slugifyCategory(cat);
+    paths.push({ params: { slug: `category/${slugCat}` }, props: baseProps });
   }
 
   // Language paths
   for (const lang of langs) {
-    paths.push({ params: { slug: lang } });
-    paths.push({ params: { slug: `${lang}/about` } });
-    paths.push({ params: { slug: `${lang}/select-language` } });
+    paths.push({ params: { slug: lang }, props: baseProps });
+    paths.push({ params: { slug: `${lang}/about` }, props: baseProps });
+    paths.push({ params: { slug: `${lang}/select-language` }, props: baseProps });
     for (const cat of categories) {
-      const slugCat = cat.toLowerCase().replace(/ /g, '-');
-      paths.push({ params: { slug: `${lang}/category/${slugCat}` } });
+      const slugCat = slugifyCategory(cat);
+      paths.push({ params: { slug: `${lang}/category/${slugCat}` }, props: baseProps });
     }
   }
 
@@ -37,6 +39,7 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
+const { categories } = Astro.props;
 const url = Astro.url.pathname.endsWith('/')
     ? Astro.url.pathname
     : Astro.url.pathname + '/';
@@ -67,9 +70,7 @@ if (rest === 'select-language') {
     description = translations.about.p1;
 } else if (rest.startsWith('category/')) {
     const slugCat = rest.replace('category/', '');
-    const booksData = (await import('../books.json')).default;
-    const categories = [...new Set(booksData.map(b => b.Category))];
-    const categoryName = categories.find(c => c.toLowerCase().replace(/ /g, '-') === slugCat);
+    const categoryName = categoryFromSlug(slugCat);
     if (categoryName && translations.meta[categoryName]) {
         category = categoryName;
         title = translations.meta[categoryName].title;

@@ -16,5 +16,7 @@ export const LANGUAGE_CODES = SUPPORTED_LANGUAGES.map(l => l.code);
 export const NON_DEFAULT_LANG_CODES = LANGUAGE_CODES.filter(c => c !== 'en');
 
 export const FAVORITES_STORAGE_KEY = 'design-bookshelf-favorites';
-export const GA_MEASUREMENT_ID = 'G-PKCP0G5RGP';
+export const GA_MEASUREMENT_ID = typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_GA_MEASUREMENT_ID
+    ? import.meta.env.PUBLIC_GA_MEASUREMENT_ID
+    : 'G-PKCP0G5RGP';
 export const FEEDBACK_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdizXwJUzLnyEQVH_fjZClIUir9lMg9RnIZQkWooexjJz9e7Q/viewform?usp=header';

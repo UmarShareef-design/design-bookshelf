@@ -1,4 +1,3 @@
-import React from 'react';
 
 /**
  * A central repository of SVG symbols used throughout the application.

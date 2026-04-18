@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Routes, Route, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useMemo } from 'react';
+import { Routes, Route, NavLink, useLocation, useNavigate, matchPath } from 'react-router-dom';
 import CategoryBar from './components/CategoryBar';
 import BookCard from './components/BookCard';
 import About from './components/About';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import LanguageSwitcher from './components/LanguageSwitcher';
-import booksData from './books.json';
+import { booksData, categoriesWithAll as categories } from './utils/books';
 import { FEEDBACK_URL } from './config';
 import { useTranslation } from 'react-i18next';
 import { Icon } from './components/Icons';
@@ -30,11 +30,6 @@ const App = () => {
             });
         }
     }, [activeCategory, showFavorites, i18n.language]);
-
-    // Derived Data: Categories
-    const categories = useMemo(() => {
-        return ['All', ...new Set(booksData.map(book => book.Category))];
-    }, []);
 
     // Optimized filtering
     const filteredBooks = useMemo(() => {
@@ -109,7 +104,7 @@ const App = () => {
             </nav>
 
             <div className="content-area">
-                {location.pathname.split('/').filter(Boolean).includes('about') ? (
+                {matchPath('*/about', location.pathname) ? (
                     <About key="about" />
                 ) : (
                     <div className="home-content">

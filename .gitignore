@@ -28,6 +28,14 @@ __pycache__/
 *.py[cod]
 extract_data.py
 
+# Test artifacts
+playwright-report/
+test-results/
+tests/screenshots/
+
+# Windows reserved device name file
+nul
+
 # Local reference docs (not for public repo)
 CLAUDE.md
 RESEARCH-*.md

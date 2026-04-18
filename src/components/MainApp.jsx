@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Routes, Route, useParams, useLocation } from 'react-router-dom';
 import App from '../App.jsx';
 import CategoryPage from './CategoryPage.jsx';

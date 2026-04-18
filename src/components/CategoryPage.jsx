@@ -1,23 +1,20 @@
-import React, { useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import BookCard from './BookCard';
 import Footer from './Footer';
 import LanguageSwitcher from './LanguageSwitcher';
-import booksData from '../books.json';
+import { booksData, categoryFromSlug } from '../utils/books';
 import { useTranslation } from 'react-i18next';
 import { Icon } from './Icons';
 import useFavorites from '../hooks/useFavorites';
-
-const slugify = (text) => text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
 
 const CategoryPage = () => {
     const { categorySlug } = useParams();
     const { t, i18n } = useTranslation();
     const { isFavorite, toggleFavorite } = useFavorites();
 
-    // Find matching category
-    const allCategories = [...new Set(booksData.map(book => book.Category))];
-    const categoryName = allCategories.find(cat => slugify(cat) === categorySlug);
+    // Find matching category (centralized in utils/books.js)
+    const categoryName = categoryFromSlug(categorySlug);
 
     const filteredBooks = useMemo(() => {
         if (!categoryName) return [];

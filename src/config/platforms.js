@@ -48,7 +48,6 @@ export const PLATFORM_ORDER = ['amazon', 'flipkart', 'kindle', 'kobo', 'audible'
  * These books should not show other platform options.
  */
 export const AMAZON_ONLY_BOOKS = [
-    'crafting-the-perfect-ui-ux-portfolio-10',
     'the-portfolio-secrets-12',
     'product-design-portfolio-final-final-13',
 ];

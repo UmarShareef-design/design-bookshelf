@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
+import { useState, useMemo, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import ButterflyAnimation from './ButterflyAnimation';
 import { useTranslation } from 'react-i18next';
@@ -133,12 +133,10 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                 </>
             )}
             <div className="book-card-content">
-                <div
+                <button
                     className="book-image-container"
-                    role="button"
-                    tabIndex={0}
+                    type="button"
                     onClick={() => setShowPopup(true)}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setShowPopup(true); } }}
                     aria-label={t('common.get_the_book')}
                 >
                     <img
@@ -154,7 +152,7 @@ const BookCard = ({ book, isFavorite, onToggleFavorite }) => {
                             e.target.src = 'https://via.placeholder.com/300x450?text=Design+Book';
                         }}
                     />
-                </div>
+                </button>
                 <div className="book-info">
                     <span className="book-category">{t(`categories.${book.Category}`)}</span>
                     <h2 className="book-title">{book.Title.split(':')[0]}</h2>

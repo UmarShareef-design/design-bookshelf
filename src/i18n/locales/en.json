@@ -105,6 +105,8 @@
         },
         "hint": "You can add custom favorites across categories and bookmark to visit later!",
         "view_all": "View all UI/UX Books!",
+        "default_title": "UI/UX Design Bookshelf | UX UI Books & Fundamentals in the Age of AI",
+        "default_description": "Stop searching Reddit threads. Discover the best UI/UX design books to read for Indian professionals.",
         "back_to_all": "Back to All Books"
     }
 }
