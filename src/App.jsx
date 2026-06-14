@@ -10,7 +10,124 @@ import { booksData, categoriesWithAll as categories } from './utils/books';
 import { FEEDBACK_URL } from './config';
 import { useTranslation } from 'react-i18next';
 import { Icon } from './components/Icons';
-import useFavorites from './hooks/useFavorites';
+import useFavorites, { READING_STATUS } from './hooks/useFavorites';
+
+const FavoriteReadingBoard = ({ books, favoriteStatuses, onStatusChange, isFavorite, toggleFavorite }) => {
+    const { t } = useTranslation();
+    const [draggedBookId, setDraggedBookId] = useState(null);
+    const [activeDropStatus, setActiveDropStatus] = useState(null);
+
+    const statusColumns = [
+        {
+            id: READING_STATUS.DONE,
+            title: t('favorites_board.done_reading'),
+            description: t('favorites_board.done_reading_hint')
+        },
+        {
+            id: READING_STATUS.READING,
+            title: t('favorites_board.currently_reading'),
+            description: t('favorites_board.currently_reading_hint')
+        },
+        {
+            id: READING_STATUS.NEXT,
+            title: t('favorites_board.to_read_next'),
+            description: t('favorites_board.to_read_next_hint')
+        }
+    ];
+
+    const booksByStatus = statusColumns.reduce((groupedBooks, column) => ({
+        ...groupedBooks,
+        [column.id]: books.filter(book => favoriteStatuses[book.id] === column.id)
+    }), {});
+
+    const moveDraggedBook = (status) => {
+        if (!draggedBookId) return;
+        onStatusChange(draggedBookId, status);
+        setDraggedBookId(null);
+        setActiveDropStatus(null);
+    };
+
+    if (books.length === 0) {
+        return (
+            <div className="empty-state">
+                <p>{t('common.no_books')} {t('common.add_favorites')}</p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="favorites-board" aria-label={t('favorites_board.label')}>
+            {statusColumns.map((column) => {
+                const columnBooks = booksByStatus[column.id] || [];
+
+                return (
+                    <section
+                        key={column.id}
+                        className={`favorites-column ${activeDropStatus === column.id ? 'is-drag-over' : ''}`}
+                        onDragOver={(event) => {
+                            event.preventDefault();
+                            setActiveDropStatus(column.id);
+                        }}
+                        onDragLeave={() => setActiveDropStatus(null)}
+                        onDrop={(event) => {
+                            event.preventDefault();
+                            moveDraggedBook(column.id);
+                        }}
+                    >
+                        <div className="favorites-column-header">
+                            <div>
+                                <h2>{column.title}</h2>
+                                <p>{column.description}</p>
+                            </div>
+                            <span className="favorites-column-count">{columnBooks.length}</span>
+                        </div>
+
+                        <div className="favorites-column-books">
+                            {columnBooks.length > 0 ? (
+                                columnBooks.map((book) => (
+                                    <div
+                                        key={book.id}
+                                        className={`favorite-board-card ${draggedBookId === book.id ? 'is-dragging' : ''}`}
+                                        draggable
+                                        onDragStart={() => setDraggedBookId(book.id)}
+                                        onDragEnd={() => {
+                                            setDraggedBookId(null);
+                                            setActiveDropStatus(null);
+                                        }}
+                                    >
+                                        <div className="favorite-board-card-toolbar">
+                                            <span className="drag-handle" aria-hidden="true">⋮⋮</span>
+                                            <label>
+                                                <span className="sr-only">{t('favorites_board.move_book')}</span>
+                                                <select
+                                                    value={favoriteStatuses[book.id]}
+                                                    onChange={(event) => onStatusChange(book.id, event.target.value)}
+                                                >
+                                                    {statusColumns.map((option) => (
+                                                        <option key={option.id} value={option.id}>{option.title}</option>
+                                                    ))}
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <BookCard
+                                            book={book}
+                                            isFavorite={isFavorite(book.id)}
+                                            onToggleFavorite={() => toggleFavorite(book.id)}
+                                        />
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="favorites-column-empty">
+                                    {t('favorites_board.drop_hint')}
+                                </div>
+                            )}
+                        </div>
+                    </section>
+                );
+            })}
+        </div>
+    );
+};
 
 const App = () => {
     const { t, i18n } = useTranslation();
@@ -19,7 +136,7 @@ const App = () => {
 
     const [activeCategory, setActiveCategory] = useState('All');
     const [showFavorites, setShowFavorites] = useState(false);
-    const { favorites, toggleFavorite, isFavorite } = useFavorites();
+    const { favorites, favoriteStatuses, toggleFavorite, updateFavoriteStatus, isFavorite } = useFavorites();
 
     // Track Category Changes (Home Page)
     useEffect(() => {
@@ -123,22 +240,32 @@ const App = () => {
                         )}
 
                         <main className="books-grid-container" id="main-content">
-                            <div className="books-grid">
-                                {filteredBooks.length > 0 ? (
-                                    filteredBooks.map((book) => (
-                                        <BookCard
-                                            key={book.id}
-                                            book={book}
-                                            isFavorite={isFavorite(book.id)}
-                                            onToggleFavorite={() => toggleFavorite(book.id)}
-                                        />
-                                    ))
-                                ) : (
-                                    <div className="empty-state">
-                                        <p>{t('common.no_books')} {showFavorites ? t('common.add_favorites') : t('common.try_category')}</p>
-                                    </div>
-                                )}
-                            </div>
+                            {showFavorites ? (
+                                <FavoriteReadingBoard
+                                    books={filteredBooks}
+                                    favoriteStatuses={favoriteStatuses}
+                                    onStatusChange={updateFavoriteStatus}
+                                    isFavorite={isFavorite}
+                                    toggleFavorite={toggleFavorite}
+                                />
+                            ) : (
+                                <div className="books-grid">
+                                    {filteredBooks.length > 0 ? (
+                                        filteredBooks.map((book) => (
+                                            <BookCard
+                                                key={book.id}
+                                                book={book}
+                                                isFavorite={isFavorite(book.id)}
+                                                onToggleFavorite={() => toggleFavorite(book.id)}
+                                            />
+                                        ))
+                                    ) : (
+                                        <div className="empty-state">
+                                            <p>{t('common.no_books')} {t('common.try_category')}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                         </main>
                     </div>
                 )}

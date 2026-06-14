@@ -106,5 +106,16 @@
         "hint": "ನೀವು ವಿವಿಧ ವರ್ಗಗಳಲ್ಲಿ ನಿಮಗೆ ಇಷ್ಟವಾದವುಗಳನ್ನು ಸೇರಿಸಬಹುದು ಮತ್ತು ನಂತರ ನೋಡಲು ಅವುಗಳನ್ನು ಬುಕ್‌ಮಾರ್ಕ್ ಮಾಡಬಹುದು!",
         "view_all": "ಎಲ್ಲಾ UI/UX ಪುಸ್ತಕಗಳನ್ನು ನೋಡಿ!",
         "back_to_all": "ಎಲ್ಲಾ ಪುಸ್ತಕಗಳಿಗೆ ಹಿಂತಿರುಗಿ"
+    },
+    "favorites_board": {
+        "label": "Favorites reading board",
+        "done_reading": "Done Reading",
+        "done_reading_hint": "Books you have finished and can revisit later.",
+        "currently_reading": "Currently Reading",
+        "currently_reading_hint": "Books on your desk right now.",
+        "to_read_next": "To Read Next",
+        "to_read_next_hint": "Your next-up reading queue.",
+        "move_book": "Move book to another reading status",
+        "drop_hint": "Drop books here or use the status menu."
     }
 }

@@ -106,5 +106,16 @@
         "hint": "तुम्ही विविध कॅटेगरींमधून तुमची आवडती पुस्तके जोडू शकता आणि नंतर पाहण्यासाठी सेव्ह करू शकता!",
         "view_all": "सर्व UI/UX पुस्तके पहा!",
         "back_to_all": "सर्व पुस्तकांवर परत जा"
+    },
+    "favorites_board": {
+        "label": "Favorites reading board",
+        "done_reading": "Done Reading",
+        "done_reading_hint": "Books you have finished and can revisit later.",
+        "currently_reading": "Currently Reading",
+        "currently_reading_hint": "Books on your desk right now.",
+        "to_read_next": "To Read Next",
+        "to_read_next_hint": "Your next-up reading queue.",
+        "move_book": "Move book to another reading status",
+        "drop_hint": "Drop books here or use the status menu."
     }
 }

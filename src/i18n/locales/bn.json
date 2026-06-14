@@ -106,5 +106,16 @@
         "hint": "আপনি বিভিন্ন ক্যাটাগরি থেকে পছন্দসই বই যোগ করতে পারেন এবং পরে দেখার জন্য বুকমার্ক করতে পারেন!",
         "view_all": "সব UI/UX বই দেখুন!",
         "back_to_all": "সব বইয়ে ফিরে যান"
+    },
+    "favorites_board": {
+        "label": "Favorites reading board",
+        "done_reading": "Done Reading",
+        "done_reading_hint": "Books you have finished and can revisit later.",
+        "currently_reading": "Currently Reading",
+        "currently_reading_hint": "Books on your desk right now.",
+        "to_read_next": "To Read Next",
+        "to_read_next_hint": "Your next-up reading queue.",
+        "move_book": "Move book to another reading status",
+        "drop_hint": "Drop books here or use the status menu."
     }
 }

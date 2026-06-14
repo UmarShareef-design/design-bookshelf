@@ -135,6 +135,145 @@
     }
 }
 
+/* Favorites Reading Board */
+.favorites-board {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+    align-items: start;
+}
+
+.favorites-column {
+    min-height: 280px;
+    padding: var(--space-4);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: var(--transition-smooth);
+}
+
+.favorites-column.is-drag-over {
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.06);
+}
+
+.favorites-column-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.favorites-column-header h2 {
+    margin: 0 0 var(--space-1);
+    font-size: 1rem;
+}
+
+.favorites-column-header p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+.favorites-column-count {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 var(--space-2);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-color);
+    color: var(--bg-color);
+    font-weight: 700;
+}
+
+.favorites-column-books {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.favorite-board-card {
+    cursor: grab;
+    transition: var(--transition-smooth);
+}
+
+.favorite-board-card:active {
+    cursor: grabbing;
+}
+
+.favorite-board-card.is-dragging {
+    opacity: 0.45;
+    transform: scale(0.98);
+}
+
+.favorite-board-card-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+    padding: 0 var(--space-1);
+}
+
+.drag-handle {
+    color: var(--text-secondary);
+    letter-spacing: -0.25em;
+    cursor: grab;
+}
+
+.favorite-board-card-toolbar select {
+    max-width: 170px;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    background: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.favorite-board-card-toolbar select:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.favorites-column-empty {
+    min-height: 120px;
+    border: 1px dashed var(--card-border);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-5);
+    color: var(--text-secondary);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-width: 1024px) {
+    .favorites-board {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Book Card */
 .book-card {
     border-radius: 24px;

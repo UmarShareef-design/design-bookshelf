@@ -106,5 +106,16 @@
         "hint": "మీరు కేటగిరీలలో మీకు ఇష్టమైన వాటిని జోడించవచ్చు మరియు తర్వాత చూడటానికి బుక్‌మార్క్ చేయవచ్చు!",
         "view_all": "అన్ని UI/UX పుస్తకాలను చూడండి!",
         "back_to_all": "తిరిగి అన్ని పుస్తకాలకు"
+    },
+    "favorites_board": {
+        "label": "Favorites reading board",
+        "done_reading": "Done Reading",
+        "done_reading_hint": "Books you have finished and can revisit later.",
+        "currently_reading": "Currently Reading",
+        "currently_reading_hint": "Books on your desk right now.",
+        "to_read_next": "To Read Next",
+        "to_read_next_hint": "Your next-up reading queue.",
+        "move_book": "Move book to another reading status",
+        "drop_hint": "Drop books here or use the status menu."
     }
 }

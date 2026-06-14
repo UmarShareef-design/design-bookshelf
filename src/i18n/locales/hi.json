@@ -106,5 +106,16 @@
         "hint": "आप विभिन्न श्रेणियों में अपने पसंदीदा जोड़ सकते हैं और बाद में देखने के लिए बुकमार्क कर सकते हैं!",
         "view_all": "सभी UI/UX पुस्तकें देखें!",
         "back_to_all": "सभी पुस्तकों पर वापस जाएं"
+    },
+    "favorites_board": {
+        "label": "Favorites reading board",
+        "done_reading": "Done Reading",
+        "done_reading_hint": "Books you have finished and can revisit later.",
+        "currently_reading": "Currently Reading",
+        "currently_reading_hint": "Books on your desk right now.",
+        "to_read_next": "To Read Next",
+        "to_read_next_hint": "Your next-up reading queue.",
+        "move_book": "Move book to another reading status",
+        "drop_hint": "Drop books here or use the status menu."
     }
 }

@@ -106,5 +106,16 @@
         "hint": "നിങ്ങൾക്ക് വിവിധ വിഭാഗങ്ങളിലായി ഇഷ്ടപ്പെട്ടവ ചേർക്കാനും പിന്നീട് സന്ദർശിക്കാനായി ബുക്ക്മാർക്ക് ചെയ്യാനും കഴിയും!",
         "view_all": "എല്ലാ UI/UX പുസ്തകങ്ങളും കാണുക!",
         "back_to_all": "തിരിച്ച് എല്ലാ പുസ്തകങ്ങളിലേക്കും"
+    },
+    "favorites_board": {
+        "label": "Favorites reading board",
+        "done_reading": "Done Reading",
+        "done_reading_hint": "Books you have finished and can revisit later.",
+        "currently_reading": "Currently Reading",
+        "currently_reading_hint": "Books on your desk right now.",
+        "to_read_next": "To Read Next",
+        "to_read_next_hint": "Your next-up reading queue.",
+        "move_book": "Move book to another reading status",
+        "drop_hint": "Drop books here or use the status menu."
     }
 }

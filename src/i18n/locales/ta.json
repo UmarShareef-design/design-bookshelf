@@ -106,5 +106,16 @@
         "hint": "நீங்கள் வெவ்வேறு வகைகளில் உங்களுக்கு விருப்பமானவற்றைச் சேர்த்து, பின்னர் பார்க்க சேமிக்கலாம்!",
         "view_all": "அனைத்து UI/UX புத்தகங்களையும் பார்க்கவும்!",
         "back_to_all": "மீண்டும் அனைத்து புத்தகங்களுக்கும்"
+    },
+    "favorites_board": {
+        "label": "Favorites reading board",
+        "done_reading": "Done Reading",
+        "done_reading_hint": "Books you have finished and can revisit later.",
+        "currently_reading": "Currently Reading",
+        "currently_reading_hint": "Books on your desk right now.",
+        "to_read_next": "To Read Next",
+        "to_read_next_hint": "Your next-up reading queue.",
+        "move_book": "Move book to another reading status",
+        "drop_hint": "Drop books here or use the status menu."
     }
 }

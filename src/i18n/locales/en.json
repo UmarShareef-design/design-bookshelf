@@ -108,5 +108,16 @@
         "default_title": "UI/UX Design Bookshelf | UX UI Books & Fundamentals in the Age of AI",
         "default_description": "Stop searching Reddit threads. Discover the best UI/UX design books to read for Indian professionals.",
         "back_to_all": "Back to All Books"
+    },
+    "favorites_board": {
+        "label": "Favorites reading board",
+        "done_reading": "Done Reading",
+        "done_reading_hint": "Books you have finished and can revisit later.",
+        "currently_reading": "Currently Reading",
+        "currently_reading_hint": "Books on your desk right now.",
+        "to_read_next": "To Read Next",
+        "to_read_next_hint": "Your next-up reading queue.",
+        "move_book": "Move book to another reading status",
+        "drop_hint": "Drop books here or use the status menu."
     }
 }
