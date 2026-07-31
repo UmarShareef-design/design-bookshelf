@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Routes, Route, NavLink, useLocation, useNavigate, matchPath } from 'react-router-dom';
+import { Routes, Route, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import CategoryBar from './components/CategoryBar';
 import BookCard from './components/BookCard';
 import About from './components/About';
@@ -221,7 +221,7 @@ const App = () => {
             </nav>
 
             <div className="content-area">
-                {matchPath('*/about', location.pathname) ? (
+                {location.pathname.replace(/\/$/, '').endsWith('/about') ? (
                     <About key="about" />
                 ) : (
                     <div className="home-content">
